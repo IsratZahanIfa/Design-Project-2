@@ -487,7 +487,7 @@ button:focus-visible {
 
 /* ---------------- REGISTRATION Page ---------------- */
 .admin-body {
-    background: url('https://storage.googleapis.com/48877118-7272-4a4d-b302-0465d8aa4548/8f263d79-144f-48d3-830f-185071cccc54/ad5d1ab1-f95b-46ae-a186-5d877f2e6719.jpg');
+    background: black;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -868,25 +868,11 @@ button[type="submit"]:hover {
 
 /* ===== Full Page Background ===== */
 body {
-    background: url('https://storage.googleapis.com/48877118-7272-4a4d-b302-0465d8aa4548/8f263d79-144f-48d3-830f-185071cccc54/ad5d1ab1-f95b-46ae-a186-5d877f2e6719.jpg')
-                no-repeat center/cover;
+    background:#ffffff;
     filter: brightness(0.85);
     margin: 0;
     padding: 0;
     position: relative;
-}
-
-/* ===== Background Blur Layer ===== */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: inherit;
-    filter: blur(12px) brightness(0.7);
-    z-index: -1;
 }
 
 /* ===== Product Section ===== */

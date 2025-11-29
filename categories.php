@@ -26,10 +26,6 @@ $categories = [
         "image" => "https://www.shutterstock.com/image-photo/planting-concept-melon-seeds-soil-260nw-2253178585.jpg"
     ],
     [
-        "name" => "Crops",
-        "image" => "https://www.shutterstock.com/image-photo/low-anlgle-view-agriculture-farming-600nw-2472323883.jpg"
-    ],
-    [
         "name" => "Trees",
         "image" => " https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-118143566.jpg"
     ]
