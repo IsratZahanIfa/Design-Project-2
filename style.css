@@ -1283,6 +1283,100 @@ body {
 
 
 
+/* ---------- Reviews ---------- */
+body.review-body {
+    background: #0D0D0D;
+    font-family: Arial, sans-serif;
+    color: white;
+}
+
+.review-container {
+    width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #111;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px #00ff99;
+}
+
+h2 {
+    text-align: center;
+    color: #00ff99;
+}
+
+.review-form label {
+    display: block;
+    margin-top: 10px;
+    color: #00ff99;
+}
+
+.review-form input,
+.review-form textarea {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    margin-top: 5px;
+    background: #222;
+    color: #fff;
+}
+
+.review-btn {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background: #00ff99;
+    color: black;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.review-btn:hover {
+    background: #00cc77;
+}
+
+.hr-line {
+    margin: 20px 0;
+    border-color: #00ff99;
+}
+
+.review-box {
+    background: rgba(0,255,153,0.1);
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.rating {
+    color: #00ff99;
+}
+
+.store-name {
+    color: #ccc;
+}
+
+.time {
+    float: right;
+    color: #888;
+    font-size: 12px;
+}
+
+.back-btn {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #00ff99;
+    text-decoration: none;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+
+
 
 
 
