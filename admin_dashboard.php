@@ -1,18 +1,13 @@
 <?php
 session_start();
 include 'db.php';
-
-// Redirect if admin not logged in
 if (!isset($_SESSION['admin'])) {
     header("Location: admin.php");
     exit;
 }
 
-// ========================= APPROVE SELLER =========================
 if (isset($_GET['approve_seller'])) {
     $id = intval($_GET['approve_seller']);
-
-    // Fetch seller data from users table
     $query = mysqli_query($conn, "SELECT * FROM users WHERE id=$id AND role='seller'");
     $seller = mysqli_fetch_assoc($query);
 
@@ -21,7 +16,6 @@ if (isset($_GET['approve_seller'])) {
         $email   = mysqli_real_escape_string($conn, $seller['email']);
         $contact = mysqli_real_escape_string($conn, $seller['contact']);
 
-        // Insert into sellers table with user_id if not already approved
         $check = mysqli_query($conn, "SELECT * FROM sellers WHERE user_id=$id");
         if (mysqli_num_rows($check) == 0) {
             mysqli_query($conn,
@@ -35,13 +29,9 @@ if (isset($_GET['approve_seller'])) {
     exit;
 }
 
-
-// ========================= DELETE SELLER =========================
-// Delete only from users if not approved in sellers yet
 if (isset($_GET['delete_seller'])) {
     $id = intval($_GET['delete_seller']);
 
-    // Check if user is already in sellers table
     $check = mysqli_query($conn, "SELECT * FROM sellers WHERE user_id=$id");
     if (mysqli_num_rows($check) == 0) {
         mysqli_query($conn, "DELETE FROM users WHERE id=$id AND role='seller'");
@@ -51,16 +41,13 @@ if (isset($_GET['delete_seller'])) {
     exit;
 }
 
-// Fetch all pending sellers (users with role 'seller' not yet approved)
 $pending_sellers = mysqli_query($conn, "
     SELECT * FROM users u
     WHERE u.role='seller' AND u.id NOT IN (SELECT user_id FROM sellers)
 ");
 
-// Fetch all approved sellers
 $approved_sellers = mysqli_query($conn, "SELECT * FROM sellers");
 
-// Logout admin
 if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: index.php");
@@ -79,53 +66,49 @@ if (isset($_GET['logout'])) {
     font-family: Arial, sans-serif; 
     background: #040404ff; 
     padding: 20px; 
-    color: white;                 /* all text white */
-    font-size: 14px;              /* smaller font */
+    color: white;                
+    font-size: 14px;            
 }
 
-/* Headings */
 h1 { 
     text-align: center; 
     color: white; 
     font-size: 18px; 
 }
 
-/* Tables */
 table { 
     border-collapse: collapse; 
     width: 80%; 
     margin: 20px auto; 
-    color: white;                 /* table text white */
+    color: white;                 
 }
 
 th, td { 
     border: 1px solid #444; 
-    padding: 8px;                 /* smaller padding */
+    padding: 8px;                
     text-align: left; 
-    font-size: 14px;              /* smaller font */
+    font-size: 14px;              
 }
 
 th { 
-    background: #1a1a1a;          /* dark header */
+    background: #1a1a1a;         
     color: white; 
 }
 
-/* Action Buttons */
 a.approve { 
-    color: #00ff00;               /* green text */
+    color: #00ff00;              
     text-decoration: none; 
     font-size: 14px;
     font-weight: bold;
 }
 
 a.delete { 
-    color: #ff4d4d;               /* red text */
+    color: #ff4d4d;              
     text-decoration: none; 
     font-size: 14px;
     font-weight: bold;
 }
 
-/* Logout Button */
 .logout-container { 
     text-align: center; 
     margin: 20px; 

@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-/* -------------------------
-   CATEGORY LIST (NO DATABASE)
---------------------------- */
 $categories = [
     [
         "name" => "Fruits",
@@ -36,8 +33,6 @@ $categories = [
 <html>
 <head>
     <title>Categories</title>
-
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
@@ -49,7 +44,6 @@ $categories = [
         overflow-x: hidden;
     }
 
-    /* ===== Blurred Background Image ===== */
     .bg-blur {
         position: fixed;
         top: 0;
@@ -58,12 +52,11 @@ $categories = [
         height: 100%;
         background: url('https://storage.googleapis.com/48877118-7272-4a4d-b302-0465d8aa4548/8f263d79-144f-48d3-830f-185071cccc54/ad5d1ab1-f95b-46ae-a186-5d877f2e6719.jpg')
                     no-repeat center/cover;
-        filter: blur(12px) brightness(0.7);
+        filter: blur(2px) brightness(0.9);
         z-index: -1;
-        transform: scale(1.05); /* removes border blur edges */
+        transform: scale(1.05); 
     }
 
-    /* ===== Heading ===== */
     h2 {
         text-align: center;
         margin-top: 40px;
@@ -74,7 +67,6 @@ $categories = [
         text-shadow: 0 2px 8px #0003;
     }
 
-    /* ===== Category Grid ===== */
     .category-container {
         width: 100%;
         margin: 40px auto;
@@ -83,7 +75,6 @@ $categories = [
         gap: 35px;
     }
 
-    /* ===== Category Card ===== */
     .cat-card {
         background: rgba(255, 255, 255, 0.7);
         backdrop-filter: blur(18px);
@@ -108,7 +99,6 @@ $categories = [
         border-bottom: 1px solid #fff5;
     }
 
-    /* ===== Category Name Text ===== */
     .cat-name {
         padding: 18px;
         font-size: 16px;
@@ -117,7 +107,6 @@ $categories = [
         letter-spacing: 0.5px;
     }
 
-    /* Back Button Styles */
     .back-btn {
         position: fixed;
         top: 20px;
@@ -131,11 +120,12 @@ $categories = [
         cursor: pointer;
         box-shadow: 0 4px 10px #0003;
         transition: 0.3s;
-        z-index: 10; /* ensures it stays above other elements */
+        z-index: 10; 
     }
 
     .back-btn:hover {
         background-color: #01360bff;
+        color: white;
         transform: scale(1.05);
     }
 
@@ -156,7 +146,6 @@ $categories = [
         <?php } ?>
     </div>
 
-    <!-- Back Button (Top-Left Corner) -->
     <button onclick="history.back()" class="back-btn">Back</button>
 
     

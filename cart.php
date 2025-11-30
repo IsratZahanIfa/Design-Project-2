@@ -1,15 +1,9 @@
 <?php
 session_start();
 include 'db.php';
-
-// Ensure cart exists
 if (!isset($_SESSION['cart']) || !is_array($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
-
-/* -------------------------------
-   HANDLE ADD TO CART
---------------------------------- */
 if (isset($_POST['add_to_cart'])) {
     $product_id   = $_POST['product_id'] ?? null;
     $product_name = $_POST['product_name'] ?? 'Item';
@@ -17,7 +11,6 @@ if (isset($_POST['add_to_cart'])) {
     $store_name   = $_POST['store_name'] ?? '';
     $seller_id    = $_POST['seller_id'] ?? 0;
 
-    // Check if product already exists in cart
     $foundIndex = null;
     foreach ($_SESSION['cart'] as $idx => $row) {
         if ($product_id !== null && isset($row['product_id']) && $row['product_id'] == $product_id) {
@@ -43,9 +36,6 @@ if (isset($_POST['add_to_cart'])) {
     exit;
 }
 
-/* -------------------------------
-   HANDLE REMOVE ITEM
---------------------------------- */
 if (isset($_GET['remove_index'])) {
     $remove_index = intval($_GET['remove_index']);
     if (isset($_SESSION['cart'][$remove_index])) {
@@ -56,9 +46,6 @@ if (isset($_GET['remove_index'])) {
     exit;
 }
 
-/* -------------------------------
-   HANDLE UPDATE QUANTITIES
---------------------------------- */
 if (isset($_POST['update_cart']) && isset($_POST['quantity']) && is_array($_POST['quantity'])) {
     foreach ($_POST['quantity'] as $index => $qty) {
         $i = intval($index);

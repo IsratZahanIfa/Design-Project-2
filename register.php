@@ -32,10 +32,10 @@ if (isset($_POST['register'])) {
 </head>
 
 <body class="admin-body">
-
+    
+<div class="bg-blur"></div>
     <div class="admin-container">
 
-        <!-- Form Title INSIDE the form box -->
         <form method="POST" action="" class="registration-form">
 
             <h2 class="form-title">Sign Up Your Account!</h2>

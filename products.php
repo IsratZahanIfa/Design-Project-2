@@ -23,8 +23,8 @@ if (isset($_GET['search'])) {
 <div style = "padding: 15px;"> 
     <form method = "GET", action = "">
     <input type="text" name="search" placeholder="Search products" 
-               style="padding: 10px; width: 250px; border-radius: 5px; border: 1px solid #ccc;">
-                <button type="submit"  style="padding: 10px 20px; border-radius: 5px; background-color: #004802ff; color: white; border: none; font-weight: bold;"> Search <i class="fa fa-search"></i></button>
+               style="padding: 10px; width: 100px; border-radius: 5px; border: 1px solid #ccc;">
+                <button type="submit"  style="padding: 10px 20px; border-radius: 5px; background-color: #024104ff; color: white; border: none; font-weight: 600;"> Search <i class="fa fa-search"></i></button>
 </form>
 </div>
 

@@ -1,84 +1,102 @@
-<?php
-include 'db.php';
-session_start();
+<?php 
+include 'db.php'; 
+session_start(); 
+if (isset($_POST['login'])) 
+{ 
+    $email = $_POST['email']; 
+    $password = md5($_POST['password']); 
+    $result = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND password='$password'"); 
+    
+    if (mysqli_num_rows($result) == 1) 
+    { 
+        $user = mysqli_fetch_assoc($result); 
+        $_SESSION['user_id'] = $user['id']; 
+        $_SESSION['user_name'] = $user['name']; 
+        $_SESSION['role'] = $user['role'];
 
-if (isset($_POST['login'])) {
-    $email = $_POST['email'];
-    $password = md5($_POST['password']);
-
-    $result = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND password='$password'");
-
-    if (mysqli_num_rows($result) == 1) {
-        $user = mysqli_fetch_assoc($result);
-
-        // Store session data
-        $_SESSION['user_id']  = $user['id'];
-        $_SESSION['user_name'] = $user['name'];
-        $_SESSION['role']     = $user['role'];
-
-        // Redirect based on role
-        if ($user['role'] == 'customer') {
-            header("Location: customer_dashboard.php");
-        } 
-        elseif ($user['role'] == 'seller') {
-            header("Location: seller_dashboard.php");
-        } 
-        else {
-            header("Location: index.php");
-        }
-        exit;
+    if ($user['role'] == 'customer') 
+    { 
+        header("Location: customer_dashboard.php"); 
     } 
-    else {
-        $error = "❌ Invalid Email or Password!";
-    }
-}
+    elseif ($user['role'] == 'seller') 
+        { 
+            header("Location: seller_dashboard.php"); 
+        } 
+        else { 
+            header("Location: index.php"); 
+        } 
+        exit; 
+    } 
+    else { 
+        $error = "❌ Invalid Email or Password!"; 
+        }
+     } 
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>User Login</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="admin-body">
 
-<div class="login-container">
-    <h2>User Login</h2>
+<body class="login-body">
+    <div class="bg-blur"></div>
 
-    <form method="POST" action="">
-        <label>Email:</label>
-        <input type="email" name="email" required>
+    <div class="login-container">
 
-        <label>Password:</label>
-        <input type="password" name="password" id="password" required>
+        <form method="POST" action="" class="login-form">
 
-        <div class="action-row">
-            <button type="button" id="showPassBtn" onclick="togglePassword()">Show</button>
-            <a href="forget_password.php" class="forget-inline">Forget Password?</a>
-        </div>
+            <h2 class="form-title">Login</h2>
 
-        <button type="submit" name="login">Login</button>
+            <div class="login-row">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
 
-        <a href="index.php" class="back-btn">Back</a>
-    </form>
+            <div class="login-row">      
+                <label for="password">Password:</label> 
+                <input type="password" name="password" id="password" required> 
+           
+              
+            <div class="action-button"> 
+                <button type="button" id="showPassBtn" onclick="togglePassword()">Show</button> 
+                <a href="#" class="forget-inline">Forget Password?</a>
+            </div>
+    </div>
+            <button type="submit" name="login">Login</button> 
 
-    <p><?php if(isset($error)) echo $error; ?></p>
-</div>
+            <p class="register-link">
+                Don't have an account? <a href="register.php">Register</a>
+            </p>
 
-<script>
-function togglePassword() {
-    var pass = document.getElementById("password");
-    var btn  = document.getElementById("showPassBtn");
+            <?php if(isset($error)) { ?>
+                <div class="error-message"><?php echo $error; ?></div>
+            <?php } ?>
 
-    if (pass.type === "password") {
-        pass.type = "text";
-        btn.textContent = "Hide";
-    } else {
-        pass.type = "password";
-        btn.textContent = "Show";
-    }
-}
-</script>
+        </form>
 
-</body>
+    </div> 
+    
+    <script>
+        function togglePassword() { 
+            var pass = document.getElementById("password"); 
+            var btn = document.getElementById("showPassBtn"); 
+            if (pass.type === "password") {
+                pass.type = "text"; 
+                btn.textContent = "Hide"; 
+            } else { 
+                pass.type = "password";
+                btn.textContent = "Show"; 
+            } 
+        }
+    </script> 
+
+</body> 
 </html>
+
+
+        
+
+    
