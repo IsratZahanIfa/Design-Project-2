@@ -46,7 +46,6 @@
                     <li><a href="categories.php">Categories</a></li>
                     <li><a href="products.php">Products</a></li>
                     <li><a href="reviews.php">Review</a></li>
-                    <li><a href="blogs.php">Blogs</a></li>
                      <li><a href="notifications.php">Notification</a></li>
                 </ul>
             </nav>
@@ -144,7 +143,7 @@
                  <i class="fas fa-truck service__icon"></i>
                 </div>
                 <h3>Fast Delivery</h3>
-                <p>কৃষি ব্যবসা, কৃষক সহায়তা এবং মানসম্পন্ন পণ্য সরবরাহের জন্য আপনার বিশ্বস্ত প্ল্যাটফর্ম।</p>
+                <p>Your trusted platform for agribusiness, farmer support, and quality product delivery.</p>
             </div>
 
             <div class="service-card">

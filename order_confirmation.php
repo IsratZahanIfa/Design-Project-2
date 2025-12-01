@@ -1,103 +1,84 @@
 <?php
 session_start();
-include 'db.php';
+include 'db.php';  
 
-// Enable error reporting for mysqli
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-
-$confirmed_items = [];
-
-if (isset($_POST['confirm_order']) && !empty($_SESSION['cart'])) {
-    $conn->begin_transaction();
-
-    try {
-        foreach ($_SESSION['cart'] as $item) {
-            $product_id   = intval($item['product_id']);
-            $product_name = trim($item['product_name']);
-            $price        = floatval($item['price']);
-            $quantity     = intval($item['quantity']);
-            $store_name   = trim($item['store_name']);
-            $seller_id    = intval($item['seller_id']);
-            $order_date   = date("Y-m-d H:i:s");
-
-            if ($product_id <= 0 || $product_name === '' || $quantity <= 0 || $store_name === '' || $seller_id <= 0) {
-                continue;
-            }
-
-            // Correct bind_param types:
-            // i = integer, s = string, d = double (float)
-            $stmt = $conn->prepare("INSERT INTO stores
-                (product_id, product_name, price, quantity, store_name, seller_id, order_date, status)
-                VALUES (?, ?, ?, ?, ?, ?, ?, 'Pending')");
-           $stmt->bind_param("isdiiss", $product_id, $product_name, $price, $quantity, $store_name, $seller_id, $order_date);
+if (isset($_POST['confirm_order'])) {
+    $seller_id    = $_SESSION['seller_id'];
+    $product_id   = $_SESSION['product_id'];
+    $product_name = $_SESSION['product_name'];
+    $price        = $_SESSION['price'];
+    $quantity     = $_SESSION['quantity'];
+    $store_name   = $_SESSION['store_name'];
+    $location     = $_SESSION['location'];
+    $status = "Pending";
+    $order_date = date("Y-m-d H:i:s");
 
 
-            $stmt->execute();
+    $sql = "INSERT INTO orders (seller_id, product_id, product_name, price, quantity, store_name, location, status, order_date)
+            VALUES ('$seller_id', '$product_id', '$product_name', '$price', '$quantity', '$store_name', '$location', '$status', '$order_date')";
 
-            $confirmed_items[] = [
-                'product_name' => $product_name,
-                'store_name'   => $store_name,
-                'price'        => $price,
-                'quantity'     => $quantity,
-                'subtotal'     => $price * $quantity
-            ];
-
-            $stmt->close();
-        }
-
-        $conn->commit();
-        $_SESSION['cart'] = []; // clear cart after confirmation
-
-    } catch (Exception $e) {
-        $conn->rollback();
-        die("Error saving order: " . $e->getMessage());
+    if (mysqli_query($conn, $sql)) {
+        echo "<script>alert('Order Confirmed Successfully!'); window.location.href='customer_dashboard.php';</script>";
+    } else {
+        echo "Error: " . mysqli_error($conn);
     }
-} else {
-    header("Location: cart.php");
-    exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Order Confirmation</title>
-<link rel="stylesheet" href="style.css">
-</head>
-<body>
-<div class="cart-wrap">
-<h1>✅ Order Confirmed!</h1>
-<a href="products.php">← Continue Shopping</a>
 
-<?php if (!empty($confirmed_items)): ?>
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Store</th>
-                <th>Price (৳)</th>
-                <th>Quantity</th>
-                <th>Subtotal (৳)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $grand_total = 0; ?>
-            <?php foreach ($confirmed_items as $item): ?>
-                <?php $grand_total += $item['subtotal']; ?>
-                <tr>
-                    <td><?= htmlspecialchars($item['product_name']) ?></td>
-                    <td><?= htmlspecialchars($item['store_name']) ?></td>
-                    <td><?= number_format($item['price'],2) ?></td>
-                    <td><?= $item['quantity'] ?></td>
-                    <td><?= number_format($item['subtotal'],2) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <p><strong>Total: ৳ <?= number_format($grand_total,2) ?></strong></p>
-<?php else: ?>
-    <p>No items were confirmed.</p>
-<?php endif; ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirm Order</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+            margin:0;
+            padding:0;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .order-box {
+            background:rgba(255,255,255,0.7);
+            padding:25px;
+            width:380px;
+            border-radius:12px;
+            backdrop-filter:blur(10px);
+            box-shadow:0 4px 20px rgba(0,0,0,0.2);
+            text-align:center;
+        }
+
+        button {
+            background:#007bff;
+            color:#fff;
+            border:none;
+            padding:12px 20px;
+            border-radius:6px;
+            cursor:pointer;
+            font-size:16px;
+            transition:0.3s;
+        }
+
+        button:hover {
+            background:#0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="order-box">
+    <h2>Confirm Your Order</h2>
+    <p>Click the button below to insert order data into the order table.</p>
+
+    <form method="post" action="order_confirmation.php">
+        <button type="submit" name="confirm_order">Confirm Order</button>
+    </form>
 </div>
+
 </body>
 </html>

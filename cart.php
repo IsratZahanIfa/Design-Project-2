@@ -75,33 +75,71 @@ if (isset($_POST['update_cart']) && isset($_POST['quantity']) && is_array($_POST
 <?php if (!empty($_SESSION['cart'])): ?>
     <form method="post" action="">
         <table border="1" cellpadding="8">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price (৳)</th>
-                    <th>Quantity</th>
-                    <th>Subtotal (৳)</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php $grand_total = 0; ?>
-                <?php foreach ($_SESSION['cart'] as $index => $item): ?>
-                    <?php
-                        $subtotal = $item['price'] * $item['quantity'];
-                        $grand_total += $subtotal;
-                    ?>
-                    <tr>
-                        <td><?= htmlspecialchars($item['product_name']) ?></td>
-                        <td><?= number_format($item['price'],2) ?></td>
-                        <td><input type="number" name="quantity[<?= $index ?>]" value="<?= $item['quantity'] ?>" min="1"></td>
-                        <td><?= number_format($subtotal,2) ?></td>
-                        <td><a href="?remove_index=<?= $index ?>" onclick="return confirm('Remove?')">Remove</a></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-        <p>Total: ৳ <?= number_format($grand_total,2) ?></p>
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Store Name</th>
+            <th>Price (৳)</th>
+            <th>Quantity</th>
+            <th>Subtotal (৳)</th>
+            <th>Order Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php 
+            $grand_total = 0;
+            $today = date("Y-m-d");
+        ?>
+        
+        <?php foreach ($_SESSION['cart'] as $index => $item): ?>
+
+    <?php
+        $product_id = $item['product_id'] ?? null;
+        $price      = $item['price'] ?? 0;
+        $quantity   = $item['quantity'] ?? 1;
+        if ($product_id) {
+            $stmt = mysqli_prepare($conn, "SELECT product_name, store_name FROM add_products WHERE id = ?");
+            mysqli_stmt_bind_param($stmt, "i", $product_id);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt, $product_name_db, $store_name_db);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+
+            $product_name = $product_name_db ?? null;
+            $store_name   = $store_name_db ?? null;
+        } else {
+            $product_name = 'Unknown Product';
+            $store_name   = 'Unknown Store';
+        }
+
+        $subtotal = $price * $quantity;
+        $grand_total += $subtotal;
+    ?>
+
+    <tr>
+        <td><?= htmlspecialchars($product_name) ?></td>
+        <td><?= htmlspecialchars($store_name) ?></td>
+        <td><?= number_format($price, 2) ?></td>
+        <td>
+            <input type="number" name="quantity[<?= $index ?>]" value="<?= $quantity ?>" min="1">
+        </td>
+        <td><?= number_format($subtotal, 2) ?></td>
+        <td><?= $today ?></td>
+        <td>
+            <a href="?remove_index=<?= $index ?>" onclick="return confirm('Remove?')">Remove</a>
+        </td>
+    </tr>
+
+<?php endforeach; ?>
+
+
+    </tbody>
+</table>
+
+<p>Total: ৳ <?= number_format($grand_total, 2) ?></p>
+
         <button type="submit" name="update_cart">Update Cart</button>
     </form>
 
