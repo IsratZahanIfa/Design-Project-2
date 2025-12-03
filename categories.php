@@ -24,7 +24,7 @@ $categories = [
     ],
     [
         "name" => "Trees",
-        "image" => " https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-118143566.jpg"
+        "image" => "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-118143566.jpg"
     ]
    
 ];
@@ -43,92 +43,6 @@ $categories = [
         position: relative;
         overflow-x: hidden;
     }
-
-    .bg-blur {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('https://storage.googleapis.com/48877118-7272-4a4d-b302-0465d8aa4548/8f263d79-144f-48d3-830f-185071cccc54/ad5d1ab1-f95b-46ae-a186-5d877f2e6719.jpg')
-                    no-repeat center/cover;
-        filter: blur(2px) brightness(0.9);
-        z-index: -1;
-        transform: scale(1.05); 
-    }
-
-    h2 {
-        text-align: center;
-        margin-top: 40px;
-        font-size: 32px;
-        color: #003509ff;
-        letter-spacing: 1px;
-        font-weight: 700;
-        text-shadow: 0 2px 8px #0003;
-    }
-
-    .category-container {
-        width: 100%;
-        margin: 40px auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 35px;
-    }
-
-    .cat-card {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(18px);
-        border-radius: 18px;
-        overflow: hidden;
-        text-align: center;
-        box-shadow: 0 6px 20px #0003;
-        transition: all 0.35s ease;
-        border: 1px solid rgba(255, 255, 255, 0.5);
-    }
-
-    .cat-card:hover {
-        transform: translateY(-8px) scale(1.06);
-        box-shadow: 0 15px 25px #0004;
-        background: rgba(255, 255, 255, 0.85);
-    }
-
-    .cat-card img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-        border-bottom: 1px solid #fff5;
-    }
-
-    .cat-name {
-        padding: 18px;
-        font-size: 16px;
-        font-weight: 700;
-        color: #013e0cff;
-        letter-spacing: 0.5px;
-    }
-
-    .back-btn {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 10px 20px;
-        font-size: 14px;
-        background-color: #ffffffff;
-        color: green;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        box-shadow: 0 4px 10px #0003;
-        transition: 0.3s;
-        z-index: 10; 
-    }
-
-    .back-btn:hover {
-        background-color: #01360bff;
-        color: white;
-        transform: scale(1.05);
-    }
-
 </style>
 
 </head>
@@ -138,13 +52,17 @@ $categories = [
     <h2>All Categories</h2>
 
     <div class="category-container">
-        <?php foreach ($categories as $cat) { ?>
-            <div class="cat-card">
-                <img src="<?php echo $cat['image']; ?>" alt="<?php echo $cat['name']; ?>">
-                <div class="cat-name"><?php echo $cat['name']; ?></div>
-            </div>
-        <?php } ?>
-    </div>
+
+    <?php foreach ($categories as $cat): 
+        $page = strtolower($cat['name']) . ".php";
+    ?>
+        <a href="<?php echo htmlspecialchars($page); ?>" class="cat-card">
+            <img src="<?php echo htmlspecialchars($cat['image']); ?>" alt="<?php echo htmlspecialchars($cat['name']); ?>">
+            <div class="cat-name"><?php echo htmlspecialchars($cat['name']); ?></div>
+        </a>
+    <?php endforeach; ?>
+</div>
+
 
     <button onclick="history.back()" class="back-btn">Back</button>
 

@@ -2,102 +2,111 @@
 session_start();
 include 'db.php';
 
-// Enable error reporting for mysqli
-mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
-$confirmed_items = [];
-
-if (isset($_POST['confirm_order']) && !empty($_SESSION['cart'])) {
-    $conn->begin_transaction();
-
-    try {
-        foreach ($_SESSION['cart'] as $item) {
-            $product_id   = intval($item['product_id']);
-            $product_name = trim($item['product_name']);
-            $price        = floatval($item['price']);
-            $quantity     = intval($item['quantity']);
-            $store_name   = trim($item['store_name']);
-            $seller_id    = intval($item['seller_id']);
-            $order_date   = date("Y-m-d H:i:s");
-
-            if ($product_id <= 0 || $product_name === '' || $quantity <= 0 || $store_name === '' || $seller_id <= 0) {
-                continue;
-            }
-
-            // Correct bind_param types:
-            // i = integer, s = string, d = double (float)
-            $stmt = $conn->prepare("INSERT INTO stores
-                (product_id, product_name, price, quantity, store_name, seller_id, order_date, status)
-                VALUES (?, ?, ?, ?, ?, ?, ?, 'Pending')");
-           $stmt->bind_param("isdiiss", $product_id, $product_name, $price, $quantity, $store_name, $seller_id, $order_date);
+$user_id = $_SESSION['user_id'] ?? 0;
 
 
-            $stmt->execute();
-
-            $confirmed_items[] = [
-                'product_name' => $product_name,
-                'store_name'   => $store_name,
-                'price'        => $price,
-                'quantity'     => $quantity,
-                'subtotal'     => $price * $quantity
-            ];
-
-            $stmt->close();
-        }
-
-        $conn->commit();
-        $_SESSION['cart'] = []; // clear cart after confirmation
-
-    } catch (Exception $e) {
-        $conn->rollback();
-        die("Error saving order: " . $e->getMessage());
-    }
-} else {
-    header("Location: cart.php");
+if (!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0) {
+    echo "<script>alert('Your cart is empty!'); window.location.href='cart.php';</script>";
     exit;
 }
+
+if (isset($_POST['confirm_order'])) {
+
+    foreach ($_SESSION['cart'] as $item) {
+
+        $seller_id    = $item['seller_id'];
+        $product_id   = $item['product_id'];
+        $product_name = $item['product_name'];
+        $price        = $item['price'];
+        $quantity     = $item['quantity'];
+        $store_name   = $item['store_name'];
+        $location     = $item['location'] ?? "Not Provided";
+        $status       = "Pending";
+        $order_date   = date("Y-m-d H:i:s");
+
+
+        $sql = "INSERT INTO orders 
+                (user_id, seller_id, product_id, product_name, price, quantity, store_name, location, order_date)
+                VALUES 
+                ('$user_id', '$seller_id', '$product_id', '$product_name', '$price', '$quantity', '$store_name', '$location', '$order_date')";
+
+        mysqli_query($conn, $sql);
+    }
+
+
+    unset($_SESSION['cart']);
+
+    echo "<script>alert('Order Confirmed Successfully!'); window.location.href='customer_dashboard.php';</script>";
+    exit;
+}
+
+$query = "SELECT * FROM orders WHERE user_id = '$user_id' ORDER BY order_date DESC";
+$result = mysqli_query($conn, $query);
 ?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Order Confirmation</title>
-<link rel="stylesheet" href="style.css">
+    <title>Order Confirmation</title>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 20px; }
+        table { width: 90%; margin: auto; border-collapse: collapse; }
+        table, th, td { border:1px solid #777; }
+        th, td { padding: 10px; }
+        th { background: #f2f2f2; }
+        button {
+            margin-top:20px; 
+            padding:10px 20px;
+            background: green; 
+            color:#fff; 
+            border:none;
+            border-radius:5px; 
+            cursor:pointer;
+        }
+    </style>
 </head>
 <body>
-<div class="cart-wrap">
-<h1>✅ Order Confirmed!</h1>
-<a href="products.php">← Continue Shopping</a>
 
-<?php if (!empty($confirmed_items)): ?>
-    <table border="1" cellpadding="8">
-        <thead>
-            <tr>
-                <th>Product</th>
-                <th>Store</th>
-                <th>Price (৳)</th>
-                <th>Quantity</th>
-                <th>Subtotal (৳)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php $grand_total = 0; ?>
-            <?php foreach ($confirmed_items as $item): ?>
-                <?php $grand_total += $item['subtotal']; ?>
-                <tr>
-                    <td><?= htmlspecialchars($item['product_name']) ?></td>
-                    <td><?= htmlspecialchars($item['store_name']) ?></td>
-                    <td><?= number_format($item['price'],2) ?></td>
-                    <td><?= $item['quantity'] ?></td>
-                    <td><?= number_format($item['subtotal'],2) ?></td>
-                </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-    <p><strong>Total: ৳ <?= number_format($grand_total,2) ?></strong></p>
+<h2>Confirm Your Order</h2>
+
+<form method="post">
+    <button type="submit" name="confirm_order">Confirm Order</button>
+</form>
+
+<hr><br>
+
+<h2>Your Order History</h2>
+
+<?php if (mysqli_num_rows($result) > 0): ?>
+
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Store</th>
+        <th>Price (৳)</th>
+        <th>Qty</th>
+        <th>location</th>
+        <th>status</th>
+        <th>Date</th>
+    </tr>
+
+    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+    <tr>
+        <td><?= $row['product_name'] ?></td>
+        <td><?= $row['store_name'] ?></td>
+        <td><?= $row['price'] ?></td>
+        <td><?= $row['quantity'] ?></td>
+        <td><?= $row['location'] ?></td>
+        <td><?= $row['status'] ?></td>
+        <td><?= $row['order_date'] ?></td>
+    </tr>
+    <?php endwhile; ?>
+</table>
+
 <?php else: ?>
-    <p>No items were confirmed.</p>
+    <p>No orders found.</p>
 <?php endif; ?>
-</div>
+
 </body>
 </html>

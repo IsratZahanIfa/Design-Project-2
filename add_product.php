@@ -30,9 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         ('$seller_id', '$seller_email', '$name', '$category', '$price', '$quantity', '$store_name', '$location')";
 
     if (mysqli_query($conn, $sql)) {
-        $message = "✅ Product added successfully!";
+        $message = "Product added successfully!";
     } else {
-        $message = "❌ Error: " . mysqli_error($conn);
+        $message = "Error: " . mysqli_error($conn);
     }
 }
 ?>

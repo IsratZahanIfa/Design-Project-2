@@ -1,5 +1,4 @@
 <?php 
-// DB included only for future cart update checks (add_products table)
 include 'db.php';
 $search ='';
 if (isset($_GET['search'])) {
@@ -13,24 +12,32 @@ if (isset($_GET['search'])) {
     <title>Products</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <style>
+        body {
+        background-color: rgba(221, 197, 197, 1);
+    }
+    </style>
 </head>
 <body>
 
-<section class="product-section">
+<div class="menu-bar">
+    <div class="menu-right">
+        <a href="customer_dashboard.php">Home</a>
+        <button type="button" onclick="window.location.href='products.php';">Refresh</button>
+    </div>
+
+    <div class="menu-right">
+        <form method="GET" action="">
+            <input type="text" name="search" placeholder="Search products">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+    </div>
+</div>
+
+<section class="products-section">
     <h2 class="section-heading main-heading">Choose Your Products</h2>
 </section>
 
-<div style = "padding: 15px;"> 
-    <form method = "GET", action = "">
-    <input type="text" name="search" placeholder="Search products" 
-               style="padding: 10px; width: 100px; border-radius: 5px; border: 1px solid #ccc;">
-                <button type="submit"  style="padding: 10px 20px; border-radius: 5px; background-color: #024104ff; color: white; border: none; font-weight: 600;"> Search <i class="fa fa-search"></i></button>
-</form>
-</div>
-
-<div style="padding: 15px;">
-<a href = customer_dashboard.php style="text-decoration: none; background-color: #fefefeff; color: green; padding: 10px 20px; border-radius: 5px; font-weight: bold;"> Back </a>
-        </div>
 
 <!-- ========================= FRUITS SECTION ========================= -->
  <?php if($search == '' || $search == 'fruits' || stripos ('fruits', $search) != false): ?>
@@ -69,10 +76,6 @@ if (isset($_GET['search'])) {
                     <input type="hidden" name="name" value="<?php echo $item[1]; ?>">
                     <input type="hidden" name="price" value="<?php echo $item[2]; ?>">
                     <input type="hidden" name="image" value="<?php echo $item[0]; ?>">
-
-                    <button type="submit" name="add_to_cart" class="btn-add-cart">
-                        Add to Cart 🛒
-                    </button>
                 </form>
             </div>
         <?php endforeach; ?>
@@ -117,10 +120,6 @@ if (isset($_GET['search'])) {
                     <input type="hidden" name="name" value="<?php echo $item[1]; ?>">
                     <input type="hidden" name="price" value="<?php echo $item[2]; ?>">
                     <input type="hidden" name="image" value="<?php echo $item[0]; ?>">
-
-                    <button type="submit" name="add_to_cart" class="btn-add-cart">
-                        Add to Cart 🛒
-                    </button>
                 </form>
             </div>
         <?php endforeach; ?>
@@ -175,10 +174,6 @@ if (isset($_GET['search'])) {
                     <input type="hidden" name="name" value="<?php echo $item[1]; ?>">
                     <input type="hidden" name="price" value="<?php echo $item[2]; ?>">
                     <input type="hidden" name="image" value="<?php echo $item[0]; ?>">
-
-                    <button type="submit" name="add_to_cart" class="btn-add-cart">
-                        Add to Cart 🛒
-                    </button>
                 </form>
             </div>
         <?php endforeach; ?>
@@ -229,10 +224,6 @@ if (isset($_GET['search'])) {
                     <input type="hidden" name="name" value="<?php echo $item[1]; ?>">
                     <input type="hidden" name="price" value="<?php echo $item[2]; ?>">
                     <input type="hidden" name="image" value="<?php echo $item[0]; ?>">
-
-                    <button type="submit" name="add_to_cart" class="btn-add-cart">
-                        Add to Cart 🛒
-                    </button>
                 </form>
             </div>
         <?php endforeach; ?>
@@ -287,10 +278,6 @@ if (isset($_GET['search'])) {
                     <input type="hidden" name="name" value="<?php echo $item[1]; ?>">
                     <input type="hidden" name="price" value="<?php echo $item[2]; ?>">
                     <input type="hidden" name="image" value="<?php echo $item[0]; ?>">
-
-                    <button type="submit" name="add_to_cart" class="btn-add-cart">
-                        Add to Cart 🛒
-                    </button>
                 </form>
             </div>
         <?php endforeach; ?>
@@ -347,10 +334,6 @@ if (isset($_GET['search'])) {
                     <input type="hidden" name="name" value="<?php echo $item[1]; ?>">
                     <input type="hidden" name="price" value="<?php echo $item[2]; ?>">
                     <input type="hidden" name="image" value="<?php echo $item[0]; ?>">
-
-                    <button type="submit" name="add_to_cart" class="btn-add-cart">
-                        Add to Cart 🛒
-                    </button>
                 </form>
             </div>
         <?php endforeach; ?>
