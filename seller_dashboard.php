@@ -45,103 +45,136 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 
     <style>
        body { 
-    margin:0; 
-    padding:0; 
+    margin: 0; 
+    padding: 0; 
     font-family:'Poppins',sans-serif; 
     background: url('https://t3.ftcdn.net/jpg/15/20/56/68/360_F_1520566864_eotnOsoKbNWuQlKPXPRzDqKz0II1jARE.jpg') no-repeat center center/cover; 
     background-size: 150%;   
 }
-.page { 
+
+.page{ 
     max-width: 1000px; 
     margin: 40px auto; 
-    padding: 25px; 
-    background: rgba(255, 255, 255, 0.30);
-    border-radius: 18px;
-    box-shadow: 0 6px 25px rgba(0,0,0,0.18);
-    backdrop-filter: blur(14px);
-    border: 1px solid rgba(255, 255, 255, 0.40);
-    margin-left: 280px;
+    padding: 18px; 
+    background: rgba(7, 1, 1, 0.25);
+    border-radius: 15px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    margin-left: 150px;  
 }
 
-.profile-card {
-    width: 260px;
-    min-height: 100vh;  
-    position: fixed;
-    top: 0;
-    left: 0;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 0 20px 20px 0;
-    backdrop-filter: blur(12px);
-    padding: 30px 22px;
-    text-align: center;
-    box-shadow: 5px 0 15px rgba(0,0,0,0.15);
+
+.header{ 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    margin-bottom: 30px; 
+    border-radius: 15px;
 }
 
-.profile-card img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #4f46e5;
-}
-
-.profile-info h3 {
-    margin-top: 10px;
-    font-size: 22px;
-    color: #002d09;
-    font-weight: 700;
-}
-
-.logout-btn {
-    margin-top: 25px;
-    padding: 14px 20px;
-    width: 85%;
-    background: rgb(0, 63, 13);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.logout-btn:hover {
-    background: rgb(2, 30, 5);
-    transform: translateY(-3px);
-}
-
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 25px;
-    margin-top: 20px;
-}
-
-.dash-box {
-    background: white;
-    padding: 25px;
+.profile-card{
+    width: 200px;                 
+    min-height: 30vh;             
+    position: fixed;               
+    top: 70px;
+    left: 50px;
+    background: rgba(203, 197, 197, 0.25);
+    border-radius: 5px 18px 18px 7px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.82);
+    padding: 25px 20px;
     border-radius: 16px;
-    text-align: center;
-    transition: 0.3s;
-    color: #000;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;        
+    align-items: center;
+    gap: 15px;
 }
 
-.dash-box:hover {
-    background: rgb(0,63,13);
+.profile-card img{
+    width:90px; 
+    height:90px; 
+    border-radius:50%; 
+    object-fit:cover; 
+    border:3px solid #4f46e5;
+}
+
+.profile-info{
+    text-align:center;
+}
+
+.profile-info h3{
+    margin:0;
+    font-size:20px;
+}
+
+.profile-info p{
+    margin:5px 0;
+    color: #070707ff;
+}
+
+.dashboard-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 300px); 
+    gap: 22px;
+    margin-top: 40px;
+    justify-content: end;     
+    margin-left: 80px;  
+}
+
+.dash-box{
+    background: rgb(0, 63, 19); 
+    padding: 25px 20px; 
+    border-radius: 14px;
+    text-align: center; 
+    transition:.30s; 
+    color: #000; 
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    width: 250px;  
+    height: 150px; 
+    right: 10px;
+}
+
+.dash-box:hover{ 
+    background: rgb(3, 19, 0);
+    color: white; 
+    transform:translateY(-8px); 
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+
+.dash-box i{ 
+    font-size:32px; 
+    margin-bottom:12px; 
+}
+
+.dash-box h3{ 
+    margin: 0 0 8px; 
+    font-size: 17px; 
+    font-weight:600;
+}
+
+.dash-box p{ 
+    margin: 0; 
+    font-size: 13px; 
+    opacity: 0.85;
+}
+
+.logout-btn{
+    margin: 30px;
+    padding:15px 20px; 
+    background: rgb(0, 63, 13); 
+    color: white; 
+    border:none;
+    border-radius:8px;  
+    font-weight:700;
+    transition:0.3s;
+}
+.logout-btn:hover{
+    background: rgb(3, 19, 0);
     color: white;
-    transform: translateY(-8px);
-}
-
-.dash-box i {
-    font-size: 38px;
-    margin-bottom: 10px;
-}
-
-.dash-box h3 {
-    font-size: 18px;
-    margin-bottom: 8px;
-    font-weight: 700;
 }
 
     </style>
@@ -157,7 +190,7 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
                 <h3><?= h($seller_name) ?></h3>
                 <p>Email: <?= h($seller_email) ?></p>
                 <p>Contact: <?= h($seller_contact) ?></p>
-                <p style="font-size:12px;color:#666;">Joined: <?= h($seller_joined) ?></p>
+                <p style="font-size:12px;color: #030303ff;">Joined: <?= h($seller_joined) ?></p>
             </div>
         </div>
     </div>
