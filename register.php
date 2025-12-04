@@ -1,7 +1,6 @@
 <?php
 include 'db.php';
 
-// Check if the Register button was clicked
 if (isset($_POST['register'])) {
 
     $name     = $_POST['name'];
@@ -17,7 +16,7 @@ if (isset($_POST['register'])) {
         header("Location: login.php?success=1");
         exit;
     } else {
-        echo "❌ Error: " . mysqli_error($conn);
+        echo "Error: " . mysqli_error($conn);
     }
 }
 ?>

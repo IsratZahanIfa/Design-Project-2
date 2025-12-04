@@ -160,7 +160,7 @@ foreach ($_SESSION['cart'] as $index => $item):
 <div id="checkoutBox">
     <h3>Complete Your Order</h3>
 
-    <form method="post" action="order_confirmation.php">
+    <form method="post" action="my_orders.php">
         <label>Delivery Location:</label><br>
         <input type="text" name="location" required placeholder="Enter your location"><br><br>
 
