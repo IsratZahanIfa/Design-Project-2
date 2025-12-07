@@ -199,9 +199,8 @@ th { background: #1a1a1a; }
     <a href="manage_users.php">Manage Users</a>
     <a href="manage_products.php">Manage Products</a>
     <a href="manage_orders.php">Manage Orders</a>
-    <a href="vmanage_reviews.php">Manage Reviews</a>
+    <a href="reviews.php">Manage Reviews</a>
     <a href="notifications.php">Manage Notifications</a>
-    <a href="categories.php">Manage Categories</a>
 
 
 </div>
