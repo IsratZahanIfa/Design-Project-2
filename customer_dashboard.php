@@ -2,11 +2,35 @@
 session_start();
 include 'db.php'; 
 
+<<<<<<< HEAD
+if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'customer') {
+=======
 if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'customer') {
+>>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     header("Location: login.php");
     exit();
 }
 
+<<<<<<< HEAD
+$user_name = null;
+if (!empty($_SESSION['user_name'])) {
+    $user_name = $_SESSION['user_name'];
+} else {
+
+    $user_id = intval($_SESSION['user_id']);
+    $res = mysqli_query($conn, "SELECT name FROM users WHERE id = $user_id LIMIT 1");
+    if ($res && mysqli_num_rows($res) === 1) {
+        $row = mysqli_fetch_assoc($res);
+        $user_name = $row['name'];
+  
+        $_SESSION['user_name'] = $user_name;
+    } else {
+        $user_name = "Customer";
+    }
+}
+
+function h($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
+=======
 $uid = intval($_SESSION['user_id']);
 
 $sql = "SELECT name, email, contact, created_at FROM users WHERE id = ? LIMIT 1";
@@ -17,6 +41,7 @@ if (!$stmt) {
 }
 
 mysqli_stmt_bind_param($stmt, "i", $uid);
+>>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
 
 if (!mysqli_stmt_execute($stmt)) {
     die("Database error (execute failed): " . mysqli_stmt_error($stmt));
@@ -46,9 +71,16 @@ $customer_joined  = !empty($customer['created_at'])
 <head>
     <meta charset="UTF-8">
     <title>Customer Dashboard | AgroTradeHub</title>
+<<<<<<< HEAD
+    <link rel="stylesheet" href="style.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+=======
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"> 
+>>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
 
     <style>
        body { 

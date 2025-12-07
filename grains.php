@@ -79,6 +79,7 @@ if (isset($_GET['search'])) {
     </div>
 </div>
 
+<!-- ========================= Grains SECTION ========================= -->
 <section class="product-section">
     <h2 class="section-heading">Grains Products</h2>
     <div class="products-grid">

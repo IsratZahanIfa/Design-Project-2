@@ -12,119 +12,49 @@ if (isset($_GET['search'])) {
     <title>Products</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <style>
-            body{
-                margin: 0;
-                padding: 0;
-                min-height: 100vh;
-                background: rgba(185, 142, 152, 0.4);
-                backdrop-filter: blur(12px);
-                -webkit-backdrop-filter: blur(12px);
-            }
-            .top-bar {
-                width: 100%;
-                background: #236b23d8;
-                padding: 20px;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-            }
-
-            .left-buttons {
-                display: flex;
-                gap: 25px;
-                margin-left: 30px;
-            }
-
-            .left-buttons button {
-                padding: 10px 35px;
-                background: white;
-                border: none;
-                font-weight: 600;
-                cursor: pointer;
-                border-radius: 4px;
-            }
-
-            .search-area {
-                display: flex;
-                align-items: center;
-                margin-right: 40px;
-            }
-
-            .search-area input {
-                width: 350px;
-                padding: 10px 15px 10px 40px;
-                border-radius: 4px;
-                border: none;
-            }
-
-            .search-area .icon {
-                position: fixed;
-                right: -35px;
-                font-size: 18px;
-                opacity: 0.8;
-            }
-
-            .content-area {
-                width: 100%;
-                background: #e3e3e3;
-                padding-top: 40px;
-                padding-bottom: 40px;
-                min-height: 100vh;
-            }
-
-            .center-box {
-                width: 400px;
-                margin: auto;
-                background: white;
-                padding: 15px;
-                text-align: center;
-                border-radius: 4px;
-                font-weight: 600;
-            }
-
-            .order-container {
-                width: 80%;
-                max-width: 900px;
-                margin: 35px auto;
-                background: rgba(255,255,255,0.8);
-                padding: 25px;
-                border-radius: 6px;
-            }
-
-            h2 {
-                text-align: center;
-                color: #003f0d;
-                margin-bottom: 20px;
-                font-size: 22px;
-                font-weight: 700;
-            }
-
-            table {
-                width: 100%;
-                border-collapse: collapse;
-                margin-top: 20px;
-                background: white;
-                border-radius: 6px;
-                overflow: hidden;
-            }
-
-            th {
-                background: #003f0d;
-                color: white;
-                padding: 14px;
-                font-size: 14px;
-            }
-
-            td {
-                padding: 12px;
-                border-bottom: 1px solid #ddd;
-                font-size: 14px;
-            }
-
-            tr:hover {
-                background: #f1f8f1;
-            }
+    <style>
+        body {
+        background-color: rgba(221, 197, 197, 1);
+    }
+        .menu-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #024104ff;
+            padding: 10px 20px;
+            color: white;
+            font-weight: bold;
+        }
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+        .menu-bar a:hover {
+            text-decoration: underline;
+        }
+        .menu-left, .menu-right {
+            display: flex;
+            align-items: center;
+        }
+        .menu-right form {
+            display: inline;
+        }
+        .menu-right input[type="text"] {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            margin-right: 5px;
+        }
+        .menu-right button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fefefe;
+            color: green;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
