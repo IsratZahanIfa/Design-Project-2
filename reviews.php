@@ -39,11 +39,8 @@ if (isset($_POST['add_review'])) {
     $ins_sql = "INSERT INTO reviews (user_id, full_name, store_name, rating, comment, created_at)
                 VALUES ('$user_id', '$full_name', '$store_name', '$rating', '$comment', NOW())";
     mysqli_query($conn, $ins_sql);
-    // Optional: check for errors: mysqli_error($conn)
 }
 
-// Fetch all reviews
-// Select review columns, plus user.name as user_name (fallback)
 $reviews_sql = "SELECT r.*, u.name AS user_name FROM reviews r
                 LEFT JOIN users u ON r.user_id = u.id
                 ORDER BY r.created_at DESC";

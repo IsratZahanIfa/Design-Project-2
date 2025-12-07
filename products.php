@@ -1,5 +1,4 @@
 <?php 
-// DB included only for future cart update checks (add_products table)
 include 'db.php';
 $search ='';
 if (isset($_GET['search'])) {
@@ -17,6 +16,7 @@ if (isset($_GET['search'])) {
         body {
         background-color: rgba(221, 197, 197, 1);
     }
+<<<<<<< HEAD
         .menu-bar {
             display: flex;
             justify-content: space-between;
@@ -56,6 +56,8 @@ if (isset($_GET['search'])) {
             font-weight: bold;
             cursor: pointer;
         }
+=======
+>>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     </style>
 </head>
 <body>
@@ -63,8 +65,12 @@ if (isset($_GET['search'])) {
 <div class="menu-bar">
     <div class="menu-right">
         <a href="customer_dashboard.php">Home</a>
+<<<<<<< HEAD
         <button type="button" onclick="window.location.href='products.php';">
                     <i class="fa fa-refresh"></i> Refresh</button>
+=======
+        <button type="button" onclick="window.location.href='products.php';">Refresh</button>
+>>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     </div>
 
     <div class="menu-right">
@@ -75,7 +81,11 @@ if (isset($_GET['search'])) {
     </div>
 </div>
 
+<<<<<<< HEAD
 <section class="product-section">
+=======
+<section class="products-section">
+>>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     <h2 class="section-heading main-heading">Choose Your Products</h2>
 </section>
 
