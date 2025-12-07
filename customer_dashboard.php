@@ -2,7 +2,6 @@
 session_start();
 include 'db.php';
 
-// ------------------ CHECK LOGIN ------------------
 if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'customer') {
     header("Location: login.php");
     exit();
@@ -10,7 +9,6 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'customer') {
 
 $uid = intval($_SESSION['user_id']);
 
-// ------------------ FETCH CUSTOMER DETAILS ------------------
 $sql = "SELECT name, email, contact, created_at FROM users WHERE id = ? LIMIT 1";
 $stmt = mysqli_prepare($conn, $sql);
 
@@ -29,7 +27,6 @@ $customer = ($result && mysqli_num_rows($result) === 1) ? mysqli_fetch_assoc($re
 
 mysqli_stmt_close($stmt);
 
-// Safe output function
 function h($s) { return htmlspecialchars((string)$s, ENT_QUOTES, 'UTF-8'); }
 
 $customer_name    = $customer['name'] ?? 'Customer';
