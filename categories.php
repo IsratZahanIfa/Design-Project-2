@@ -130,8 +130,6 @@ $categories = [
     }
 
 
-    
-/* ===== Product Section ===== */
 .product-section .section-heading {
     text-align: center;
     font-size: 30px;
@@ -332,7 +330,7 @@ $categories = [
 </div>
 
 
-    <button onclick="history.back()" class="back-btn">Back</button>
+    <a href="customer_dashboard.php" class="back-btn">Back to Dashboard</a>
 
     
 </body>

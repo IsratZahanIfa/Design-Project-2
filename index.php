@@ -18,7 +18,7 @@ include 'db.php';
     <div class="topbar">
         <div class="container topbar__inner">
             <div class="topbar__contact">
-                <span>📞 <a href="tel:01625524255">01625-524255</a></span>
+                <span>📞 <a href="tel:01625553255">01625-324255</a></span>
                 <span class="divider">|</span>
                 <span>✉️ <a href="mailto:support@agrotradehub.com">support@agrotradehub.com</a></span>
             </div>

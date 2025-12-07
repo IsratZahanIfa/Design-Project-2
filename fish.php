@@ -74,13 +74,11 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
-            <button type="submit"><i class="fa fa-search"></i> Search</button>
+            <button type="submit">Search</button>
         </form>
-        <a href="logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a>
     </div>
 </div>
 
-<!-- ========================= Fish SECTION ========================= -->
 <section class="product-section">
     <h2 class="section-heading">Fish Products</h2>
     <div class="products-grid">

@@ -218,19 +218,19 @@ $customer_joined  = !empty($customer['created_at'])
             <p>চেকআউটের আগে আইটেমগুলি দেখুন এবং পরিচালনা করুন</p>
         </a>
 
-        <a href="order_confirmation.php" class="dash-box">
+        <a href="my_orders.php" class="dash-box">
             <i class="fa fa-leaf"></i>
             <h3>My Order</h3>
             <p>আপনার অর্ডার চেক করুন</p>
         </a>
 
-        <a href="reviews.php" class="dash-box">
+        <a href="my_reviews.php" class="dash-box">
             <i class="fa fa-star"></i>
             <h3>My Reviews</h3>
             <p>কেনা পণ্য সম্পর্কে আপনার মতামত শেয়ার করুন</p>
         </a>
 
-        <a href="profile.php" class="dash-box">
+        <a href="customer_profile.php" class="dash-box">
             <i class="fa fa-user-cog"></i>
             <h3>Profile Settings</h3>
             <p>ব্যক্তিগত তথ্য এবং পাসওয়ার্ড আপডেট করুন</p>

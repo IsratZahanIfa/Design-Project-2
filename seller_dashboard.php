@@ -219,6 +219,13 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
             <h3>Notifications</h3>
             <p>নোটিফিকেশন পড়ুন</p>
         </a>
+
+        <a href="seller_profile.php" class="dash-box">
+            <i class="fa fa-user-cog"></i>
+            <h3>Profile Settings</h3>
+            <p>ব্যক্তিগত তথ্য এবং পাসওয়ার্ড আপডেট করুন</p>
+        </a>
+
     </div>
 
     <div>

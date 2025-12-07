@@ -13,9 +13,118 @@ if (isset($_GET['search'])) {
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <style>
-        body {
-        background-color: rgba(221, 197, 197, 1);
-    }
+            body{
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                background: rgba(185, 142, 152, 0.4);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+            }
+            .top-bar {
+                width: 100%;
+                background: #236b23d8;
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .left-buttons {
+                display: flex;
+                gap: 25px;
+                margin-left: 30px;
+            }
+
+            .left-buttons button {
+                padding: 10px 35px;
+                background: white;
+                border: none;
+                font-weight: 600;
+                cursor: pointer;
+                border-radius: 4px;
+            }
+
+            .search-area {
+                display: flex;
+                align-items: center;
+                margin-right: 40px;
+            }
+
+            .search-area input {
+                width: 350px;
+                padding: 10px 15px 10px 40px;
+                border-radius: 4px;
+                border: none;
+            }
+
+            .search-area .icon {
+                position: fixed;
+                right: -35px;
+                font-size: 18px;
+                opacity: 0.8;
+            }
+
+            .content-area {
+                width: 100%;
+                background: #e3e3e3;
+                padding-top: 40px;
+                padding-bottom: 40px;
+                min-height: 100vh;
+            }
+
+            .center-box {
+                width: 400px;
+                margin: auto;
+                background: white;
+                padding: 15px;
+                text-align: center;
+                border-radius: 4px;
+                font-weight: 600;
+            }
+
+            .order-container {
+                width: 80%;
+                max-width: 900px;
+                margin: 35px auto;
+                background: rgba(255,255,255,0.8);
+                padding: 25px;
+                border-radius: 6px;
+            }
+
+            h2 {
+                text-align: center;
+                color: #003f0d;
+                margin-bottom: 20px;
+                font-size: 22px;
+                font-weight: 700;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                background: white;
+                border-radius: 6px;
+                overflow: hidden;
+            }
+
+            th {
+                background: #003f0d;
+                color: white;
+                padding: 14px;
+                font-size: 14px;
+            }
+
+            td {
+                padding: 12px;
+                border-bottom: 1px solid #ddd;
+                font-size: 14px;
+            }
+
+            tr:hover {
+                background: #f1f8f1;
+            }
     </style>
 </head>
 <body>
@@ -99,7 +208,7 @@ if (isset($_GET['search'])) {
             ["https://cdn.britannica.com/16/187216-050-CB57A09B/tomatoes-tomato-plant-Fruit-vegetable.jpg", "Tomato", 50 , "★★★★☆", "Organic Market", "Sylhet"],
             ["https://hub.suttons.co.uk/wp-content/uploads/2025/01/suttons.cabbage.sunta_.jpg", "Cabbage", 50 , "★★★★★", "Agro Store", "Rajshahi"],
             ["https://www.dailypost.net/media/imgAll/2023September/onion-20240422092135.jpg", "Onion", 100, "★★★★★", "Fresh Choice", "Khulna"],
-            ["https://greenspices.in/wp-content/uploads/2021/07/black-pepper1.png", "Green Pepper", 50 , "★★★★☆", "Daily Veg Shop", "Barishal"]
+            ["https://images.unsplash.com/photo-1524593410820-38510f580a77?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "Green Chili", 50 , "★★★★☆", "Daily Veg Shop", "Barishal"]
         ];
 
         foreach ($vegetables as $item):
@@ -311,7 +420,7 @@ if (isset($_GET['search'])) {
             ["https://florastore.com/cdn/shop/files/2014191_Atmosphere_01_SQ.jpg?v=1757668042&width=1080", "Dwarf Orange Tree", 900, "★★★★★", "Golden Grains", "Barishal"],
             ["https://whiteonricecouple.com/recipe/images/lemon-tree-container-11-550x830-1.jpg", "Lemon Tree", 1200, "★★★★★", "Healthy Harvest", "Dhaka, Bangladesh"],
             ["https://i.ytimg.com/vi/VV1fcLycA14/oardefault.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLAKn-wvTfc6KztTGshH2XXPjCAzfg", "Dwarf Mango Tree", 3000, "★★★★☆", "Healthy Harvest", "Rajshahi"],
-            ["https://cdn.pixabay.com/photo/2016/07/26/15/01/guava-1543533_1280.jpg", "Guava Tree", 800, "★★★★★", "Daily Grain Mart", "Khulna"]
+            ["https://m.media-amazon.com/images/I/714q8hi9FwL.jpg", "Guava Tree", 800, "★★★★★", "Daily Grain Mart", "Khulna"]
         ];
 
 
