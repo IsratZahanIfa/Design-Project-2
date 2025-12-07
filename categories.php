@@ -29,6 +29,7 @@ $categories = [
    
 ];
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -238,7 +239,7 @@ $categories = [
             align-items: center;
         }
         
-                .menu-right form {
+        .menu-right form {
             display: flex;
             align-items: center;
             gap: 5px;
