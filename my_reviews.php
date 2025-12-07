@@ -1,14 +1,13 @@
 <?php
 session_start();
-include 'db.php';  // database connection
+include 'db.php'; 
 
-// If customer not logged in → redirect
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit;
 }
 
-$message = ""; // success or error message
+$message = ""; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -16,12 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $name = mysqli_real_escape_string($conn, $_POST['name']);
     $store_name = mysqli_real_escape_string($conn, $_POST['store_name']);
-    $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);   // ✅ NEW
+    $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);   
     $rating = intval($_POST['rating']);
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $review = mysqli_real_escape_string($conn, $_POST['review']);
 
-    // Insert into review table (added store_name + product_name)
     $sql = "INSERT INTO reviews (user_id, name, store_name, product_name, rating, title, review, status)
             VALUES ($user_id, '$name', '$store_name', '$product_name', $rating, '$title', '$review', 'pending')";
 
@@ -37,52 +35,65 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <title>Write a Review</title>
     <style>
-        body{
-            background:#0f0f0f;
-            color:white;
-            font-family:Arial;
-            padding:40px;
-        }
-        .container{
-            max-width:700px;
-            margin:auto;
-        }
+         body { 
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: url('https://storage.googleapis.com/48877118-7272-4a4d-b302-0465d8aa4548/8f263d79-144f-48d3-830f-185071cccc54/ad5d1ab1-f95b-46ae-a186-5d877f2e6719.jpg')
+                    no-repeat center/cover; 
+        background-attachment: fixed;
+            }
+
+        .container {
+        width: 50%;
+        margin: 40px auto;
+        background: rgba(255, 182, 192, 0.28);
+        padding: 35px 60px;
+        border-radius: 8px;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        box-shadow: 0 0 18px rgba(0, 0, 0, 0.35);
+        text-align: left;
+        animation: fadeIn 0.4s ease;
+    }
         input, textarea{
             width:100%;
             padding:12px;
             border-radius:6px;
-            border:1px solid #333;
-            background:#1a1a1a;
-            color:white;
-            font-size:14px;
-            margin-bottom:20px;
+            border:1px solid #fafafaff;
+            background: #ffffffff;
+            color: black;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
         .stars i{
-            font-size:25px;
+            font-size:20px;
             cursor:pointer;
-            color:#555;
+            color: #010101ff;
         }
         .stars i.active{
-            color:#ffcc00;
+            color: #ffcc00;
         }
         button{
             width:100%;
-            background:white;
-            border:none;
-            padding:12px;
-            border-radius:6px;
-            font-size:16px;
-            cursor:pointer;
+            background: black;
+            border: none;
+             padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            color: white;
         }
         .back-btn {
     display: inline-block;
     padding: 8px 15px;
-    background: #222;
+    background: #070707ff;
     color: #fff;
     text-decoration: none;
-    border-radius: 6px;
+    border-radius: 5px;
     font-weight: 600;
-    margin-right: 15px;
+    margin-right: 10px;
 }
 
 .back-btn:hover {
@@ -110,15 +121,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <form action="" method="POST">
         
-        <label>Your Name *</label>
+        <label>Your Name</label>
         <input type="text" name="name" required placeholder="Enter your name">
 
-        <!-- Store Name -->
-        <label>Store Name *</label>
+       
+        <label>Store Name</label>
         <input type="text" name="store_name" required placeholder="Enter the store name">
 
-        <!-- 🔥 NEW: Product Name -->
-        <label>Product Name *</label>
+        
+        <label>Product Name</label>
         <input type="text" name="product_name" required placeholder="Enter the product name">
 
         <label>Your Rating *</label>
@@ -131,10 +142,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <input type="hidden" name="rating" id="rating" required>
 
-        <label>Review Title *</label>
+        <label>Review Title</label>
         <input type="text" name="title" required placeholder="Summarize your experience">
 
-        <label>Your Review *</label>
+        <label>Your Review</label>
         <textarea name="review" rows="5" required placeholder="Share your thoughts..."></textarea>
 
         <button type="submit">Submit Review</button>
