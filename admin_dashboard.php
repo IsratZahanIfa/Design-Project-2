@@ -197,7 +197,7 @@ th { background: #1a1a1a; }
 <div class="box-links">
 
     <a href="manage_users.php">Manage Users</a>
-    <a href="add_product.php">Manage Products</a>
+    <a href="manage_products.php">Manage Products</a>
     <a href="manage_orders.php">Manage Orders</a>
     <a href="vmanage_reviews.php">Manage Reviews</a>
     <a href="notifications.php">Manage Notifications</a>
