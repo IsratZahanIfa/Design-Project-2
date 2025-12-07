@@ -29,7 +29,8 @@ $total_customers = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS c 
     <title>Manage Users</title>
     <style>
        
-        * { margin:0; 
+        * { 
+       margin:0; 
        padding:0; 
        box-sizing:border-box; 
        font-family: Arial, sans-serif; 
