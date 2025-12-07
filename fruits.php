@@ -21,13 +21,13 @@ if (isset($_GET['search'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
-        background-color: rgba(221, 197, 197, 1);
+        background-color: rgba(184, 167, 167, 1);
     }
         .menu-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #024104ff;
+            background: rgb(0, 63, 19);
             padding: 10px 20px;
             color: white;
             font-weight: bold;
@@ -35,7 +35,7 @@ if (isset($_GET['search'])) {
         .menu-bar a {
             color: white;
             text-decoration: none;
-            margin-right: 15px;
+            margin-right: 12px;
         }
         .menu-bar a:hover {
             text-decoration: underline;
@@ -44,15 +44,29 @@ if (isset($_GET['search'])) {
             display: flex;
             align-items: center;
         }
-      
-        .menu-right button {
-            padding: 5px 10px;
-            border-radius: 5px;
+        .menu-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-right form {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-right input[type="text"] {
+            padding: 8px 15px;
+            border-radius: 25px;
             border: none;
-            background-color: #fefefe;
-            color: green;
-            font-weight: bold;
-            cursor: pointer;
+            outline: none;
+            width: 220px;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+        .menu-right input[type="text"]:focus {
+            width: 260px;
+            background: #fff;
         }
     </style>
 </head>
@@ -66,7 +80,7 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
            <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
-    <button type="submit"><i class="fa fa-search"></i> Search</button>
+    <button type="submit"></i> Search</button>
 
     <?php if ($search !== ""): ?>
       
@@ -75,7 +89,6 @@ if (isset($_GET['search'])) {
         </button>
     <?php endif; ?>
         </form>
-        <a href="logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a>
     </div>
 </div>
 

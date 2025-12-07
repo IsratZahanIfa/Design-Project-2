@@ -12,11 +12,10 @@ if (isset($_GET['search'])) {
     <title>Products</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <style>
+    <style>
         body {
         background-color: rgba(221, 197, 197, 1);
     }
-<<<<<<< HEAD
         .menu-bar {
             display: flex;
             justify-content: space-between;
@@ -56,8 +55,6 @@ if (isset($_GET['search'])) {
             font-weight: bold;
             cursor: pointer;
         }
-=======
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     </style>
 </head>
 <body>
@@ -65,12 +62,7 @@ if (isset($_GET['search'])) {
 <div class="menu-bar">
     <div class="menu-right">
         <a href="customer_dashboard.php">Home</a>
-<<<<<<< HEAD
-        <button type="button" onclick="window.location.href='products.php';">
-                    <i class="fa fa-refresh"></i> Refresh</button>
-=======
         <button type="button" onclick="window.location.href='products.php';">Refresh</button>
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     </div>
 
     <div class="menu-right">
@@ -81,11 +73,7 @@ if (isset($_GET['search'])) {
     </div>
 </div>
 
-<<<<<<< HEAD
-<section class="product-section">
-=======
 <section class="products-section">
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     <h2 class="section-heading main-heading">Choose Your Products</h2>
 </section>
 
@@ -150,7 +138,7 @@ if (isset($_GET['search'])) {
             ["https://cdn.britannica.com/16/187216-050-CB57A09B/tomatoes-tomato-plant-Fruit-vegetable.jpg", "Tomato", 50 , "★★★★☆", "Organic Market", "Sylhet"],
             ["https://hub.suttons.co.uk/wp-content/uploads/2025/01/suttons.cabbage.sunta_.jpg", "Cabbage", 50 , "★★★★★", "Agro Store", "Rajshahi"],
             ["https://www.dailypost.net/media/imgAll/2023September/onion-20240422092135.jpg", "Onion", 100, "★★★★★", "Fresh Choice", "Khulna"],
-            ["https://greenspices.in/wp-content/uploads/2021/07/black-pepper1.png", "Green Pepper", 50 , "★★★★☆", "Daily Veg Shop", "Barishal"]
+            ["https://images.unsplash.com/photo-1524593410820-38510f580a77?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "Green Chili", 50 , "★★★★☆", "Daily Veg Shop", "Barishal"]
         ];
 
         foreach ($vegetables as $item):
@@ -362,7 +350,7 @@ if (isset($_GET['search'])) {
             ["https://florastore.com/cdn/shop/files/2014191_Atmosphere_01_SQ.jpg?v=1757668042&width=1080", "Dwarf Orange Tree", 900, "★★★★★", "Golden Grains", "Barishal"],
             ["https://whiteonricecouple.com/recipe/images/lemon-tree-container-11-550x830-1.jpg", "Lemon Tree", 1200, "★★★★★", "Healthy Harvest", "Dhaka, Bangladesh"],
             ["https://i.ytimg.com/vi/VV1fcLycA14/oardefault.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLAKn-wvTfc6KztTGshH2XXPjCAzfg", "Dwarf Mango Tree", 3000, "★★★★☆", "Healthy Harvest", "Rajshahi"],
-            ["https://cdn.pixabay.com/photo/2016/07/26/15/01/guava-1543533_1280.jpg", "Guava Tree", 800, "★★★★★", "Daily Grain Mart", "Khulna"]
+            ["https://m.media-amazon.com/images/I/714q8hi9FwL.jpg", "Guava Tree", 800, "★★★★★", "Daily Grain Mart", "Khulna"]
         ];
 
 

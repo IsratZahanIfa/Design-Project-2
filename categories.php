@@ -29,6 +29,7 @@ $categories = [
    
 ];
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,8 +131,6 @@ $categories = [
     }
 
 
-    
-/* ===== Product Section ===== */
 .product-section .section-heading {
     text-align: center;
     font-size: 30px;
@@ -240,7 +239,7 @@ $categories = [
             align-items: center;
         }
         
-                .menu-right form {
+        .menu-right form {
             display: flex;
             align-items: center;
             gap: 5px;
@@ -332,7 +331,7 @@ $categories = [
 </div>
 
 
-    <button onclick="history.back()" class="back-btn">Back</button>
+    <a href="customer_dashboard.php" class="back-btn">Back to Dashboard</a>
 
     
 </body>

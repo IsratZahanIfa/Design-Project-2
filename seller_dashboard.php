@@ -45,20 +45,18 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 
     <style>
        body { 
-<<<<<<< HEAD
+
     margin:0; 
     padding:0; 
-=======
+
     margin: 0; 
     padding: 0; 
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     font-family:'Poppins',sans-serif; 
     background: url('https://t3.ftcdn.net/jpg/15/20/56/68/360_F_1520566864_eotnOsoKbNWuQlKPXPRzDqKz0II1jARE.jpg') no-repeat center center/cover; 
     background-size: 150%;   
 }
 
 .page{ 
-<<<<<<< HEAD
     max-width:1000px; 
     margin:40px auto; 
     padding:18px; 
@@ -68,7 +66,7 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.35);
-=======
+
     max-width: 1000px; 
     margin: 40px auto; 
     padding: 18px; 
@@ -78,13 +76,12 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(4px);
     border: 2px solid rgba(255, 255, 255, 0.35);
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     margin-left: 150px;  
 }
 
 
 .header{ 
-<<<<<<< HEAD
+
     display:flex; 
     justify-content: center; 
     align-items:center; 
@@ -103,7 +100,7 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
     -webkit-backdrop-filter: blur(12px);
     box-shadow: 4px 0 12px rgba(0,0,0,0.1);
     padding: 25px 20px;
-=======
+
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -124,7 +121,7 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
     box-shadow: 4px 0 12px rgba(0, 0, 0, 0.82);
     padding: 25px 20px;
     border-radius: 16px;
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
+
     display: flex;
     flex-direction: column;        
     align-items: center;
@@ -142,7 +139,7 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 .profile-info{
     text-align:center;
 }
-<<<<<<< HEAD
+
 .profile-info h3{
     margin:0;
     font-size:20px;
@@ -188,7 +185,7 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 }
 .dash-box:hover{ 
     background: rgb(0, 63, 13); 
-=======
+
 
 .profile-info h3{
     margin:0;
@@ -225,7 +222,7 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 
 .dash-box:hover{ 
     background: rgb(3, 19, 0);
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
+
     color: white; 
     transform:translateY(-8px); 
     box-shadow:0 6px 18px rgba(0,0,0,0.15);
@@ -237,22 +234,18 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 }
 
 .dash-box h3{ 
-<<<<<<< HEAD
+
     margin:0 0 8px; 
     font-size:17px; 
-=======
+
     margin: 0 0 8px; 
     font-size: 17px; 
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
+
     font-weight:600;
 }
 
 .dash-box p{ 
-<<<<<<< HEAD
-    margin:0; 
-    font-size:13px; 
-    opacity:0.85;
-=======
+
     margin: 0; 
     font-size: 13px; 
     opacity: 0.85;
@@ -271,7 +264,7 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 .logout-btn:hover{
     background: rgb(3, 19, 0);
     color: white;
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
+
 }
 
     </style>
@@ -287,11 +280,8 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
                 <h3><?= h($seller_name) ?></h3>
                 <p>Email: <?= h($seller_email) ?></p>
                 <p>Contact: <?= h($seller_contact) ?></p>
-<<<<<<< HEAD
-                <p style="font-size:12px;color:#666;">Joined: <?= h($seller_joined) ?></p>
-=======
                 <p style="font-size:12px;color: #030303ff;">Joined: <?= h($seller_joined) ?></p>
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
+
             </div>
         </div>
     </div>
@@ -315,11 +305,12 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
             <p>অর্ডার ইতিহাস দেখুন</p>
         </a>
 
-        <a href="notifications.php" class="dash-box">
-            <i class="fa fa-bell"></i>
-            <h3>Notifications</h3>
-            <p>নোটিফিকেশন পড়ুন</p>
+        <a href="seller_profile.php" class="dash-box">
+            <i class="fa fa-user-cog"></i>
+            <h3>Profile Settings</h3>
+            <p>ব্যক্তিগত তথ্য এবং পাসওয়ার্ড আপডেট করুন</p>
         </a>
+
     </div>
 
     <div>

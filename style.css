@@ -480,9 +480,6 @@ button:focus-visible {
 
 
 
-
-
-
 /* ---------------- REGISTRATION Page ---------------- */
 .admin-body {
     margin: 0;
@@ -503,14 +500,14 @@ button:focus-visible {
                     no-repeat center/cover;
         filter: blur(4px) brightness(0.9);
         z-index: -1;
-        transform: scale(1.05); 
+        transform: scale(1.05);
     }
 
 .admin-container {
     width: 500px;
-    padding: 60px; 
+    padding: 60px;
     background: rgb(255, 234, 234);
-   
+
 }
 
 .registration-form {
@@ -549,14 +546,14 @@ button:focus-visible {
 .registration-form input,
 .registration-form select {
     width: 100%;
-    padding: 14px;         
-    font-size: 14px;       
+    padding: 14px;
+    font-size: 14px;
     border: 1px solid #070707;
     border-radius: 10px;
-    background: #ffffff;       
-    color: #000000;           
+    background: #ffffff;
+    color: #000000;
     outline: none;
-    transition: none;  
+    transition: none;
 }
 
 .button-row {
@@ -573,9 +570,9 @@ button:focus-visible {
     transition: 0.3s ease;
     margin-bottom: 18px;
     border-radius: 8px;
-    margin-top: 15px;       
-    text-align: right;  
-    font-weight: 500;    
+    margin-top: 15px;
+    text-align: right;
+    font-weight: 500;
 }
 
 .back-btn:hover {
@@ -599,9 +596,9 @@ button:focus-visible {
 
 .login-container {
     width: 500px;
-    padding: 50px; 
+    padding: 50px;
     background: rgb(255, 234, 234);
-    border-radius: 15px;   
+    border-radius: 15px;
 }
 
 .login-form .form-title {
@@ -609,7 +606,7 @@ button:focus-visible {
     font-weight: 700;
     text-align: center;
     margin-bottom: 25px;
-    color: #001d0a; 
+    color: #001d0a;
 }
 
 
@@ -624,20 +621,20 @@ button:focus-visible {
 .login-row input[type="email"],
 .login-row input[type="password"] {
     width: 100%;
-    padding: 12px;         
-    font-size: 14px;       
+    padding: 12px;
+    font-size: 14px;
     border: 1px solid #070707;
     border-radius: 10px;
-    background: #ffffff;       
-    color: #000000;           
+    background: #ffffff;
+    color: #000000;
     outline: none;
-    transition: none;  
+    transition: none;
 }
 
 .login-row input[type="email"]:focus,
 .login-row input[type="password"]:focus {
     border-color: #001e0b;
-    background: #ffffff;       
+    background: #ffffff;
 }
 
 .action-button {
@@ -667,9 +664,9 @@ button:focus-visible {
 }
 
 button[type="submit"] {
-    display: block;          
-    margin: 0 auto 15px;     
-    width: 50%;             
+    display: block;
+    margin: 0 auto 15px;
+    width: 50%;
     padding: 8px 15px;
     font-size: 16px;
     font-weight: 700;
@@ -725,8 +722,6 @@ button[type="submit"]:hover {
 
 
 
-
-
 /*=========== Admin Login ==========*/
 .login-container input {
     width: 100%;
@@ -766,7 +761,6 @@ button[type="submit"]:hover {
 /*======== Products =========*/
 h2.section-heading {
     text-align: center;
-<<<<<<< HEAD
     font-size: 30px;
     font-weight: 800;
     color: rgb(0, 63, 13);
@@ -784,76 +778,12 @@ h2.section-heading {
 .product-section {
     width: 95%;
     margin: 20px auto;
-=======
-    margin: 30px 0 20px;
-    color: #004d00;
-    font-size: 28px;
-    font-weight: 700;
-}
-
-.menu-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #006400;
-    color: white;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.menu-bar a, .menu-bar button {
-    color: white;
-    text-decoration: none;
-    margin-left: 15px;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    background: #004d00;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-.menu-bar a:hover, .menu-bar button:hover {
-    background-color: #003300;
-}
-
-.menu-bar form {
-    display: flex;
-    align-items: center;
-}
-
-.menu-bar input[type="text"] {
-    padding: 6px 10px;
-    border-radius: 5px 0 0 5px;
-    border: none;
-    outline: none;
-}
-
-.menu-bar button[type="submit"] {
-    border-radius: 0 5px 5px 0;
-    background-color: #004d00;
-}
-
-.products-section {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
 }
 
 .products-grid {
     display: grid;
-<<<<<<< HEAD
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 25px;
-=======
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 10px 0;
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
 }
 
 .product-card {
@@ -872,19 +802,12 @@ h2.section-heading {
     box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-<<<<<<< HEAD
 .product-card img {
     width: 160px;
     height: 160px;
-=======
-.product-img {
-    width: 100%;
-    height: 180px;
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     object-fit: cover;
 }
 
-<<<<<<< HEAD
 .product-card img:hover {
     transform: scale(1.08);
 }
@@ -907,29 +830,10 @@ h2.section-heading {
     font-size: 13px;
     color: #ff9800;
     margin-top: 5px;
-=======
-.product-card h3 {
-    margin: 10px;
-    font-size: 18px;
-    color: #004d00;
-}
-
-.price {
-    font-weight: 700;
-    color: #e60000;
-    margin: 0 10px 10px;
-}
-
-.rating {
-    margin: 0 10px 10px;
-    color: #ff9900;
-    font-size: 14px;
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
 }
 
 .store, .location {
     font-size: 13px;
-<<<<<<< HEAD
     color: #333;
     margin: 3px 0;
 }
@@ -939,22 +843,6 @@ h2.section-heading {
     color: white;
     padding: 0;
     margin-top: 10px;
-=======
-    margin: 0 10px 5px;
-    color: #555;
-}
-
-.product-card form {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-}
-
-.product-card form button {
-    padding: 8px 15px;
-    background: #006400;
-    color: white;
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     border: none;
     border-radius: 5px;
     font-weight: 600;
@@ -962,7 +850,6 @@ h2.section-heading {
     transition: 0.3s;
 }
 
-<<<<<<< HEAD
 .btn-add-cart:hover {
     background: rgb(3, 19, 0);
 }
@@ -989,28 +876,6 @@ h2.section-heading {
 
     .menu-right button {
         width: 25%;
-=======
-.product-card form button:hover {
-    background: #004d00;
-}
-
-/* Responsive for mobile */
-@media (max-width: 768px){
-    h2.section-heading {
-        font-size: 24px;
-    }
-    .menu-bar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .menu-bar form {
-        margin-top: 10px;
-        width: 100%;
-    }
-    .menu-bar input[type="text"] {
-        flex: 1;
-        width: auto;
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
     }
 }
 
@@ -1058,7 +923,7 @@ h2.section-heading {
     color: #fff;
 }
 
-.cart-table th, 
+.cart-table th,
 .cart-table td {
     padding: 16px;
     text-align: center;
@@ -1137,19 +1002,3 @@ h2.section-heading {
 .back-link:hover {
     text-decoration: underline;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

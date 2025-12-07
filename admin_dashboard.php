@@ -196,12 +196,11 @@ th { background: #1a1a1a; }
 
 <div class="box-links">
 
-    <a href="manage_users.php?table=users">Manage Users</a>
-    <a href="categories.php?table=categories">Manage Categories</a>
-    <a href="add_product.php?table=add_products">Manage Products</a>
-    <a href="view_table.php?table=orders">Manage Orders</a>
-    <a href="view_table.php?table=reviews">Manage Reviews</a>
-    <a href="view_table.php?table=notifications">Manage Notifications</a>
+    <a href="manage_users.php">Manage Users</a>
+    <a href="manage_products.php">Manage Products</a>
+    <a href="manage_orders.php">Manage Orders</a>
+    <a href="reviews.php">Manage Reviews</a>
+    <a href="notifications.php">Manage Notifications</a>
 
 
 </div>

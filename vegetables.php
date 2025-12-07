@@ -21,7 +21,7 @@ if (isset($_GET['search'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
-        background-color: rgba(221, 197, 197, 1);
+        background-color: rgba(184, 167, 167, 1);
     }
         .menu-bar {
             display: flex;
@@ -44,25 +44,32 @@ if (isset($_GET['search'])) {
             display: flex;
             align-items: center;
         }
+        .menu-right {
+            display: flex;
+            align-items: center;
+        }
+
         .menu-right form {
-            display: inline;
+            display: flex;
+            align-items: center;
         }
+
         .menu-right input[type="text"] {
-            padding: 0;
-            border-radius: 5px;
+            padding: 8px 15px;
+            border-radius: 25px;
             border: none;
-            margin-right: 10px;
+            outline: none;
+            width: 220px;
+            font-size: 14px;
+            transition: 0.3s ease;
         }
-        .menu-right button {
-            padding:0;
-            border-radius: 5px;
-            border: none;
-            background-color: #fefefe;
-            color: green;
-            font-weight: bold;
-            cursor: pointer;
+
+        .menu-right input[type="text"]:focus {
+            width: 260px;
+            background: #fff;
         }
-    </style>
+
+            </style>
 </head>
 <body>
 
@@ -74,31 +81,34 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
-            <button type="submit"><i class="fa fa-search"></i> </button>
+            <button type="submit"></button>
         </form>
-        <a href="logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a>
     </div>
 </div>
 
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 <!-- ========================= FRUITS SECTION ========================= -->
 =======
 <!-- ========================= Vegetables SECTION ========================= -->
 >>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
+>>>>>>> 4c7868d93c6d37c384b9650085b7999d4b6cd470
 <section class="product-section">
     <h2 class="section-heading">Vegetable Products</h2>
     <div class="products-grid">
         <?php 
-        $fruits = [
-           ["https://cdn.stocksnap.io/img-thumbs/280h/carrots-vegetable_KCSC4LAXLZ.jpg", "Carrot", 90 , "★★★★☆", "Veggie House", "Dhaka"],
+        $vegetables = [
+            ["https://cdn.stocksnap.io/img-thumbs/280h/carrots-vegetable_KCSC4LAXLZ.jpg", "Carrot", 90 , "★★★★☆", "Veggie House", "Dhaka"],
             ["https://plantix.net/en/library/assets/custom/crop-images/potato.jpeg", "Potato", 50 , "★★★★★", "Farm Fresh BD", "Chattogram"],
             ["https://cdn.britannica.com/16/187216-050-CB57A09B/tomatoes-tomato-plant-Fruit-vegetable.jpg", "Tomato", 50 , "★★★★☆", "Organic Market", "Sylhet"],
             ["https://hub.suttons.co.uk/wp-content/uploads/2025/01/suttons.cabbage.sunta_.jpg", "Cabbage", 50 , "★★★★★", "Agro Store", "Rajshahi"],
             ["https://www.dailypost.net/media/imgAll/2023September/onion-20240422092135.jpg", "Onion", 100, "★★★★★", "Fresh Choice", "Khulna"],
-            ["https://greenspices.in/wp-content/uploads/2021/07/black-pepper1.png", "Green Pepper", 50 , "★★★★☆", "Daily Veg Shop", "Barishal"]
+            ["https://images.unsplash.com/photo-1524593410820-38510f580a77?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "Green Chili", 50 , "★★★★☆", "Daily Veg Shop", "Barishal"]
+
         ];
 
-        foreach ($fruits as $item):
+        foreach ($vegetables as $item):
         ?>
             <div class="product-card">
                 <img src="<?= $item[0] ?>" class="product-img">
