@@ -3,80 +3,60 @@ session_start();
 include 'db.php';
 
 $user_id = $_SESSION['user_id'] ?? 0;
-
 if ($user_id == 0) {
     echo "<script>alert('Please login first!'); window.location.href='login.php';</script>";
     exit;
 }
 
-// =======================================================
-//  PROCESS ORDER CONFIRMATION
-// =======================================================
-
 if (!empty($_SESSION['cart']) && isset($_POST['confirm_order'])) {
-
     $order_date = date("Y-m-d H:i:s");
 
     foreach ($_SESSION['cart'] as $item) {
-
+        $product_id   = $item['product_id'] ?? 0;
         $product_name = $item['product_name'] ?? "Unknown Product";
         $price        = $item['price'] ?? 0;
         $quantity     = $item['quantity'] ?? 1;
         $store_name   = $item['store_name'] ?? "Unknown Store";
+        $seller_id    = $item['seller_id'] ?? 0;
 
-        // ---------------------------------------------------
-        // 🔥 FETCH seller_id FROM add_products table
-        // ---------------------------------------------------
-        $findSeller = $conn->prepare("SELECT seller_id FROM add_products WHERE store_name = ? LIMIT 1");
-        $findSeller->bind_param("s", $store_name);
-        $findSeller->execute();
-        $sellerRes = $findSeller->get_result();
-        $sellerRow = $sellerRes->fetch_assoc();
-        $seller_id = $sellerRow['seller_id'] ?? 0;
+        if ($seller_id == 0 && $product_id > 0) {
+            $stmt = $conn->prepare("SELECT seller_id FROM add_products WHERE id=? LIMIT 1");
+            $stmt->bind_param("i", $product_id);
+            $stmt->execute();
+            $res = $stmt->get_result();
+            $row = $res->fetch_assoc();
+            $seller_id = $row['seller_id'] ?? 0;
+            $stmt->close();
+        }
 
-        // ---------------------------------------------------
-        // 🔥 INSERT ORDER WITH seller_id
-        // ---------------------------------------------------
         $stmt = $conn->prepare("
-            INSERT INTO orders (user_id, seller_id, product_name, price, quantity, store_name, order_date)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO orders 
+            (user_id, seller_id, product_name, price, quantity, store_name, order_date, status)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')
         ");
-
-        $stmt->bind_param(
-            "iisdiss",
-            $user_id,
-            $seller_id,
-            $product_name,
-            $price,
-            $quantity,
-            $store_name,
-            $order_date
-        );
-
+        $stmt->bind_param("iisdiss", $user_id, $seller_id, $product_name, $price, $quantity, $store_name, $order_date);
         $stmt->execute();
+        $stmt->close();
     }
 
-    unset($_SESSION['cart']);
-
-    echo "<script>alert('Order Confirmed Successfully!');</script>";
-    echo "<script>window.location.href='order_confirmation.php';</script>";
+    $_SESSION['cart'] = []; // clear cart
+    echo "<script>alert('Order Confirmed Successfully!'); window.location.href='my_orders.php';</script>";
     exit;
 }
 
-// =======================================================
-//  FETCH ALL ORDERS OF THIS CUSTOMER
-// =======================================================
-$stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY order_date DESC");
+// Fetch user's orders
+$stmt = $conn->prepare("SELECT * FROM orders WHERE user_id=? ORDER BY order_date DESC");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
 $orders = $result->fetch_all(MYSQLI_ASSOC);
-
+$stmt->close();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Order Confirmation</title>
+    <title>My Orders</title>
 
     <style>
         body {
@@ -135,6 +115,7 @@ $orders = $result->fetch_all(MYSQLI_ASSOC);
         td {
             padding: 12px;
             border-bottom: 1px solid #ddd;
+            text-align:center;
         }
 
         tr:hover {
@@ -146,6 +127,10 @@ $orders = $result->fetch_all(MYSQLI_ASSOC);
             font-size: 18px;
             padding: 25px;
         }
+
+        .pending { color: orange; font-weight: bold; }
+        .approved { color: green; font-weight: bold; }
+
     </style>
 </head>
 
@@ -164,6 +149,7 @@ $orders = $result->fetch_all(MYSQLI_ASSOC);
                 <th>Price</th>
                 <th>Qty</th>
                 <th>Date</th>
+                <th>Status</th>
             </tr>
 
             <?php foreach ($orders as $o): ?>
@@ -173,6 +159,10 @@ $orders = $result->fetch_all(MYSQLI_ASSOC);
                     <td><?= $o['price'] ?></td>
                     <td><?= $o['quantity'] ?></td>
                     <td><?= $o['order_date'] ?></td>
+
+                    <td class="<?= $o['status'] ?>">
+                        <?= ucfirst($o['status']) ?>
+                    </td>
                 </tr>
             <?php endforeach; ?>
         </table>

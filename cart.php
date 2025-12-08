@@ -11,11 +11,23 @@ if (isset($_POST['add_to_cart'])) {
     $product_name = $_POST['product_name'] ?? 'Item';
     $price        = floatval($_POST['price'] ?? 0);
     $store_name   = $_POST['store_name'] ?? '';
-    $seller_id    = $_POST['seller_id'] ?? 0;
 
+    // Fetch seller_id from add_products based on store_name
+    $seller_id = 0;
+    if ($store_name) {
+        $stmt = $conn->prepare("SELECT seller_id FROM add_products WHERE store_name=? LIMIT 1");
+        $stmt->bind_param("s", $store_name);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $row = $res->fetch_assoc();
+        $seller_id = $row['seller_id'] ?? 0;
+        $stmt->close();
+    }
+
+    // Add to cart session
     $foundIndex = null;
     foreach ($_SESSION['cart'] as $idx => $row) {
-        if ($product_id !== null && isset($row['product_id']) && $row['product_id'] == $product_id) {
+        if (isset($row['product_id']) && $row['product_id'] == $product_id) {
             $foundIndex = $idx;
             break;
         }
@@ -28,11 +40,24 @@ if (isset($_POST['add_to_cart'])) {
             'product_id'   => $product_id,
             'product_name' => $product_name,
             'price'        => $price,
-            'quantity'     => 0,
+            'quantity'     => 1,
             'store_name'   => $store_name,
             'seller_id'    => $seller_id
         ];
     }
+
+    $user_id = $_SESSION['user_id'] ?? 0;
+    $order_date = date("Y-m-d H:i:s");
+
+    $stmt = $conn->prepare("
+        INSERT INTO orders (user_id, seller_id, product_name, price, quantity, store_name, order_date, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, 'pending')
+    ");
+
+    $quantity = 1; 
+    $stmt->bind_param("iisdiss", $user_id, $seller_id, $product_name, $price, $quantity, $store_name, $order_date);
+    $stmt->execute();
+    $stmt->close();
 
     header("Location: cart.php");
     exit;
@@ -61,12 +86,12 @@ if (isset($_POST['update_cart']) && isset($_POST['quantity']) && is_array($_POST
     exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>My Cart</title>
-
 <style>
 #checkoutBox {
     width: 350px;
@@ -95,7 +120,6 @@ button {
     padding:8px 15px;
 }
 </style>
-
 </head>
 <body>
 
@@ -104,123 +128,73 @@ button {
 <a href="categories.php">← Continue Shopping</a>
 
 <?php if (!empty($_SESSION['cart'])): ?>
-<<<<<<< HEAD
+
     <form method="post" action="">
         <table border="1" cellpadding="8">
-    <thead>
-        <tr>
-            <th>Product Name</th>
-            <th>Store Name</th>
-            <th>Price (৳)</th>
-            <th>Quantity</th>
-            <th>Subtotal (৳)</th>
-            <th>Order Date</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-
-    <tbody>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Store Name</th>
+                <th>Price (৳)</th>
+                <th>Quantity</th>
+                <th>Subtotal (৳)</th>
+                <th>Order Date</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
         <?php 
             $grand_total = 0;
             $today = date("Y-m-d");
+
+            foreach ($_SESSION['cart'] as $index => $item):
+                $product_id = $item['product_id'] ?? null;
+                $price      = $item['price'] ?? 0;
+                $quantity   = $item['quantity'] ?? 1;
+
+                if ($product_id) {
+                    $stmt = mysqli_prepare($conn, "SELECT product_name, store_name FROM add_products WHERE id = ?");
+                    mysqli_stmt_bind_param($stmt, "i", $product_id);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_bind_result($stmt, $product_name_db, $store_name_db);
+                    mysqli_stmt_fetch($stmt);
+                    mysqli_stmt_close($stmt);
+
+                    $product_name = $product_name_db ?? $item['product_name'];
+                    $store_name   = $store_name_db ?? $item['store_name'];
+                } else {
+                    $product_name = $item['product_name'] ?? 'Unknown Product';
+                    $store_name   = $item['store_name'] ?? 'Unknown Store';
+                }
+
+                $subtotal = $price * $quantity;
+                $grand_total += $subtotal;
         ?>
-        
-        <?php foreach ($_SESSION['cart'] as $index => $item): ?>
+            <tr>
+                <td><?= htmlspecialchars($product_name) ?></td>
+                <td><?= htmlspecialchars($store_name) ?></td>
+                <td><?= number_format($price, 2) ?></td>
+                <td>
+                    <input type="number" name="quantity[<?= $index ?>]" value="<?= $quantity ?>" min="1">
+                </td>
+                <td><?= number_format($subtotal, 2) ?></td>
+                <td><?= $today ?></td>
+                <td>
+                    <a href="?remove_index=<?= $index ?>" onclick="return confirm('Remove?')">Remove</a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
 
-    <?php
-        $product_id = $item['product_id'] ?? null;
-        $price      = $item['price'] ?? 0;
-        $quantity   = $item['quantity'] ?? 1;
-        if ($product_id) {
-            $stmt = mysqli_prepare($conn, "SELECT product_name, store_name FROM add_products WHERE id = ?");
-            mysqli_stmt_bind_param($stmt, "i", $product_id);
-            mysqli_stmt_execute($stmt);
-            mysqli_stmt_bind_result($stmt, $product_name_db, $store_name_db);
-            mysqli_stmt_fetch($stmt);
-            mysqli_stmt_close($stmt);
-
-            $product_name = $product_name_db ?? null;
-            $store_name   = $store_name_db ?? null;
-        } else {
-            $product_name = 'Unknown Product';
-            $store_name   = 'Unknown Store';
-        }
-
-        $subtotal = $price * $quantity;
-        $grand_total += $subtotal;
-    ?>
-
-    <tr>
-        <td><?= htmlspecialchars($product_name) ?></td>
-        <td><?= htmlspecialchars($store_name) ?></td>
-        <td><?= number_format($price, 2) ?></td>
-        <td>
-            <input type="number" name="quantity[<?= $index ?>]" value="<?= $quantity ?>" min="1">
-        </td>
-        <td><?= number_format($subtotal, 2) ?></td>
-        <td><?= $today ?></td>
-        <td>
-            <a href="?remove_index=<?= $index ?>" onclick="return confirm('Remove?')">Remove</a>
-        </td>
-    </tr>
-
-<?php endforeach; ?>
-
-
-    </tbody>
-</table>
-
-<p>Total: ৳ <?= number_format($grand_total, 2) ?></p>
-
-        <button type="submit" name="update_cart">Update Cart</button>
+    <p><b>Total: ৳ <?= number_format($grand_total, 2) ?></b></p>
+    <button type="submit" name="update_cart">Update Cart</button>
     </form>
-=======
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
 
-<form method="post" action="">
-<table border="1" cellpadding="8">
-<thead>
-<tr>
-    <th>Product Name</th>
-    <th>Store Name</th>
-    <th>Price</th>
-    <th>Quantity</th>
-    <th>Subtotal</th>
-    <th>Action</th>
-</tr>
-</thead>
-
-<tbody>
-<?php 
-$grand_total = 0;
-foreach ($_SESSION['cart'] as $index => $item):
-
-    $subtotal = $item['price'] * $item['quantity'];
-    $grand_total += $subtotal;
-?>
-<tr>
-    <td><?= $item['product_name'] ?></td>
-    <td><?= $item['store_name'] ?></td>
-    <td><?= number_format($item['price'],2) ?></td>
-    <td><input type="number" min="1" name="quantity[<?= $index ?>]" value="<?= $item['quantity'] ?>"></td>
-    <td><?= number_format($subtotal,2) ?></td>
-    <td><a href="?remove_index=<?= $index ?>">Remove</a></td>
-</tr>
-
-<?php endforeach; ?>
-</tbody>
-</table>
-
-<p><b>Total: ৳ <?= number_format($grand_total,2) ?></b></p>
-
-<button type="submit" name="update_cart">Update Cart</button>
-</form>
-
-<button onclick="showCheckout()">Confirm Order</button>
-
-<div>
-<button onclick="window.location.href='customer_dashboard.php'">Back</button>
-</div>
+    <button onclick="showCheckout()">Confirm Order</button>
+    <div>
+        <button onclick="window.location.href='customer_dashboard.php'">Back</button>
+    </div>
 
 <?php else: ?>
 <p>Your cart is empty.</p>
@@ -231,7 +205,6 @@ foreach ($_SESSION['cart'] as $index => $item):
 
 <div id="checkoutBox">
     <h3>Complete Your Order</h3>
-
     <form method="post" action="my_orders.php">
         <label>Delivery Location:</label><br>
         <input type="text" name="location" required placeholder="Enter your location"><br><br>

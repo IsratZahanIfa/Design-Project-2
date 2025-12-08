@@ -85,16 +85,13 @@ if (isset($_GET['search'])) {
     </div>
 </div>
 
-<<<<<<< HEAD
-<!-- ========================= FRUITS SECTION ========================= -->
-=======
 <!-- ========================= Trees SECTION ========================= -->
->>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
+
 <section class="product-section">
     <h2 class="section-heading">Trees Products</h2>
     <div class="products-grid">
         <?php 
-        $fruits = [
+        $trees = [
              ["https://whiteonricecouple.com/recipe/images/lemon-tree-container-11-550x830-1.jpg", "Lemon Tree", 1200, "★★★★★", "Healthy Harvest", "Dhaka, Bangladesh"],
             ["https://ecdn.dhakatribune.net/contents/cache/images/640x359x1/uploads/media/2024/06/26/Mango-tree-b85b4094a33503041edc6446af1fcb24.JPG?jadewits_media_id=23165", "Dwarf Mango Tree", 2500, "★★★★☆", "GrainHouse", "Chattogram"],
             ["https://cdn.pixabay.com/photo/2016/07/26/15/01/guava-1543533_1280.jpg", "Guava Tree", 800, "★★★★★", "Daily Grain Mart", "Khulna"],

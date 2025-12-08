@@ -44,29 +44,17 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-       body { 
+              body { 
+            margin:0; 
+            padding:0; 
+            font-family:'Poppins',sans-serif; 
+            background: url('https://t3.ftcdn.net/jpg/15/20/56/68/360_F_1520566864_eotnOsoKbNWuQlKPXPRzDqKz0II1jARE.jpg') 
+                       no-repeat center center/cover; 
+            background-size: 150%;   
+        }
 
-    margin:0; 
-    padding:0; 
-
-    margin: 0; 
-    padding: 0; 
-    font-family:'Poppins',sans-serif; 
-    background: url('https://t3.ftcdn.net/jpg/15/20/56/68/360_F_1520566864_eotnOsoKbNWuQlKPXPRzDqKz0II1jARE.jpg') no-repeat center center/cover; 
-    background-size: 150%;   
-}
-
+        
 .page{ 
-    max-width:1000px; 
-    margin:40px auto; 
-    padding:18px; 
-    background: rgba(255, 255, 255, 0.25);
-    border-radius:15px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-
     max-width: 1000px; 
     margin: 40px auto; 
     padding: 18px; 
@@ -81,26 +69,6 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 
 
 .header{ 
-
-    display:flex; 
-    justify-content: center; 
-    align-items:center; 
-    margin-bottom:30px; 
-}
-
-.profile-card{
-    width: 260px;                 
-    min-height: 100vh;             
-    position: fixed;               
-    top: 0;
-    left: 0;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 0 18px 18px 0;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 4px 0 12px rgba(0,0,0,0.1);
-    padding: 25px 20px;
-
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -121,7 +89,6 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
     box-shadow: 4px 0 12px rgba(0, 0, 0, 0.82);
     padding: 25px 20px;
     border-radius: 16px;
-
     display: flex;
     flex-direction: column;        
     align-items: center;
@@ -139,53 +106,6 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 .profile-info{
     text-align:center;
 }
-
-.profile-info h3{
-    margin:0;
-    font-size:20px;
-}
-.profile-info p{
-    margin:5px 0;
-    color:#444;
-}
-
-.logout-btn{
-    margin: 30px;
-    padding:15px 20px; 
-    background: rgb(0, 63, 13); 
-    color:white; 
-    border:none;
-    border-radius:8px;  
-    font-weight:700;
-    transition:0.3s;
-}
-.logout-btn:hover{
-    background: rgb(3, 19, 0);
-    color: white;
-}
-
-.dashboard-grid{
-     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 22px;
-    margin-top: 20px;
-    justify-content: end;   
-}
-
-.dash-box{
-    background: rgba(15, 160, 44, 1); 
-    padding:14px 18px; 
-    border-radius:14px;
-    text-align:center; 
-    transition:.30s; 
-    color:#000; 
-    text-decoration:none;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
-    gap: 22px;
-}
-.dash-box:hover{ 
-    background: rgb(0, 63, 13); 
-
 
 .profile-info h3{
     margin:0;
@@ -222,7 +142,6 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 
 .dash-box:hover{ 
     background: rgb(3, 19, 0);
-
     color: white; 
     transform:translateY(-8px); 
     box-shadow:0 6px 18px rgba(0,0,0,0.15);
@@ -234,18 +153,12 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 }
 
 .dash-box h3{ 
-
-    margin:0 0 8px; 
-    font-size:17px; 
-
     margin: 0 0 8px; 
     font-size: 17px; 
-
     font-weight:600;
 }
 
 .dash-box p{ 
-
     margin: 0; 
     font-size: 13px; 
     opacity: 0.85;
@@ -264,9 +177,7 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 .logout-btn:hover{
     background: rgb(3, 19, 0);
     color: white;
-
 }
-
     </style>
 </head>
 
