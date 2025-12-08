@@ -28,7 +28,7 @@ if (isset($_POST['login']))
         exit; 
     } 
     else { 
-        $error = "❌ Invalid Email or Password!"; 
+        $error = "Invalid Email or Password!"; 
         }
      } 
 ?>

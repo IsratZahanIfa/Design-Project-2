@@ -1,13 +1,18 @@
 <?php
 session_start();
 include 'db.php';
+
 if (!isset($_SESSION['admin'])) {
     header("Location: admin.php");
     exit;
 }
 
+/* ---------------------------
+   APPROVE SELLER
+----------------------------*/
 if (isset($_GET['approve_seller'])) {
     $id = intval($_GET['approve_seller']);
+
     $query = mysqli_query($conn, "SELECT * FROM users WHERE id=$id AND role='seller'");
     $seller = mysqli_fetch_assoc($query);
 
@@ -18,7 +23,8 @@ if (isset($_GET['approve_seller'])) {
 
         $check = mysqli_query($conn, "SELECT * FROM sellers WHERE user_id=$id");
         if (mysqli_num_rows($check) == 0) {
-            mysqli_query($conn,
+            mysqli_query(
+                $conn,
                 "INSERT INTO sellers (user_id, name, email, contact)
                  VALUES ($id, '$name', '$email', '$contact')"
             );
@@ -29,6 +35,9 @@ if (isset($_GET['approve_seller'])) {
     exit;
 }
 
+/* ---------------------------
+   DELETE SELLER 
+----------------------------*/
 if (isset($_GET['delete_seller'])) {
     $id = intval($_GET['delete_seller']);
 
@@ -41,9 +50,14 @@ if (isset($_GET['delete_seller'])) {
     exit;
 }
 
+
+/* ---------------------------
+   FETCH DATA
+----------------------------*/
 $pending_sellers = mysqli_query($conn, "
-    SELECT * FROM users u
-    WHERE u.role='seller' AND u.id NOT IN (SELECT user_id FROM sellers)
+    SELECT * FROM users 
+    WHERE role='seller' 
+    AND id NOT IN (SELECT user_id FROM sellers)
 ");
 
 $approved_sellers = mysqli_query($conn, "SELECT * FROM sellers");
@@ -53,6 +67,7 @@ if (isset($_GET['logout'])) {
     header("Location: index.php");
     exit;
 }
+
 ?>
 
 
@@ -61,117 +76,153 @@ if (isset($_GET['logout'])) {
 <head>
 <meta charset="UTF-8">
 <title>Admin Dashboard</title>
+
 <style>
-  body { 
+body { 
     font-family: Arial, sans-serif; 
     background: #040404ff; 
     padding: 20px; 
-    color: white;                
-    font-size: 14px;            
+    color: white;  
 }
 
 h1 { 
     text-align: center; 
-    color: white; 
-    font-size: 18px; 
+    font-size: 22px; 
+    margin-top: 20px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 35px;
+    color: #00ffcc;
 }
 
 table { 
     border-collapse: collapse; 
-    width: 80%; 
-    margin: 20px auto; 
-    color: white;                 
+    width: 90%; 
+    margin: 20px auto;
+    color: white;
 }
 
 th, td { 
     border: 1px solid #444; 
-    padding: 8px;                
-    text-align: left; 
-    font-size: 14px;              
+    padding: 8px;
 }
 
-th { 
-    background: #1a1a1a;         
-    color: white; 
-}
+th { background: #1a1a1a; }
 
-a.approve { 
-    color: #00ff00;              
-    text-decoration: none; 
-    font-size: 14px;
+.action-btn {
+    color: #00eaff;
     font-weight: bold;
+    text-decoration: none;
 }
 
-a.delete { 
-    color: #ff4d4d;              
-    text-decoration: none; 
-    font-size: 14px;
+.action-btn:hover {
+    color: #5efcff;
+}
+
+.logout-container {
+    text-align: center;
+    margin: 25px;
+}
+.logout {
+    color: white;
+    background: #111;
+    padding: 10px 18px;
+    border-radius: 5px;
+}
+.logout:hover { background: #333; }
+
+.box-links {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+}
+
+.box-links a {
+    background: #111;
+    padding: 12px;
+    color: #00ffe1;
+    text-decoration: none;
     font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
 }
-
-.logout-container { 
-    text-align: center; 
-    margin: 20px; 
+.box-links a:hover {
+    background: #333;
 }
-
-.logout { 
-    text-decoration: none; 
-    color: white; 
-    background: #111; 
-    padding: 8px 15px; 
-    border-radius: 5px; 
-    font-size: 14px;
-    font-weight: bold;
-}
-
-.logout:hover { 
-    background: #333; 
-}
-
 </style>
 </head>
 <body>
 
-<h1>Pending Seller Approvals</h1>
+<h1>ADMIN DASHBOARD</h1>
+
+<!-- ============================
+     SELLER APPROVAL SECTION
+============================= -->
+<h2 class="section-title">Pending Seller Approvals</h2>
+
 <table>
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Contact</th>
-        <th>Action</th>
-    </tr>
-    <?php while ($row = mysqli_fetch_assoc($pending_sellers)) { ?>
-        <tr>
-            <td><?= htmlspecialchars($row['name']) ?></td>
-            <td><?= htmlspecialchars($row['email']) ?></td>
-            <td><?= htmlspecialchars($row['contact']) ?></td>
-            <td>
-                <a class="approve" href="admin_dashboard.php?approve_seller=<?= $row['id'] ?>">✔ Approve</a>
-                &nbsp;
-                <a class="delete" href="admin_dashboard.php?delete_seller=<?= $row['id'] ?>">🗑 Delete</a>
-            </td>
-        </tr>
-    <?php } ?>
+<tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Contact</th>
+    <th>Action</th>
+</tr>
+
+<?php while ($row = mysqli_fetch_assoc($pending_sellers)) { ?>
+<tr>
+    <td><?= $row['name'] ?></td>
+    <td><?= $row['email'] ?></td>
+    <td><?= $row['contact'] ?></td>
+    <td>
+        <a class="action-btn" href="admin_dashboard.php?approve_seller=<?= $row['id'] ?>">✔ Approve</a> |
+        <a class="action-btn" style="color:#ff4d4d" href="admin_dashboard.php?delete_seller=<?= $row['id'] ?>">🗑 Delete</a>
+    </td>
+</tr>
+<?php } ?>
 </table>
 
-<h1>Approved Sellers</h1>
+<h2 class="section-title">Approved Sellers</h2>
+
 <table>
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Contact</th>
-    </tr>
-    <?php while ($row = mysqli_fetch_assoc($approved_sellers)) { ?>
-        <tr>
-            <td><?= htmlspecialchars($row['name']) ?></td>
-            <td><?= htmlspecialchars($row['email']) ?></td>
-            <td><?= htmlspecialchars($row['contact']) ?></td>
-        </tr>
-    <?php } ?>
+<tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Contact</th>
+</tr>
+
+<?php while ($row = mysqli_fetch_assoc($approved_sellers)) { ?>
+<tr>
+    <td><?= $row['name'] ?></td>
+    <td><?= $row['email'] ?></td>
+    <td><?= $row['contact'] ?></td>
+</tr>
+<?php } ?>
 </table>
 
 
+<h2 class="section-title">Manage All Tables</h2>
 
+<div class="box-links">
+
+    <a href="manage_users.php?table=users">Manage Users</a>
+    <a href="categories.php?table=categories">Manage Categories</a>
+    <a href="add_product.php?table=add_products">Manage Products</a>
+    <a href="view_table.php?table=orders">Manage Orders</a>
+    <a href="view_table.php?table=reviews">Manage Reviews</a>
+    <a href="view_table.php?table=notifications">Manage Notifications</a>
+
+
+</div>
+
+
+<!-- ============================
+     LOGOUT
+============================= -->
 <div class="logout-container">
     <a href="admin_dashboard.php?logout=1" class="logout">Logout</a>
 </div>

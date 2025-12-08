@@ -24,7 +24,7 @@ $categories = [
     ],
     [
         "name" => "Trees",
-        "image" => " https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-118143566.jpg"
+        "image" => "https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-118143566.jpg"
     ]
    
 ];
@@ -138,13 +138,17 @@ $categories = [
     <h2>All Categories</h2>
 
     <div class="category-container">
-        <?php foreach ($categories as $cat) { ?>
-            <div class="cat-card">
-                <img src="<?php echo $cat['image']; ?>" alt="<?php echo $cat['name']; ?>">
-                <div class="cat-name"><?php echo $cat['name']; ?></div>
-            </div>
-        <?php } ?>
-    </div>
+
+    <?php foreach ($categories as $cat): 
+        $page = strtolower($cat['name']) . ".php";
+    ?>
+        <a href="<?php echo htmlspecialchars($page); ?>" class="cat-card">
+            <img src="<?php echo htmlspecialchars($cat['image']); ?>" alt="<?php echo htmlspecialchars($cat['name']); ?>">
+            <div class="cat-name"><?php echo htmlspecialchars($cat['name']); ?></div>
+        </a>
+    <?php endforeach; ?>
+</div>
+
 
     <button onclick="history.back()" class="back-btn">Back</button>
 
