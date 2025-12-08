@@ -319,6 +319,20 @@ $categories = [
     <h2>All Categories</h2>
 
     <div class="category-container">
+<<<<<<< HEAD
+
+    <?php foreach ($categories as $cat): 
+        $page = strtolower($cat['name']) . ".php";
+    ?>
+        <a href="<?php echo htmlspecialchars($page); ?>" class="cat-card">
+            <img src="<?php echo htmlspecialchars($cat['image']); ?>" alt="<?php echo htmlspecialchars($cat['name']); ?>">
+            <div class="cat-name"><?php echo htmlspecialchars($cat['name']); ?></div>
+        </a>
+    <?php endforeach; ?>
+</div>
+
+=======
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 
     <?php foreach ($categories as $cat): 
         $page = strtolower($cat['name']) . ".php";

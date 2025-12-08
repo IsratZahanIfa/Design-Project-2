@@ -105,6 +105,8 @@ button {
 
 <?php if (!empty($_SESSION['cart'])): ?>
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
     <form method="post" action="">
         <table border="1" cellpadding="8">
     <thead>
@@ -176,6 +178,7 @@ button {
     </form>
 =======
 >>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 
 <form method="post" action="">
 <table border="1" cellpadding="8">
@@ -232,7 +235,11 @@ foreach ($_SESSION['cart'] as $index => $item):
 <div id="checkoutBox">
     <h3>Complete Your Order</h3>
 
+<<<<<<< HEAD
+    <form method="post" action="order_confirmation.php">
+=======
     <form method="post" action="my_orders.php">
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
         <label>Delivery Location:</label><br>
         <input type="text" name="location" required placeholder="Enter your location"><br><br>
 

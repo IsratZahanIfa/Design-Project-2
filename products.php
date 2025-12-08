@@ -12,7 +12,11 @@ if (isset($_GET['search'])) {
     <title>Products</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<<<<<<< HEAD
+        <style>
+=======
     <style>
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
         body {
         background-color: rgba(221, 197, 197, 1);
     }
@@ -62,7 +66,12 @@ if (isset($_GET['search'])) {
 <div class="menu-bar">
     <div class="menu-right">
         <a href="customer_dashboard.php">Home</a>
+<<<<<<< HEAD
+        <button type="button" onclick="window.location.href='products.php';">
+                    <i class="fa fa-refresh"></i> Refresh</button>
+=======
         <button type="button" onclick="window.location.href='products.php';">Refresh</button>
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
     </div>
 
     <div class="menu-right">
@@ -73,7 +82,11 @@ if (isset($_GET['search'])) {
     </div>
 </div>
 
+<<<<<<< HEAD
+<section class="product-section">
+=======
 <section class="products-section">
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
     <h2 class="section-heading main-heading">Choose Your Products</h2>
 </section>
 
