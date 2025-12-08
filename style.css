@@ -480,9 +480,6 @@ button:focus-visible {
 
 
 
-
-
-
 /* ---------------- REGISTRATION Page ---------------- */
 .admin-body {
     margin: 0;
@@ -503,14 +500,14 @@ button:focus-visible {
                     no-repeat center/cover;
         filter: blur(4px) brightness(0.9);
         z-index: -1;
-        transform: scale(1.05); 
+        transform: scale(1.05);
     }
 
 .admin-container {
     width: 500px;
-    padding: 60px; 
+    padding: 60px;
     background: rgb(255, 234, 234);
-   
+
 }
 
 .registration-form {
@@ -549,14 +546,14 @@ button:focus-visible {
 .registration-form input,
 .registration-form select {
     width: 100%;
-    padding: 14px;         
-    font-size: 14px;       
+    padding: 14px;
+    font-size: 14px;
     border: 1px solid #070707;
     border-radius: 10px;
-    background: #ffffff;       
-    color: #000000;           
+    background: #ffffff;
+    color: #000000;
     outline: none;
-    transition: none;  
+    transition: none;
 }
 
 .button-row {
@@ -573,9 +570,9 @@ button:focus-visible {
     transition: 0.3s ease;
     margin-bottom: 18px;
     border-radius: 8px;
-    margin-top: 15px;       
-    text-align: right;  
-    font-weight: 500;    
+    margin-top: 15px;
+    text-align: right;
+    font-weight: 500;
 }
 
 .back-btn:hover {
@@ -599,9 +596,9 @@ button:focus-visible {
 
 .login-container {
     width: 500px;
-    padding: 50px; 
+    padding: 50px;
     background: rgb(255, 234, 234);
-    border-radius: 15px;   
+    border-radius: 15px;
 }
 
 .login-form .form-title {
@@ -609,7 +606,7 @@ button:focus-visible {
     font-weight: 700;
     text-align: center;
     margin-bottom: 25px;
-    color: #001d0a; 
+    color: #001d0a;
 }
 
 
@@ -624,24 +621,23 @@ button:focus-visible {
 .login-row input[type="email"],
 .login-row input[type="password"] {
     width: 100%;
-    padding: 12px;         
-    font-size: 14px;       
+    padding: 12px;
+    font-size: 14px;
     border: 1px solid #070707;
     border-radius: 10px;
-    background: #ffffff;       
-    color: #000000;           
+    background: #ffffff;
+    color: #000000;
     outline: none;
-    transition: none;  
+    transition: none;
 }
 
 .login-row input[type="email"]:focus,
 .login-row input[type="password"]:focus {
     border-color: #001e0b;
-    background: #ffffff;       
+    background: #ffffff;
 }
 
 .action-button {
-
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -668,9 +664,9 @@ button:focus-visible {
 }
 
 button[type="submit"] {
-    display: block;          
-    margin: 0 auto 15px;     
-    width: 50%;             
+    display: block;
+    margin: 0 auto 15px;
+    width: 50%;
     padding: 8px 15px;
     font-size: 16px;
     font-weight: 700;
@@ -726,9 +722,7 @@ button[type="submit"]:hover {
 
 
 
-
-
-/*----------------Admin Login-----------*/
+/*=========== Admin Login ==========*/
 .login-container input {
     width: 100%;
     padding: 6px 8px;
@@ -764,12 +758,8 @@ button[type="submit"]:hover {
 
 
 
-
-
-
-
-/* ===== Product Section ===== */
-.product-section .section-heading {
+/*======== Products =========*/
+h2.section-heading {
     text-align: center;
     font-size: 30px;
     font-weight: 800;
@@ -797,27 +787,25 @@ button[type="submit"]:hover {
 }
 
 .product-card {
-    background: #ffffff;
-    padding: 15px;
-    text-align: center;
-    border-radius: 12px;
-    border: 1px solid #d7d7d7;
-    transition: 0.3s ease-in-out;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .product-card:hover {
-    box-shadow: 0 0 18px rgba(0,0,0,0.15);
-    transform: translateY(-6px);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
 .product-card img {
     width: 160px;
     height: 160px;
     object-fit: cover;
-    border-radius: 8px;
-    background: #f7f7f7;
-    padding: 10px;
-    transition: 0.3s ease;
 }
 
 .product-card img:hover {
@@ -856,7 +844,8 @@ button[type="submit"]:hover {
     padding: 0;
     margin-top: 10px;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
+    font-weight: 600;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -889,10 +878,6 @@ button[type="submit"]:hover {
         width: 25%;
     }
 }
-
-
-
-
 
 
 
@@ -938,7 +923,7 @@ button[type="submit"]:hover {
     color: #fff;
 }
 
-.cart-table th, 
+.cart-table th,
 .cart-table td {
     padding: 16px;
     text-align: center;
@@ -1017,148 +1002,3 @@ button[type="submit"]:hover {
 .back-link:hover {
     text-decoration: underline;
 }
-
-
-
-
-/* ============ CUSTOMER DASHBOARD =============== */
-.dashboard-container {
-    width: 92%;
-    max-width: 1200px;
-    margin: 40px auto;
-    text-align: center;
-    background: #f7f1f1; 
-    padding: 30px 20px;
-    border-radius: 16px;
-}
-
-.dashboard-container h2 {
-    font-size: 36px;
-    font-weight: 800;
-    color: #b30000; 
-}
-
-.sub-text {
-    font-size: 16px;
-    color: #040404;  
-    margin-bottom: 45px;
-}
-
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 28px;
-}
-
-.dash-box {
-    background: var(--white);
-    padding: 35px 25px;
-    border-radius: 18px;
-    text-decoration: none;
-    color: #622d2d; 
-    box-shadow: 0 5px 18px var(--shadow);
-    transition: 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.dash-box:hover {
-    transform: translateY(-7px);
-    border-color: var(--green);
-    box-shadow: 0 7px 22px rgba(0,0,0,0.12);
-}
-
-.dash-box i {
-    font-size: 55px;
-    margin-bottom: 18px;
-    color: var(--green);
-}
-
-.dash-box h3 {
-    font-size: 23px;
-    color: #680a97; 
-    margin-bottom: 8px;
-}
-
-.dash-box p {
-    font-size: 15px;
-    color: #333; 
-}
-
-@media (max-width: 600px) {
-    .dashboard-container h2 {
-        font-size: 28px;
-    }
-    .dash-box {
-        padding: 25px 15px;
-    }
-}
-
-
-
-
-
-/* ======== Add Product ========*/
-.signup-container {
-    width: 400px;
-    margin: 50px auto;
-    padding: 30px 25px;
-    background-color: #d3d3d3; 
-    border-radius: 8px;
-    font-family: Arial, sans-serif;
-}
-
-.signup-container h2 {
-    text-align: center;
-    color: #2e7d32; 
-    margin-bottom: 25px;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.signup-container label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #000;
-}
-
-.signup-container input[type="text"],
-.signup-container input[type="email"],
-.signup-container input[type="password"] {
-    width: 100%;
-    padding: 8px 10px;
-    margin-bottom: 15px;
-    border: 1px solid #999;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-.signup-container .btn {
-    width: 48%;
-    padding: 10px 0;
-    border: none;
-    border-radius: 4px;
-    background-color: #2e7d32; 
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
-}
-
-.signup-container .btn:hover {
-    background-color: #1b5e20; 
-}
-
-.signup-container .button-group {
-    display: flex;
-    justify-content: space-between;
-}
-
-
-
-
-
-
-
-
-

@@ -16,7 +16,7 @@ if (isset($_POST['login'])) {
         header("Location: admin_dashboard.php");
         exit;
     } else {
-        $error = "❌ Invalid username or password!";
+        $error = "Invalid username or password!";
     }
 }
 

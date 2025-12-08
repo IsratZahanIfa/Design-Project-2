@@ -1,0 +1,1134 @@
+/* ---------- Base / Reset ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+:root{
+  --brand: #e30613;        /* Primary brand red */
+  --brand-600:#c70512;
+  --brand-50:#fff5f5;
+  --ink:#121212;
+  --ink-2:#333;
+  --muted:#6b7280;
+  --bg:#ffffff;
+  --card:#ffffff;
+  --line:#eee;
+  --shadow: 0 10px 25px rgba(0,0,0,.07);
+  --radius: 14px;
+  --highlight:#f7b7a3; /* Highlight color for younger audience */
+}
+
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img{ max-width:100%; display:block; }
+a{ color: inherit; text-decoration: none; }
+a:focus-visible,
+button:focus-visible{ outline: 3px solid var(--brand); outline-offset: 2px; }
+
+/* ---------- Layout helpers ---------- */
+.container{
+  max-width: 1150px;
+  margin-inline: auto;
+  padding: 0 20px;
+}
+
+/* ---------- Topbar ---------- */
+.topbar{
+  background: linear-gradient(90deg, var(--brand), #ff4d4d);
+  color: #fff;
+  font-size: 14px;
+}
+.topbar__inner{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding: 8px 0;
+}
+.topbar__contact a{ color:#fff; text-decoration: underline; text-decoration-thickness: .08em; text-underline-offset: 2px; }
+.topbar .divider{ opacity:.7; margin: 0 6px; }
+.btn-xxs{ padding: 6px 10px; font-size: 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.55); }
+.btn-light{ background: rgba(255,255,255,.15); color:#fff; backdrop-filter: blur(8px); transition: .2s ease; }
+.btn-light:hover{ background: rgba(255,255,255,.28); }
+
+/* ---------- Header / Nav ---------- */
+.site-header{
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(255,255,255,.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header__inner{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  padding: 14px 0;
+}
+.brand{ display:flex; align-items:center; gap:10px; font-weight:700; }
+.brand__mark{ font-size: 22px; }
+.brand__text{ font-size: 18px; letter-spacing: .2px; }
+
+.nav ul{
+  list-style: none; margin: 0; padding: 0;
+  display: flex; align-items:center; gap: 18px;
+}
+.nav a{ color: var(--ink-2); font-weight:600; padding: 8px 10px; border-radius:10px; transition: .2s ease; }
+.nav a:hover{ color: var(--brand); background: var(--brand-50); }
+.btn-link{ border:1px solid var(--line); border-radius: 999px; padding:8px 14px; }
+.btn-link:hover{ border-color: var(--brand); color: var(--brand); background: var(--brand-50); }
+
+/* Mobile nav */
+.nav-toggle{
+  display:none; background:none; border:0; padding:8px; cursor:pointer;
+}
+.nav-toggle__bar{
+  display:block; width:24px; height:2px; background:#333; margin:5px 0; transition:.2s ease;
+}
+@media (max-width: 960px){
+  .nav{ position: absolute; inset: 64px 0 auto 0; background:#fff; border-bottom:1px solid var(--line); display:none; }
+  .nav.open{ display:block; }
+  .nav ul{ flex-direction: column; align-items: flex-start; gap: 0; }
+  .nav li{ width:100%; }
+  .nav a, .btn-link{ display:block; width:100%; padding:14px 20px; border-radius:0; }
+  .nav-toggle{ display:block; }
+}
+
+/* ---------- Hero ---------- */
+.hero{
+  position: relative;
+  background:
+    radial-gradient(1000px 500px at 10% 10%, #ffe5e8 0%, #fff 60%),
+    linear-gradient(180deg, #fff 0%, #fff 60%, #fff0 60%),
+    conic-gradient(from 180deg at 80% 20%, #fff0 0deg, #ffe9ea 120deg, #fff0 360deg);
+  overflow: hidden;
+}
+.hero__grid{
+  display:grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center;
+  padding: clamp(36px, 6vw, 80px) 0;
+}
+@media (max-width: 960px){
+  .hero__grid{ grid-template-columns: 1fr; }
+}
+.hero h1{
+  font-size: clamp(28px, 4.4vw, 44px);
+  line-height: 1.15;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+.highlight{ color: var(--brand); }
+.hero p{
+  font-size: clamp(16px, 2.2vw, 18px);
+  color: var(--muted);
+  margin: 0 0 22px;
+}
+
+.hero__actions{ display:flex; gap:12px; flex-wrap: wrap; margin-bottom: 18px; }
+
+.hero__badges{
+  display:flex; gap:16px; flex-wrap: wrap; padding:0; margin: 8px 0 0;
+  list-style: none;
+}
+.hero__badges li{
+  padding:8px 12px; background:#fff; border:1px solid var(--line); border-radius: 999px; font-size: 13px;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  padding: 12px 18px;
+  font-weight: 700;
+  border-radius: 12px;
+  transition: transform .04s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: center;
+}
+.btn:hover{ transform: translateY(-1px); }
+.btn-lg{ padding: 14px 22px; font-size: 16px; }
+.btn-primary{ background: var(--brand); color:#fff; box-shadow: 0 10px 24px rgba(227,6,19,.25); }
+.btn-primary:hover{ background: var(--brand-600); }
+.btn-ghost{ background: #fff; color: var(--brand); border-color: #ffd5d8; }
+.btn-ghost:hover{ background: var(--brand-50); border-color: var(--brand); }
+
+.hero__card{
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.stat{ text-align:center; }
+.stat__num{ font-size: 28px; font-weight: 700; color: var(--brand); line-height:1.1; }
+.stat__label{ font-size: 12px; color: var(--muted); }
+
+/* Hero side card */
+.hero__wave{
+  position:absolute; left:0; right:0; bottom:-1px; height: 56px;
+  background:
+    radial-gradient(48px 20px at 10% -10px, #fff 98%, #0000 100%),
+    radial-gradient(48px 20px at 30% -10px, #fff 98%, #0000 100%),
+    radial-gradient(48px 20px at 50% -10px, #fff 98%, #0000 100%),
+    radial-gradient(48px 20px at 70% -10px, #fff 98%, #0000 100%),
+    radial-gradient(48px 20px at 90% -10px, #fff 98%, #0000 100%),
+    linear-gradient(#fff,#fff);
+}
+
+/* ---------- About Us Section ---------- */
+.about-us {
+  background-color: var(--brand-50);
+  padding: 60px 0;
+  color: var(--ink);
+  text-align: center;
+}
+
+.about-us h2 {
+  background-color: var(--brand);  /* Red background */
+  color: white;                    /* White text */
+  padding: 15px 30px;               /* Some padding around the text */
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  border-radius: 30px;              /* Rounded edges */
+  display: inline-block;            /* Makes the background wrap tightly around the text */
+}
+
+/* ---------- About Us Section ---------- */
+.about-us {
+  background-color: var(--brand-50);
+  padding: 60px 0;
+  color: var(--ink);
+  text-align: center;
+}
+
+.about-us h2 {
+  background-color: var(--brand);  /* Red background */
+  color: white;                    /* White text */
+  padding: 15px 30px;               /* Some padding around the text */
+  font-size: 36px;                  /* Larger font size for "About Us" */
+  font-weight: 700;
+  margin-bottom: 5px;               /* Reduced margin to fit better */
+  border-radius: 30px;              /* Rounded edges */
+  display: inline-block;            /* Makes the background wrap tightly around the text */
+}
+
+.about-us p {
+  font-size: 18px;
+  color: var(--muted);
+  margin-bottom: 40px;
+}
+
+.about-us__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.about-us__card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.about-us__card h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.about-us__card p {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.about-us__cta {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.about-us__cta p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.about-us__cta .btn {
+  font-size: 18px;
+  padding: 14px 28px;
+  border-radius: 30px;
+}
+
+@media (max-width: 768px) {
+  .about-us__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+
+
+
+/* Our Services Section */
+.services {
+    background-color: var(--bg);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.services h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    font-weight: 700;
+    color: var(--ink);
+}
+
+.services__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.service__item {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    margin-bottom: 30px; /* Add space below each service box */
+}
+
+.service__item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.service__icon {
+    font-size: 60px; /* Adjust the size of the icon */
+    color: var(--brand); /* Optional: Set the color of the icon */
+    margin-bottom: 20px;
+}
+
+.service__item h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ink);
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+    background: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center; /* This centers the entire footer content */
+    font-size: 14px;
+}
+
+.site-footer a {
+    color: #ffd95e;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+.footer__inner {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.footer__content {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.footer__social {
+    text-align: center;
+}
+
+.footer__social p {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    color: #ffd95e; /* Hover effect */
+}
+
+.footer__links {
+    display: flex;
+    gap: 40px;
+}
+
+.footer__column {
+    flex: 1;
+}
+
+.footer__column h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.footer__column ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer__column ul li {
+    margin-bottom: 8px;
+}
+
+.footer__column ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer__column ul li a:hover {
+    color: #ffd95e;
+}
+
+.footer__bottom {
+    text-align: center; /* Center-align the footer bottom text */
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .footer__content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer__links {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .footer__column {
+        text-align: center;
+    }
+
+    .footer__social {
+        text-align: center;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ---------- Search Page Specific Styles ---------- */
+.search-page {
+  background-color: #f7f7f7; /* Light background for search page */
+  padding: 40px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Center the form vertically */
+}
+
+.search-page .container {
+  max-width: 700px; /* Form container width */
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* Header Text */
+.search-page .search-header {
+  text-align: center;
+  margin-bottom: 40px; /* Space between header and form */
+}
+
+/* Header Text */
+.search-page .search-header h2 {
+  font-size: 30px; /* Smaller font size */
+  font-weight: 700;
+  color: #fff; /* White text for the header */
+  background-color: #e30613; /* Red background for the header */
+  padding: 12px 25px; /* Reduced padding */
+  border-radius: 30px; /* Rounded corners */
+  display: inline-block; /* Makes the background wrap tightly around the text */
+  text-transform: uppercase; /* Make the text uppercase */
+  line-height: 1.3; /* Adjust line height for better readability */
+  margin-bottom: 10px; /* Space between the header and description */
+}
+
+
+.search-page .description {
+  font-size: 20px; /* Description font size */
+  font-weight: 500;
+  color: var(--ink); /* Dark color for contrast */
+  max-width: 600px;
+  margin: 0 auto; /* Center the description */
+  line-height: 1.6;
+  text-align: center; /* Center align the description */
+}
+
+/* Search Form */
+.search-page .search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Proper spacing between form elements */
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  border: 1px solid #ddd;
+  width: 80%; /* Slightly widen the form */
+  max-width: 750px; /* Set a maximum width for better control */
+  margin: 0 auto; /* Center the form horizontally */
+}
+
+.search-page .search-form label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 6px; /* Space below the label */
+}
+
+.search-page .search-form input {
+  padding: 14px 16px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-page .search-form input:focus {
+  border-color: #e30613; /* Red border on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Soft shadow on focus */
+}
+
+.search-page .search-form input::placeholder {
+  color: #aaa;
+}
+
+.search-page .search-form .btn-search {
+  background-color: #e30613;
+  color: #fff;
+  font-size: 16px;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  text-transform: uppercase;
+}
+
+.search-page .search-form .btn-search:hover {
+  background-color: #cc0505; /* Darker red on hover */
+  transform: translateY(-3px); /* Slight hover effect */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+}
+
+.search-page .search-form .btn-search:active {
+  transform: translateY(0); /* Reset on button press */
+}
+/* Results Section Styling */
+/* Adding padding around the table */
+.search-page .donor-table {
+  width: 100%; 
+  border-collapse: collapse;
+  margin: 20px 0; /* Adds margin at the top and bottom of the table */
+  /* Padding inside the table cells will be handled by th, td */
+}
+
+/* Add some spacing between table cells */
+.search-page .donor-table th, 
+.search-page .donor-table td {
+  padding: 12px; 
+  text-align: left;
+}
+
+/* Optional: add a wrapper with padding around the table */
+.search-page .donor-table-wrapper {
+  max-width: 2000px; /* Wider than the form */
+  margin: 0 auto; /* Centers the table horizontally */
+  padding: 0 20px; /* Adds space to the left and right of the table */
+  overflow-x: auto; /* Makes the table scrollable horizontally if it's too wide */
+}
+
+/* Table header styling */
+.search-page .donor-table th {
+  background-color: #e30613; /* Red background for headers */
+  color: #fff;
+}
+
+/* Styling for odd rows (alternate row color) */
+.search-page .donor-table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+/* Hover effect for rows */
+.search-page .donor-table tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* ---------- No Donors Found Message ---------- */
+.search-page .no-donors {
+  text-align: center;
+  color: #e30613;
+  font-size: 18px;
+  margin-top: 20px;
+  font-weight: 600;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .search-page .container {
+    padding: 0 15px; /* Ensures the content fits well on smaller screens */
+  }
+
+  .search-page h2 {
+    font-size: 28px; /* Slightly smaller heading on mobile */
+  }
+
+  .search-page .description {
+    font-size: 16px; /* Slightly smaller description on mobile */
+  }
+
+  .search-page .search-form {
+    padding: 20px;
+    width: 100%; /* Makes form take full width on mobile */
+  }
+
+  .search-page .search-form input {
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  .search-page .search-form .btn-search {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
+
+
+
+
+
+/* Style for the Request Blood Form */
+
+
+.request-header {
+    text-align: center; /* Centers the content */
+    background-color: #e30613; /* Red background */
+    color: white; /* White text */
+    padding: 15px 30px;
+    border-radius: 30px; /* Rounded corners */
+    display: inline-block; /* Makes the background wrap tightly around the text */
+    margin-bottom: 30px; /* Space below the header */
+}
+
+.request-header h2 {
+    font-size: 28px;
+    text-transform: uppercase;
+    margin: 0; /* Remove default margin */
+}
+
+/* Instruction Text */
+.instruction-text {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px; /* Space between instruction and form */
+    color: var(--ink); /* Dark text for better contrast */
+}
+
+/* Style for the Request Blood Form */
+.search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between form fields */
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    width: 80%; /* Slightly widen the form */
+    max-width: 750px; /* Set a max-width */
+    margin: 0 auto; /* Center the form horizontally */
+}
+
+/* Form Row Styling */
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-row label {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--ink);
+}
+
+.form-row input {
+    padding: 14px 16px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus Effect on Input Fields */
+.form-row input:focus {
+    border-color: #e30613; /* Red border on focus */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Soft shadow on focus */
+}
+
+/* Submit Button (Red) */
+.btn-submit {
+    background-color: #e30613; /* Red background */
+    color: #fff;
+    font-size: 16px;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.btn-submit:hover {
+    background-color: #cc0505; /* Darker red on hover */
+    transform: translateY(-3px); /* Slight hover effect */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1); /* Shadow on hover */
+}
+
+/* Success and Error Messages */
+.success-message {
+    background-color: #4CAF50; /* Green for success */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.error-message {
+    background-color: #f44336; /* Red for error */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Centered Registration Form */
+.registration-form {
+    background-color: var(--card);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+/* Form Input Styling */
+.registration-form .form-row input,
+.registration-form .form-row select {
+    padding: 10px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Input Focus Effect */
+.registration-form .form-row input:focus,
+.registration-form .form-row select:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 5px rgba(227, 6, 19, 0.1);
+}
+
+/* Button Styling */
+.btn-submit {
+    background-color: var(--brand);
+    color: #fff;
+    font-size: 16px;
+    padding: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-transform: uppercase;
+}
+
+.btn-submit:hover {
+    background-color: var(--brand-600);
+    transform: translateY(-3px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Donor Fields Styling */
+#donorFields .form-row input,
+#donorFields .form-row select {
+    border-color: #f0f0f0;
+    box-shadow: none;
+}
+
+/* Header Text - Remove the red box, make the text red, and add gap above */
+/* Header Text - Make text bold, split into two rows, and position it above the form */
+/* Header Text - Reduce space between the two sentences */
+.request-header {
+    color: var(--brand); /* Red text */
+    font-weight: 800; /* Make it bold */
+    text-align: center;
+    margin-top: 30px; /* Space above */
+    margin-bottom: 30px; /* Space below */
+}
+
+.request-header h2 {
+    font-size: 28px;
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 0.5; /* Adjust line height to bring the two lines closer */
+}
+
+.request-header h2 span {
+    display: block; /* Makes the first part of the text appear on a new line */
+}
+
+.request-header h2 br {
+    margin-bottom: 0; /* Remove margin between the two lines */
+}
+
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .registration-form {
+        padding: 30px;
+        width: 90%;
+    }
+
+    .request-header {
+        padding: 15px 30px;
+    }
+
+    .request-header h2 {
+        font-size: 24px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Apply gradient background only to the login page */
+body.login-page {
+    background: linear-gradient(to top, rgba(255, 230, 230, 0.8), rgba(255, 255, 255, 1));
+    font-family: Arial, sans-serif; /* Optional: Add a nice font */
+    margin: 0;
+    padding: 0;
+}
+
+/* Center the login form */
+.login-page .admin-container {
+    background-color: #fff; /* White background for the form */
+    width: 100%;
+    max-width: 400px; /* Set max width for form */
+    margin: 100px auto; /* Center the form vertically and horizontally */
+    padding: 40px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Title */
+.login-page .admin-container h2 {
+    text-align: center;
+    font-size: 28px;
+    color: var(--brand);
+    margin-bottom: 30px; /* Space between title and form */
+    font-weight: 700;
+}
+
+/* Input Fields */
+.login-page .admin-container input {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 20px; /* Space between inputs */
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+/* Focus Effect for Inputs */
+.login-page .admin-container input:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 8px rgba(227, 6, 19, 0.2); /* Soft red shadow */
+    outline: none;
+}
+
+/* Submit Button */
+.login-page button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    background-color: var(--brand);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Hover Effect for Button */
+.login-page button[type="submit"]:hover {
+    transform: translateY(-2px); /* Button moves up slightly */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Error Message */
+.login-page p {
+    color: red;
+    text-align: center;
+    font-size: 14px;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 768px) {
+    .login-page .admin-container {
+        padding: 20px;
+    }
+
+    .login-page .admin-container h2 {
+        font-size: 24px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* VIEW REQUEST */
+body.admin-body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb; /* Light background for the page */
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for content */
+.admin-container {
+    background-color: #fff;
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+/* Header */
+.admin-container h2 {
+    text-align: center;
+    font-size: 32px;
+    color: #e30613; /* Red color for heading */
+    margin-bottom: 20px;
+}
+
+/* Logout section */
+.admin-logout {
+    font-size: 16px;
+    margin-bottom: 30px;
+    text-align: right;
+}
+
+.admin-logout a {
+    color: #e30613;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.admin-logout a:hover {
+    text-decoration: underline;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    border-radius: 8px; /* Rounded corners for the table */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #e30613; /* Red background for header */
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9; /* Alternate row colors */
+}
+
+tr:hover {
+    background-color: #f1f1f1; /* Hover effect on rows */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .admin-container {
+        padding: 20px;
+    }
+
+    .admin-container h2 {
+        font-size: 28px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.page-blush {
+  background:
+    radial-gradient(1000px 500px at 10% 10%, #ffe5e8 0%, #fff 60%),
+    linear-gradient(180deg, #fff 0%, #fff 60%, #fff0 60%),
+    conic-gradient(from 180deg at 80% 20%, #fff0 0deg, #ffe9ea 120deg, #fff0 360deg);
+}
+body.page-blush { min-height: 100dvh; }

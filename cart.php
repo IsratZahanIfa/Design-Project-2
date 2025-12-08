@@ -104,6 +104,81 @@ button {
 <a href="categories.php">← Continue Shopping</a>
 
 <?php if (!empty($_SESSION['cart'])): ?>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <form method="post" action="">
+        <table border="1" cellpadding="8">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Store Name</th>
+            <th>Price (৳)</th>
+            <th>Quantity</th>
+            <th>Subtotal (৳)</th>
+            <th>Order Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php 
+            $grand_total = 0;
+            $today = date("Y-m-d");
+        ?>
+        
+        <?php foreach ($_SESSION['cart'] as $index => $item): ?>
+
+    <?php
+        $product_id = $item['product_id'] ?? null;
+        $price      = $item['price'] ?? 0;
+        $quantity   = $item['quantity'] ?? 1;
+        if ($product_id) {
+            $stmt = mysqli_prepare($conn, "SELECT product_name, store_name FROM add_products WHERE id = ?");
+            mysqli_stmt_bind_param($stmt, "i", $product_id);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt, $product_name_db, $store_name_db);
+            mysqli_stmt_fetch($stmt);
+            mysqli_stmt_close($stmt);
+
+            $product_name = $product_name_db ?? null;
+            $store_name   = $store_name_db ?? null;
+        } else {
+            $product_name = 'Unknown Product';
+            $store_name   = 'Unknown Store';
+        }
+
+        $subtotal = $price * $quantity;
+        $grand_total += $subtotal;
+    ?>
+
+    <tr>
+        <td><?= htmlspecialchars($product_name) ?></td>
+        <td><?= htmlspecialchars($store_name) ?></td>
+        <td><?= number_format($price, 2) ?></td>
+        <td>
+            <input type="number" name="quantity[<?= $index ?>]" value="<?= $quantity ?>" min="1">
+        </td>
+        <td><?= number_format($subtotal, 2) ?></td>
+        <td><?= $today ?></td>
+        <td>
+            <a href="?remove_index=<?= $index ?>" onclick="return confirm('Remove?')">Remove</a>
+        </td>
+    </tr>
+
+<?php endforeach; ?>
+
+
+    </tbody>
+</table>
+
+<p>Total: ৳ <?= number_format($grand_total, 2) ?></p>
+
+        <button type="submit" name="update_cart">Update Cart</button>
+    </form>
+=======
+>>>>>>> e789c2fcd28f0a8bea336e2a9eff0892198de6e2
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 
 <form method="post" action="">
 <table border="1" cellpadding="8">
@@ -160,7 +235,11 @@ foreach ($_SESSION['cart'] as $index => $item):
 <div id="checkoutBox">
     <h3>Complete Your Order</h3>
 
+<<<<<<< HEAD
     <form method="post" action="order_confirmation.php">
+=======
+    <form method="post" action="my_orders.php">
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
         <label>Delivery Location:</label><br>
         <input type="text" name="location" required placeholder="Enter your location"><br><br>
 

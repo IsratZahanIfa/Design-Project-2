@@ -51,9 +51,12 @@ if (isset($_GET['delete_seller'])) {
 }
 
 
+<<<<<<< HEAD
 /* ---------------------------
    FETCH DATA
 ----------------------------*/
+=======
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 $pending_sellers = mysqli_query($conn, "
     SELECT * FROM users 
     WHERE role='seller' 
@@ -159,10 +162,13 @@ th { background: #1a1a1a; }
 <body>
 
 <h1>ADMIN DASHBOARD</h1>
+<<<<<<< HEAD
 
 <!-- ============================
      SELLER APPROVAL SECTION
 ============================= -->
+=======
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 <h2 class="section-title">Pending Seller Approvals</h2>
 
 <table>
@@ -206,6 +212,20 @@ th { background: #1a1a1a; }
 
 
 <h2 class="section-title">Manage All Tables</h2>
+<<<<<<< HEAD
+=======
+
+<div class="box-links">
+
+    <a href="manage_users.php">Manage Users</a>
+    <a href="manage_products.php">Manage Products</a>
+    <a href="manage_orders.php">Manage Orders</a>
+    <a href="reviews.php">Manage Reviews</a>
+    <a href="notifications.php">Manage Notifications</a>
+
+
+</div>
+>>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 
 <div class="box-links">
 
