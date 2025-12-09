@@ -373,18 +373,9 @@ $categories = [
     <?php endforeach; ?>
 </div>
 
-<<<<<<< HEAD
-
-
 
     <a href="customer_dashboard.php" class="back-btn">Back to Dashboard</a>
 
-
-   
-=======
-    <a href="customer_dashboard.php" class="back-btn">Back to Dashboard</a>
-  
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 </body>
 </html>
 
