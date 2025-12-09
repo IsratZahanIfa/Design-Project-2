@@ -2,16 +2,19 @@
 session_start();
 include 'db.php';
 
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'customer') {
     header("Location: login.php");
     exit();
 }
+
 
 $search = '';
 if (isset($_GET['search'])) {
     $search = strtolower(trim($_GET['search']));
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -66,6 +69,7 @@ if (isset($_GET['search'])) {
 </head>
 <body>
 
+
 <div class="menu-bar">
     <div class="menu-left">
         <a href="customer_dashboard.php"><i class="fa fa-home"></i> Home</a>
@@ -74,16 +78,17 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
-    <button type="submit">Search</button>
+            <button type="submit">Search</button>
         </form>
     </div>
 </div>
+
 
 <!-- ========================= Fish SECTION ========================= -->
 <section class="product-section">
     <h2 class="section-heading">Fish Products</h2>
     <div class="products-grid">
-        <?php 
+        <?php
         $fruits = [
             ["https://media.istockphoto.com/id/2162360704/photo/fresh-hilsha-fish-displayed-for-sale-national-fish-of-bangladesh-hilsa.jpg?s=612x612&w=0&k=20&c=CLIdvJuZD_fIHN-p9YvTxLqFFEePS6Tyu78uo0-TxP8=", "Hilsha", 1000, "★★★★★", "FreshMart Store", "Dhaka, Bangladesh"],
             ["https://upload.wikimedia.org/wikipedia/commons/e/e0/Catla_catla.JPG", "Catla", 500, "★★★★★", "Green Store", "Dhaka, Bangladesh"],
@@ -99,6 +104,7 @@ if (isset($_GET['search'])) {
             ["https://media.istockphoto.com/id/500356812/photo/oats-and-milk.jpg?s=612x612&w=0&k=20&c=26_3gxNEyJz5HR4l9SUw7IFuklHcr6NI8yX_whKWJQE=", "Oats", 110, "★★★★☆", "GrainHouse", "Barishal"]
         ];
 
+
         foreach ($fruits as $item):
         ?>
             <div class="product-card">
@@ -108,6 +114,7 @@ if (isset($_GET['search'])) {
                 <div class="rating"><?= $item[3] ?></div>
                 <p class="store"><strong>Store:</strong> <?= $item[4] ?></p>
                 <p class="location"><strong>Location:</strong> <?= $item[5] ?></p>
+
 
                 <form action="cart.php" method="POST">
                     <input type="hidden" name="product_name" value="<?= $item[1] ?>">
@@ -122,5 +129,7 @@ if (isset($_GET['search'])) {
     </div>
 </section>
 
+
 </body>
 </html>
+
