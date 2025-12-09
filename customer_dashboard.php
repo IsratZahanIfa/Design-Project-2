@@ -21,10 +21,7 @@ if (!$stmt) {
 
 
 mysqli_stmt_bind_param($stmt, "i", $uid);
-<<<<<<< HEAD
 
-=======
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 
 if (!mysqli_stmt_execute($stmt)) {
     die("Database error (execute failed): " . mysqli_stmt_error($stmt));
