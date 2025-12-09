@@ -44,12 +44,8 @@ if (!empty($_SESSION['cart']) && isset($_POST['confirm_order'])) {
     exit;
 }
 
-<<<<<<< HEAD
 // Fetch user's orders
 $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id=? ORDER BY order_date DESC");
-=======
-$stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY order_date DESC");
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
