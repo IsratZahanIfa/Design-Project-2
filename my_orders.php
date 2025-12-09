@@ -9,10 +9,6 @@ if ($user_id == 0) {
     exit;
 }
 
-// =======================================================
-//  PROCESS ORDER CONFIRMATION
-// =======================================================
-
 if (!empty($_SESSION['cart']) && isset($_POST['confirm_order'])) {
 
     $order_date = date("Y-m-d H:i:s");
@@ -34,9 +30,6 @@ if (!empty($_SESSION['cart']) && isset($_POST['confirm_order'])) {
         $sellerRow = $sellerRes->fetch_assoc();
         $seller_id = $sellerRow['seller_id'] ?? 0;
 
-        // ---------------------------------------------------
-        // 🔥 INSERT ORDER WITH seller_id
-        // ---------------------------------------------------
         $stmt = $conn->prepare("
             INSERT INTO orders (user_id, seller_id, product_name, price, quantity, store_name, order_date)
             VALUES (?, ?, ?, ?, ?, ?, ?)
@@ -63,9 +56,6 @@ if (!empty($_SESSION['cart']) && isset($_POST['confirm_order'])) {
     exit;
 }
 
-// =======================================================
-//  FETCH ALL ORDERS OF THIS CUSTOMER
-// =======================================================
 $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ? ORDER BY order_date DESC");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
