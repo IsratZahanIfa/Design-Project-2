@@ -74,28 +74,18 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
-<<<<<<< HEAD
-            <button type="submit"><i class="fa fa-search"></i> Search</button>
-        </form>
-        <a href="logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a>
-    </div>
-</div>
-
-<!-- ========================= FRUITS SECTION ========================= -->
-=======
             <button type="submit">Search</button>
         </form>
     </div>
 </div>
 
 <!-- ========================= Grains SECTION ========================= -->
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 <section class="product-section">
     <h2 class="section-heading">Grains Products</h2>
     <div class="products-grid">
         <?php 
         $fruits = [
-             ["https://t4.ftcdn.net/jpg/05/16/35/47/360_F_516354718_dPoyJgoRz2CQPNUuzzBbc6JCCfMRwrD9.jpg", "Bashmoti Chal", 300, "★★★★★", "FreshMart Store", "Dhaka, Bangladesh"],
+            ["https://t4.ftcdn.net/jpg/05/16/35/47/360_F_516354718_dPoyJgoRz2CQPNUuzzBbc6JCCfMRwrD9.jpg", "Bashmoti Chal", 300, "★★★★★", "FreshMart Store", "Dhaka, Bangladesh"],
             ["https://media.istockphoto.com/id/1322613316/photo/rice-in-wooden-bowl-on-rice-and-rice-ears-background-natural-food-high-in-protein.jpg?s=612x612&w=0&k=20&c=jYWVKwTwptgrFojDno7GW8x9iF2LakyoMTzzrZfY1tE=", "Jasmine Rice", 200, "★★★★★", "Green Store", "Dhaka, Bangladesh"],
             ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSajDR2L0UIg3zPoE1cTr8KzCEsmLgVdH7qXw&s", "Mimicat Chal", 55 , "★★★★☆", "GrainHouse", "Chattogram"],
             ["https://m.media-amazon.com/images/I/61u0xglLd9L._AC_UF350,350_QL80_.jpg", "Atop Chal", 150, "★★★★★", "Green Store", "Dhaka, Bangladesh"],
