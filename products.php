@@ -55,6 +55,86 @@ if (isset($_GET['search'])) {
             font-weight: bold;
             cursor: pointer;
         }
+
+h2.section-heading {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 800;
+    color: rgb(0, 63, 13);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    animation: titleSlideUp 1s ease forwards;
+    opacity: 0;
+}
+
+@keyframes titleSlideUp {
+    0% { opacity: 0; transform: translateY(25px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+        
+.product-section {
+    width: 95%;
+    margin: 20px auto;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+    width: 250px;
+    height: 160px;
+    object-fit: cover;
+}
+
+.product-card img:hover {
+    transform: scale(1.08);
+}
+
+.product-card h3 {
+    font-size: 16px;
+    margin: 10px 0 5px 0;
+    font-weight: 600;
+    color: rgb(0, 63, 13);
+}
+
+.price {
+    color: rgb(0, 63, 13);
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+.rating {
+    font-size: 13px;
+    color: #ff9800;
+    margin-top: 5px;
+}
+
+.store, .location {
+    font-size: 13px;
+    color: #333;
+    margin: 3px 0;
+}
+
     </style>
 </head>
 <body>
@@ -68,7 +148,7 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Search products">
-            <button type="submit"><i class="fa fa-search"></i></button>
+
         </form>
     </div>
 </div>
