@@ -177,8 +177,6 @@ $reviews = mysqli_query($conn, "SELECT * FROM reviews ORDER BY created_at DESC")
                 color: #ddd;
                 line-height: 1.5;
             }
-
-
         
             .review-meta {
                 margin-top: 10px;
@@ -204,15 +202,15 @@ $reviews = mysqli_query($conn, "SELECT * FROM reviews ORDER BY created_at DESC")
             .status-badge.approved {
                 background: #0f7d38;
             }
+
             .status-badge.pending {
                 background: #9a6b00;
             }
+
             .status-badge.rejected {
                 background: #851616;
             }
-
-
-          
+         
             .review-side {
                 text-align: right;
             }
@@ -229,8 +227,6 @@ $reviews = mysqli_query($conn, "SELECT * FROM reviews ORDER BY created_at DESC")
                 margin: 5px 0 12px;
             }
 
-
-            /* Buttons */
             .action-btns button {
                 display: block;
                 width: 100%;
@@ -241,7 +237,6 @@ $reviews = mysqli_query($conn, "SELECT * FROM reviews ORDER BY created_at DESC")
                 cursor: pointer;
                 font-size: 13px;
             }
-
 
             .view-btn {
                 background: #2d2d30;
@@ -369,7 +364,6 @@ $reviews = mysqli_query($conn, "SELECT * FROM reviews ORDER BY created_at DESC")
             <br>
             <small><?php echo $r['created_at']; ?></small>
         </div>
-
 
     </div>
 
