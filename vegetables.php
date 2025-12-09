@@ -44,6 +44,10 @@ if (isset($_GET['search'])) {
             display: flex;
             align-items: center;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 220cd201af7a4f01488d0e5b8215f32b1f6fc6dd
         .menu-right {
             display: flex;
             align-items: center;

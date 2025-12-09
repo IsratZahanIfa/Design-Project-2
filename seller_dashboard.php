@@ -45,6 +45,7 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 
     <style>
               body { 
+<<<<<<< HEAD
             margin:0; 
             padding:0; 
             font-family:'Poppins',sans-serif; 
@@ -65,10 +66,52 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
     -webkit-backdrop-filter: blur(4px);
     border: 2px solid rgba(255, 255, 255, 0.35);
     margin-left: 150px;  
+=======
+    margin:0; 
+    padding:0; 
+    margin: 0; 
+    padding: 0; 
+    font-family:'Poppins',sans-serif; 
+    background: url('https://t3.ftcdn.net/jpg/15/20/56/68/360_F_1520566864_eotnOsoKbNWuQlKPXPRzDqKz0II1jARE.jpg') no-repeat center center/cover; 
+    background-size: 150%;   
+}
+
+.page{ 
+    max-width:1000px; 
+    margin:40px auto; 
+    padding:18px; 
+    background: rgba(255, 255, 255, 0.25);*/
+    border-radius:15px;
+    box-shadow:0 4px 20px rgba(0,0,0,0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.35);  
+>>>>>>> 220cd201af7a4f01488d0e5b8215f32b1f6fc6dd
 }
 
 
 .header{ 
+<<<<<<< HEAD
+=======
+    display:flex; 
+    justify-content: center; 
+    align-items:center; 
+    margin-bottom:30px; 
+}
+
+.profile-card{
+    width: 260px;                 
+    min-height: 100vh;             
+    position: fixed;               
+    top: 0;
+    left: 0;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 0 18px 18px 0;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 4px 0 12px rgba(0,0,0,0.1);
+    padding: 25px 20px;
+>>>>>>> 220cd201af7a4f01488d0e5b8215f32b1f6fc6dd
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -114,17 +157,21 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
 
 .profile-info p{
     margin:5px 0;
+<<<<<<< HEAD
     color: #070707ff;
+=======
+    color:#444;
+}
+        
+.dashboard-grid{
+     display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 22px;
+    margin-top: 20px;
+    justify-content: end;   
+>>>>>>> 220cd201af7a4f01488d0e5b8215f32b1f6fc6dd
 }
 
-.dashboard-grid{
-    display: grid;
-    grid-template-columns: repeat(2, 300px); 
-    gap: 22px;
-    margin-top: 40px;
-    justify-content: end;     
-    margin-left: 80px;  
-}
 
 .dash-box{
     background: rgb(0, 63, 19); 
