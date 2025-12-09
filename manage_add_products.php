@@ -2,33 +2,23 @@
 session_start();
 include 'db.php';
 
-
-// Check if admin is logged in
 if (!isset($_SESSION['admin'])) {
     header("Location: admin.php");
     exit;
 }
 
-
-// Search functionality
 $search = "";
 if (!empty($_GET['search'])) {
     $search = mysqli_real_escape_string($conn, $_GET['search']);
 }
 
-
-// Fetch all products for admin
 $sql = "SELECT * FROM add_products
         WHERE LOWER(name) LIKE LOWER('%$search%')
         ORDER BY created_at DESC";
 $result = mysqli_query($conn, $sql);
 
-
-// Total products
 $total_products = ($result) ? mysqli_num_rows($result) : 0;
 
-
-// Delete product
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
     mysqli_query($conn, "DELETE FROM add_products WHERE id=$id");
