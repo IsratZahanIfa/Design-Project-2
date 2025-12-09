@@ -21,21 +21,13 @@ if (isset($_GET['search'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
-<<<<<<< HEAD
-        background-color: rgba(221, 197, 197, 1);
-=======
         background-color: rgba(184, 167, 167, 1);
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
     }
         .menu-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-<<<<<<< HEAD
-            background-color: #024104ff;
-=======
             background: rgb(0, 63, 19);
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
             padding: 10px 20px;
             color: white;
             font-weight: bold;
@@ -43,11 +35,7 @@ if (isset($_GET['search'])) {
         .menu-bar a {
             color: white;
             text-decoration: none;
-<<<<<<< HEAD
             margin-right: 15px;
-=======
-            margin-right: 12px;
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
         }
         .menu-bar a:hover {
             text-decoration: underline;
@@ -56,7 +44,6 @@ if (isset($_GET['search'])) {
             display: flex;
             align-items: center;
         }
-<<<<<<< HEAD
       
         .menu-right button {
             padding: 5px 10px;
@@ -66,7 +53,7 @@ if (isset($_GET['search'])) {
             color: green;
             font-weight: bold;
             cursor: pointer;
-=======
+
         .menu-right {
             display: flex;
             align-items: center;
@@ -90,7 +77,6 @@ if (isset($_GET['search'])) {
         .menu-right input[type="text"]:focus {
             width: 260px;
             background: #fff;
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
         }
     </style>
 </head>
@@ -104,11 +90,7 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
            <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
-<<<<<<< HEAD
-    <button type="submit"><i class="fa fa-search"></i> Search</button>
-=======
     <button type="submit"></i> Search</button>
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 
     <?php if ($search !== ""): ?>
       
@@ -117,10 +99,6 @@ if (isset($_GET['search'])) {
         </button>
     <?php endif; ?>
         </form>
-<<<<<<< HEAD
-        <a href="logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a>
-=======
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
     </div>
 </div>
 
