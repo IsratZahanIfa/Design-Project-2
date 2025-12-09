@@ -2,28 +2,37 @@
 session_start();
 include 'db.php';
 
+
+// Check seller login
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'seller') {
     header("Location: login.php");
     exit();
 }
 
+
 $seller_id = $_SESSION['user_id'];
 
 
+// Search functionality
 $search = "";
 if (!empty($_GET['search'])) {
     $search = mysqli_real_escape_string($conn, $_GET['search']);
 }
 
 
-$sql = "SELECT * FROM add_products 
+// Fetch products for this seller
+$sql = "SELECT * FROM add_products
         WHERE seller_id = $seller_id
         AND LOWER(name) LIKE LOWER('%$search%')
         ORDER BY created_at DESC";
 $result = mysqli_query($conn, $sql);
 
+
+// Count total products
 $total_products = ($result) ? mysqli_num_rows($result) : 0;
 
+
+// Delete product
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
     mysqli_query($conn, "DELETE FROM add_products WHERE id=$id AND seller_id=$seller_id");
@@ -31,18 +40,23 @@ if (isset($_GET['delete'])) {
     exit;
 }
 
+
+// Update product price
 if (isset($_POST['update'])) {
     $pid = intval($_POST['product_select']);
     $new_price = floatval($_POST['price']);
 
-    mysqli_query($conn, "UPDATE add_products 
+
+    mysqli_query($conn, "UPDATE add_products
                          SET price=$new_price
                          WHERE id=$pid AND seller_id=$seller_id");
+
 
     echo "<script>alert('Product price updated!'); window.location.href='manage_products.php';</script>";
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -58,6 +72,7 @@ if (isset($_POST['update'])) {
         background-size: cover;
     }
 
+
     .container {
         width: 85%;
         margin: 40px auto;
@@ -68,6 +83,7 @@ if (isset($_POST['update'])) {
         backdrop-filter: blur(10px);
     }
 
+
     h2 {
         margin-top: 0;
         color: #000000ff;
@@ -75,16 +91,19 @@ if (isset($_POST['update'])) {
         text-align: center;
     }
 
+
     p {
         text-align: center;
         font-weight: 600;
         font-size: 20px;
     }
 
+
     .search-wrapper {
         text-align: left;
         margin-bottom: 20px;
     }
+
 
     .search-wrapper input {
         padding: 8px 15px;
@@ -92,6 +111,7 @@ if (isset($_POST['update'])) {
         border-radius: 8px;
         border: 1px solid #d6d1d1ff;
     }
+
 
     .btn-refresh {
         padding: 8px 15px;
@@ -103,6 +123,7 @@ if (isset($_POST['update'])) {
         margin-left: 2px;
     }
 
+
     table {
         border-collapse: collapse;
         width: 100%;
@@ -112,6 +133,7 @@ if (isset($_POST['update'])) {
         box-shadow: 0 5px 20px rgba(0,0,0,0.15);
     }
 
+
     th, td {
         padding: 12px;
         text-align: center;
@@ -119,11 +141,13 @@ if (isset($_POST['update'])) {
         border-bottom: 1px solid #ffffffff;
     }
 
+
     th {
         background: black;
         font-weight: bold;
         color: White;
     }
+
 
     .bttn-delete {
         background: red;
@@ -135,9 +159,11 @@ if (isset($_POST['update'])) {
         font-size: 16px;
     }
 
+
     .bttn-delete:hover {
         background: darkred;
     }
+
 
     .update-box select,
     .update-box input {
@@ -150,6 +176,7 @@ if (isset($_POST['update'])) {
         width: 200px;
     }
 
+
     .update-btn {
         background: black;
         color: white;
@@ -161,13 +188,15 @@ if (isset($_POST['update'])) {
         margin-top: 10px;
     }
 
+
     .update-btn:hover {
         background: #333;
     }
 
+
     .back-btn {
         display: inline-block;
-        background: #000; 
+        background: #000;
         color: white;
         padding: 10px 18px;
         border-radius: 8px;
@@ -178,6 +207,7 @@ if (isset($_POST['update'])) {
         font-weight: bold;
     }
 
+
     .back-btn:hover {
         background: #333;
         transform: translateX(-3px);
@@ -187,17 +217,22 @@ if (isset($_POST['update'])) {
 <body>
 <div class="container">
 
+
 <a href="seller_dashboard.php" class="back-btn">Back to Dashboard</a>
+
 
 <h2>All Products</h2>
 <p>Total Products: <strong><?php echo $total_products; ?></strong></p>
+
 
 <div class="search-wrapper">
     <form method="GET">
         <input type="text" name="search" placeholder="Search product..."
                value="<?php echo htmlspecialchars($search); ?>">
 
+
         <button type="submit" class="btn-refresh">Search</button>
+
 
         <button type="button" class="btn-refresh"
                 onclick="window.location.href='<?php echo $_SERVER['PHP_SELF']; ?>';">
@@ -205,6 +240,7 @@ if (isset($_POST['update'])) {
         </button>
     </form>
 </div>
+
 
 <table>
     <thead>
@@ -227,6 +263,7 @@ if (isset($_POST['update'])) {
             <td><?php echo $row['price']; ?></td>
             <td><?php echo $row['quantity']; ?></td>
 
+
             <?php
                 $status = ($row['quantity']==0) ? 'Out of Stock' :
                           (($row['quantity']<=10) ? 'Low Stock' : 'In Stock');
@@ -237,12 +274,14 @@ if (isset($_POST['update'])) {
                 <?php echo $status; ?>
             </td>
 
+
             <td><?php echo htmlspecialchars($row['store_name']); ?></td>
             <td><?php echo htmlspecialchars($row['location']); ?></td>
             <td><?php echo htmlspecialchars($row['created_at']); ?></td>
 
+
             <td>
-                <a href="?delete=<?php echo $row['id']; ?>" class="bttn-delete" 
+                <a href="?delete=<?php echo $row['id']; ?>" class="bttn-delete"
                    onclick="return confirm('Are you sure you want to delete this product?');">
                    &#128465;
                 </a>
@@ -255,6 +294,7 @@ if (isset($_POST['update'])) {
     </tbody>
 </table>
 
+
 <div class="update-box">
     <form method="POST">
         <select name="product_select" required>
@@ -266,11 +306,14 @@ if (isset($_POST['update'])) {
             ?>
         </select>
 
+
         <input type="number" name="price" placeholder="New Price" step="0.01" min="0" required>
+
 
         <button type="submit" name="update" class="update-btn">Update Price</button>
     </form>
 </div>
+
 
 </div>
 </body>

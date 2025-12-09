@@ -11,8 +11,20 @@ if (isset($_POST['add_to_cart'])) {
     $product_name = $_POST['product_name'] ?? 'Item';
     $price        = floatval($_POST['price'] ?? 0);
     $store_name   = $_POST['store_name'] ?? '';
-    $seller_id    = $_POST['seller_id'] ?? 0;
 
+    // Fetch seller_id from add_products based on store_name
+    $seller_id = 0;
+    if ($store_name) {
+        $stmt = $conn->prepare("SELECT seller_id FROM add_products WHERE store_name=? LIMIT 1");
+        $stmt->bind_param("s", $store_name);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $row = $res->fetch_assoc();
+        $seller_id = $row['seller_id'] ?? 0;
+        $stmt->close();
+    }
+
+    // Add to cart session
     $foundIndex = null;
     foreach ($_SESSION['cart'] as $idx => $row) {
         if (isset($row['product_id']) && $row['product_id'] == $product_id) {

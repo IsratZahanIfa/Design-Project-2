@@ -1,39 +1,12 @@
 <?php
 session_start();
-<<<<<<< HEAD
-include 'db.php'; 
-
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'customer')
-     {
-=======
 include 'db.php';
 
 if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'customer') {
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
     header("Location: login.php");
     exit();
 }
 
-<<<<<<< HEAD
-$user_name = null;
-if (!empty($_SESSION['user_name'])) {
-    $user_name = $_SESSION['user_name'];
-} else {
-
-    $user_id = intval($_SESSION['user_id']);
-    $res = mysqli_query($conn, "SELECT name FROM users WHERE id = $user_id LIMIT 1");
-    if ($res && mysqli_num_rows($res) === 1) {
-        $row = mysqli_fetch_assoc($res);
-        $user_name = $row['name'];
-  
-        $_SESSION['user_name'] = $user_name;
-    } else {
-        $user_name = "Customer";
-    }
-}
-
-function h($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
-=======
 $uid = intval($_SESSION['user_id']);
 
 $sql = "SELECT name, email, contact, created_at FROM users WHERE id = ? LIMIT 1";
@@ -44,7 +17,6 @@ if (!$stmt) {
 }
 
 mysqli_stmt_bind_param($stmt, "i", $uid);
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 
 if (!mysqli_stmt_execute($stmt)) {
     die("Database error (execute failed): " . mysqli_stmt_error($stmt));
@@ -64,6 +36,7 @@ $customer_joined  = !empty($customer['created_at'])
                     ? date("F j, Y", strtotime($customer['created_at']))
                     : 'Not Recorded';
 ?>
+
 
 
 
