@@ -44,7 +44,6 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
     <style>
-<<<<<<< HEAD
               body { 
             margin:0; 
             padding:0; 
@@ -66,54 +65,10 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
     -webkit-backdrop-filter: blur(4px);
     border: 2px solid rgba(255, 255, 255, 0.35);
     margin-left: 150px;  
-=======
-       body { 
-    margin:0; 
-    padding:0; 
-    margin: 0; 
-    padding: 0; 
-    font-family:'Poppins',sans-serif; 
-    background: url('https://t3.ftcdn.net/jpg/15/20/56/68/360_F_1520566864_eotnOsoKbNWuQlKPXPRzDqKz0II1jARE.jpg') no-repeat center center/cover; 
-    background-size: 150%;   
-}
-
-.page{ 
-    max-width:1000px; 
-    margin:40px auto; 
-    padding:18px; 
-    /*background: rgba(255, 255, 255, 0.25);*/
-    border-radius:15px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.15);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.35);  
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 }
 
 
 .header{ 
-<<<<<<< HEAD
-=======
-    display:flex; 
-    justify-content: center; 
-    align-items:center; 
-    margin-bottom:30px; 
-}
-
-.profile-card{
-    width: 260px;                 
-    min-height: 100vh;             
-    position: fixed;               
-    top: 0;
-    left: 0;
-    background: rgba(255, 255, 255, 0.25);
-    border-radius: 0 18px 18px 0;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    box-shadow: 4px 0 12px rgba(0,0,0,0.1);
-    padding: 25px 20px;
-
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -156,24 +111,10 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
     margin:0;
     font-size:20px;
 }
-<<<<<<< HEAD
 
 .profile-info p{
     margin:5px 0;
     color: #070707ff;
-=======
-.profile-info p{
-    margin:5px 0;
-    color:#444;
-}
-        
-.dashboard-grid{
-     display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    gap: 22px;
-    margin-top: 20px;
-    justify-content: end;   
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 }
 
 .dashboard-grid{
@@ -247,10 +188,6 @@ $seller_joined  = !empty($seller['created_at']) ? date("F j, Y", strtotime($sell
                 <p>Email: <?= h($seller_email) ?></p>
                 <p>Contact: <?= h($seller_contact) ?></p>
                 <p style="font-size:12px;color: #030303ff;">Joined: <?= h($seller_joined) ?></p>
-<<<<<<< HEAD
-
-=======
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
             </div>
         </div>
     </div>

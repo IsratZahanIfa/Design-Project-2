@@ -104,25 +104,12 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
-<<<<<<< HEAD
-=======
-            <button type="submit"><i class="fa fa-search"></i> Search</button>
-        </form>
-        <a href="logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a>
-    </div>
-</div>
-
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
             <button type="submit"> Search</button>
         </form>
     </div>
 </div>
 
 <!-- ========================= Trees SECTION ========================= -->
-<<<<<<< HEAD
-
-=======
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 <section class="product-section">
     <h2 class="section-heading">Trees Products</h2>
     <div class="products-grid">
@@ -142,12 +129,8 @@ if (isset($_GET['search'])) {
             ["https://florastore.com/cdn/shop/files/2014191_Atmosphere_01_SQ.jpg?v=1757668042&width=1080", "Dwarf Orange Tree", 900, "★★★★★", "Golden Grains", "Barishal"],
             ["https://whiteonricecouple.com/recipe/images/lemon-tree-container-11-550x830-1.jpg", "Lemon Tree", 1200, "★★★★★", "Healthy Harvest", "Dhaka, Bangladesh"],
             ["https://i.ytimg.com/vi/VV1fcLycA14/oardefault.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLAKn-wvTfc6KztTGshH2XXPjCAzfg", "Dwarf Mango Tree", 3000, "★★★★☆", "Healthy Harvest", "Rajshahi"],
-<<<<<<< HEAD
             ["https://m.media-amazon.com/images/I/714q8hi9FwL.jpg", "Guava Tree", 800, "★★★★★", "Daily Grain Mart", "Khulna"]
         ];
-=======
-            ["https://cdn.pixabay.com/photo/2016/07/26/15/01/guava-1543533_1280.jpg", "Guava Tree", 800, "★★★★★", "Daily Grain Mart", "Khulna"]
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 
         foreach ($fruits as $item):
         ?>
