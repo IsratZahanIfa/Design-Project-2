@@ -1,4 +1,4 @@
-/* ---------- Base / Reset ---------- */
+/* ---------- Index ---------- */
 *,
 *::before,
 *::after {
@@ -7,9 +7,9 @@
 
 
 :root {
-    --brand: #28a745;        /* Primary brand green */
-    --brand-600: #218838;    /* Darker green for hover */
-    --brand-50: #e6f4ea;     /* Light green background */
+    --brand: #28a745;       
+    --brand-600: #218838;    
+    --brand-50: #e6f4ea;     
     --ink: #121212;
     --ink-2: #333;
     --muted: #6b7280;
@@ -18,15 +18,13 @@
     --line: #eee;
     --shadow: 0 10px 25px rgba(0,0,0,.07);
     --radius: 14px;
-    --highlight: #c0f7d6;   /* Optional highlight for younger audience */
+    --highlight: #c0f7d6;   
 }
 
 
-html,
-body {
+html,body {
     height: 100%;
 }
-
 
 body {
     margin: 0;
@@ -57,16 +55,12 @@ button:focus-visible {
     outline-offset: 2px;
 }
 
-
-/* ---------- Layout helpers ---------- */
 .container {
     max-width: 1150px;
     margin-inline: auto;
     padding: 0 20px;
 }
 
-
-/* ---------- Topbar ---------- */
 .topbar {
     background: linear-gradient(90deg, var(--brand), #ff4d4d);
     color: #fff;
@@ -82,7 +76,6 @@ button:focus-visible {
     padding: 8px 0;
 }
 
-
 .topbar__contact a {
     color: #fff;
     text-decoration: underline;
@@ -90,12 +83,10 @@ button:focus-visible {
     text-underline-offset: 2px;
 }
 
-
 .topbar .divider {
     opacity: .7;
     margin: 0 6px;
 }
-
 
 .btn-xxs {
     padding: 6px 10px;
@@ -104,7 +95,6 @@ button:focus-visible {
     border: 1px solid rgba(255,255,255,.55);
 }
 
-
 .btn-light {
     background: rgba(255,255,255,.15);
     color: #fff;
@@ -112,13 +102,10 @@ button:focus-visible {
     transition: .2s ease;
 }
 
-
 .btn-light:hover {
     background: rgba(255,255,255,.28);
 }
 
-
-/* ---------- Header / Nav ---------- */
 .site-header {
     position: sticky;
     top: 0;
@@ -128,7 +115,6 @@ button:focus-visible {
     border-bottom: 1px solid var(--line);
 }
 
-
 .header__inner {
     display: flex;
     align-items: center;
@@ -137,7 +123,6 @@ button:focus-visible {
     padding: 14px 0;
 }
 
-
 .brand {
     display: flex;
     align-items: center;
@@ -145,17 +130,14 @@ button:focus-visible {
     font-weight: 700;
 }
 
-
 .brand__mark {
     font-size: 22px;
 }
-
 
 .brand__text {
     font-size: 18px;
     letter-spacing: .2px;
 }
-
 
 .nav ul {
     list-style: none;
@@ -166,12 +148,10 @@ button:focus-visible {
     gap: 18px;
 }
 
-
 .nav-icons {
     display: flex;
     gap: 20px;
 }
-
 
 .nav a {
     color: var(--ink-2);
@@ -181,12 +161,10 @@ button:focus-visible {
     transition: .2s ease;
 }
 
-
 .nav a:hover {
     color: var(--brand);
     background: var(--brand-50);
 }
-
 
 .btn-link {
     border: 1px solid var(--line);
@@ -194,15 +172,12 @@ button:focus-visible {
     padding: 8px 14px;
 }
 
-
 .btn-link:hover {
     border-color: var(--brand);
     color: var(--brand);
     background: var(--brand-50);
 }
 
-
-/* Mobile nav */
 .nav-toggle {
     display: none;
     background: none;
@@ -210,7 +185,6 @@ button:focus-visible {
     padding: 8px;
     cursor: pointer;
 }
-
 
 .nav-toggle__bar {
     display: block;
@@ -221,7 +195,6 @@ button:focus-visible {
     transition: .2s ease;
 }
 
-
 @media (max-width: 960px) {
     .nav {
         position: absolute;
@@ -231,11 +204,9 @@ button:focus-visible {
         display: none;
     }
 
-
     .nav.open {
         display: block;
     }
-
 
     .nav a,
     .btn-link {
@@ -245,16 +216,11 @@ button:focus-visible {
         border-radius: 0;
     }
 
-
     .nav-toggle {
         display: block;
     }
 }
 
-
-
-
-/* ---------- Hero Section ---------- */
 .hero {
   position: relative;
   background: url("https://needagro.com/wp-content/uploads/2024/04/Agricultural-Iputs-670-x-380-px.png") center/cover no-repeat;
@@ -265,7 +231,6 @@ button:focus-visible {
   color: #1a1a1a;
 }
 
-
 .hero::before {
   content: "";
   position: absolute;
@@ -273,7 +238,6 @@ button:focus-visible {
   background: rgba(255, 255, 255, 0.35);
   backdrop-filter: blur(1px);
 }
-
 
 .hero__grid {
   position: relative;
@@ -285,7 +249,6 @@ button:focus-visible {
   gap: 25px;
 }
 
-
 .nav-right {
   position: absolute;
   top: 30px;
@@ -295,7 +258,6 @@ button:focus-visible {
   z-index: 20;
 }
 
-
 .btn-outline {
   padding: 8px 22px;
   border: 1px solid #002d0def;
@@ -304,11 +266,11 @@ button:focus-visible {
   font-weight: 700;
   text-decoration: none;
 }
+
 .btn-outline:hover {
   background: #002309;
   color: #fff;
 }
-
 
 .btn-white {
   padding: 8px 22px;
@@ -319,28 +281,24 @@ button:focus-visible {
   text-decoration: none;
 }
 
-
 .btn-white:hover {
    background: #002309;
   color: #fff;
 }
 
-
-
-
-
-/* ---------- About Us Section ---------- */
 .about-us {
   padding: 80px 20px;
   background: rgb(220, 220, 220);
   text-align: center;
 }
+
 .about-us h2 {
   font-size: 30px;
   font-weight: 800;
   margin-bottom: 25px;
   color:black;
 }
+
 .about-us__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -348,6 +306,7 @@ button:focus-visible {
   max-width: 1200px;
   margin: auto;
 }
+
 .about-us__card {
   background: #fff;
   padding: 30px 20px;
@@ -356,29 +315,32 @@ button:focus-visible {
   text-align: center;
   transition: transform 0.1s ease;
 }
+
 .about-us__card:hover { transform: translateY(-8px); }
 .about-us__card h3 {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 15px;
 }
+
 .about-us__card p {
   font-size: 16px;
   color: var(--muted);
 }
 
-/* ---------- Services Section ---------- */
 .services {
   padding: 80px 20px;
   background: #e1f9e9;
   text-align: center;
 }
+
 .section-title {
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 30px;
   color: var(--ink-2);
 }
+
 .service-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -386,6 +348,7 @@ button:focus-visible {
   max-width: 1200px;
   margin: auto;
 }
+
 .service-card {
   background: #fff;
   padding: 30px 20px;
@@ -395,11 +358,13 @@ button:focus-visible {
   border: 1px solid #e5e5e5;
   transition: 0.3s ease-in-out;
 }
+
 .service-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 22px rgba(0,0,0,0.15);
   border-color: #003c20;
 }
+
 .service-icon {
   width: 70px;
   height: 70px;
@@ -428,7 +393,6 @@ button:focus-visible {
   line-height: 1.5;
 }
 
-/* ---------- Footer ---------- */
 .footer {
   background: #1a1a1a;
   color: #ddd;
