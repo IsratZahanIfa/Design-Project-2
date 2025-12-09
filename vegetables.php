@@ -44,25 +44,7 @@ if (isset($_GET['search'])) {
             display: flex;
             align-items: center;
         }
-<<<<<<< HEAD
-=======
-        .menu-right input[type="text"] {
-            padding: 0;
-            border-radius: 5px;
-            border: none;
-            margin-right: 10px;
-        }
-        .menu-right button {
-            padding:0;
-            border-radius: 5px;
-            border: none;
-            background-color: #fefefe;
-            color: green;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
+
         .menu-right {
             display: flex;
             align-items: center;
@@ -115,10 +97,6 @@ if (isset($_GET['search'])) {
             ["https://cdn.britannica.com/16/187216-050-CB57A09B/tomatoes-tomato-plant-Fruit-vegetable.jpg", "Tomato", 50 , "★★★★☆", "Organic Market", "Sylhet"],
             ["https://hub.suttons.co.uk/wp-content/uploads/2025/01/suttons.cabbage.sunta_.jpg", "Cabbage", 50 , "★★★★★", "Agro Store", "Rajshahi"],
             ["https://www.dailypost.net/media/imgAll/2023September/onion-20240422092135.jpg", "Onion", 100, "★★★★★", "Fresh Choice", "Khulna"],
-<<<<<<< HEAD
-=======
-            ["https://greenspices.in/wp-content/uploads/2021/07/black-pepper1.png", "Green Pepper", 50 , "★★★★☆", "Daily Veg Shop", "Barishal"],
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
             ["https://images.unsplash.com/photo-1524593410820-38510f580a77?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", "Green Chili", 50 , "★★★★☆", "Daily Veg Shop", "Barishal"]
 
         ];
