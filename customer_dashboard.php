@@ -213,7 +213,7 @@ $customer_joined  = !empty($customer['created_at'])
         <a href="cart.php" class="dash-box">
             <i class="fa fa-shopping-cart"></i>
             <h3>My Cart</h3>
-            <p>চেকআউটের আগে আইটেমগুলি দেখুন এবং পরিচালনা করুন</p>
+            <p>আইটেমগুলি দেখুন এবং পরিচালনা করুন</p>
         </a>
 
         <a href="my_orders.php" class="dash-box">
