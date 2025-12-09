@@ -240,8 +240,5 @@ $customer_joined  = !empty($customer['created_at'])
          <button class="logout-btn" onclick="window.location.href='logout.php'"> Logout </button>
 </dive>
 
-</div>
-
-</div>
 </body>
 </html>
