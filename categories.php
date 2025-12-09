@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 $categories = [
     [
         "name" => "Fruits",
@@ -30,11 +31,13 @@ $categories = [
 ];
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Categories</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 
 <style>
     body {
@@ -44,6 +47,7 @@ $categories = [
         position: relative;
         overflow-x: hidden;
     }
+
 
     .bg-blur {
         position: fixed;
@@ -55,8 +59,9 @@ $categories = [
                     no-repeat center/cover;
         filter: blur(2px) brightness(0.9);
         z-index: -1;
-        transform: scale(1.05); 
+        transform: scale(1.05);
     }
+
 
     h2 {
         text-align: center;
@@ -68,6 +73,7 @@ $categories = [
         text-shadow: 0 2px 8px #0003;
     }
 
+
     .category-container {
         width: 100%;
         margin: 40px auto;
@@ -75,6 +81,7 @@ $categories = [
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 35px;
     }
+
 
     .cat-card {
         background: rgba(255, 255, 255, 0.7);
@@ -87,11 +94,13 @@ $categories = [
         border: 1px solid rgba(255, 255, 255, 0.5);
     }
 
+
     .cat-card:hover {
         transform: translateY(-8px) scale(1.06);
         box-shadow: 0 15px 25px #0004;
         background: rgba(255, 255, 255, 0.85);
     }
+
 
     .cat-card img {
         width: 100%;
@@ -100,6 +109,7 @@ $categories = [
         border-bottom: 1px solid #fff5;
     }
 
+
     .cat-name {
         padding: 18px;
         font-size: 16px;
@@ -107,6 +117,7 @@ $categories = [
         color: #013e0cff;
         letter-spacing: 0.5px;
     }
+
 
     .back-btn {
         position: fixed;
@@ -121,14 +132,17 @@ $categories = [
         cursor: pointer;
         box-shadow: 0 4px 10px #0003;
         transition: 0.3s;
-        z-index: 10; 
+        z-index: 10;
     }
+
 
     .back-btn:hover {
         background-color: #01360bff;
         color: white;
         transform: scale(1.05);
     }
+
+
 
 
 .product-section .section-heading {
@@ -142,10 +156,12 @@ $categories = [
     opacity: 0;
 }
 
+
 @keyframes titleSlideUp {
     0% { opacity: 0; transform: translateY(25px); }
     100% { opacity: 1; transform: translateY(0); }
 }
+
 
 .products-section {
     width: 95%;
@@ -153,15 +169,13 @@ $categories = [
     font-weight: 800;
 }
 
-.product-section {
-    width: 85%;
-    margin: 18px auto;
-}
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 25px;
 }
+
 
 .product-card {
     background: #ffffff;
@@ -172,10 +186,12 @@ $categories = [
     transition: 0.3s ease-in-out;
 }
 
+
 .product-card:hover {
     box-shadow: 0 0 18px rgba(0,0,0,0.15);
     transform: translateY(-6px);
 }
+
 
 .product-card img {
     width: 160px;
@@ -187,9 +203,11 @@ $categories = [
     transition: 0.3s ease;
 }
 
+
 .product-card img:hover {
     transform: scale(1.08);
 }
+
 
 .product-card h3 {
     font-size: 16px;
@@ -198,6 +216,7 @@ $categories = [
     color: rgb(0, 63, 13);
 }
 
+
 .price {
     color: rgb(0, 63, 13);
     font-size: 14px;
@@ -205,17 +224,20 @@ $categories = [
     margin-top: 6px;
 }
 
+
 .rating {
     font-size: 13px;
     color: #ff9800;
     margin-top: 5px;
 }
 
+
 .store, .location {
     font-size: 13px;
     color: #333;
     margin: 3px 0;
 }
+
 
 .menu-bar {
             display: flex;
@@ -238,12 +260,13 @@ $categories = [
             display: flex;
             align-items: center;
         }
-        
+       
         .menu-right form {
             display: flex;
             align-items: center;
             gap: 5px;
         }
+
 
         .search-box {
             padding: 5px 10px;
@@ -252,6 +275,7 @@ $categories = [
             outline: none;
             font-size: 14px;
         }
+
 
         .search-btn {
             padding: 7px 12px;
@@ -265,9 +289,11 @@ $categories = [
             gap: 5px;
         }
 
+
         .search-btn:hover {
             background-color: #e4e4e4;
         }
+
 
         .menu-right input[type="text"] {
             padding: 5px;
@@ -285,10 +311,12 @@ $categories = [
             cursor: pointer;
         }
 
+
 @media (max-width: 480px) {
     .products-grid {
         grid-template-columns: 1fr;
     }
+
 
     .menu-bar {
         flex-direction: column;
@@ -296,32 +324,39 @@ $categories = [
         gap: 10px;
     }
 
+
     .menu-right form {
         width: 100%;
     }
+
 
     .menu-right input[type="text"] {
         width: 70%;
         margin-bottom: 5px;
     }
 
+
     .menu-right button {
         width: 25%;
     }
 }
 
+
 </style>
+
 
 </head>
 <body>
     <div class="bg-blur"></div>
 
+
     <h2>All Categories</h2>
 
+
     <div class="category-container">
-<<<<<<< HEAD
 
-    <?php foreach ($categories as $cat): 
+
+    <?php foreach ($categories as $cat):
         $page = strtolower($cat['name']) . ".php";
     ?>
         <a href="<?php echo htmlspecialchars($page); ?>" class="cat-card">
@@ -331,22 +366,12 @@ $categories = [
     <?php endforeach; ?>
 </div>
 
-=======
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 
-    <?php foreach ($categories as $cat): 
-        $page = strtolower($cat['name']) . ".php";
-    ?>
-        <a href="<?php echo htmlspecialchars($page); ?>" class="cat-card">
-            <img src="<?php echo htmlspecialchars($cat['image']); ?>" alt="<?php echo htmlspecialchars($cat['name']); ?>">
-            <div class="cat-name"><?php echo htmlspecialchars($cat['name']); ?></div>
-        </a>
-    <?php endforeach; ?>
-</div>
 
 
     <a href="customer_dashboard.php" class="back-btn">Back to Dashboard</a>
 
-    
+
+   
 </body>
 </html>

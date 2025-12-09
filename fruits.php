@@ -2,16 +2,19 @@
 session_start();
 include 'db.php';
 
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'customer') {
     header("Location: login.php");
     exit();
 }
+
 
 $search = '';
 if (isset($_GET['search'])) {
     $search = strtolower(trim($_GET['search']));
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -21,80 +24,137 @@ if (isset($_GET['search'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
-<<<<<<< HEAD
-        background-color: rgba(221, 197, 197, 1);
-=======
-        background-color: rgba(184, 167, 167, 1);
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
-    }
-        .menu-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-<<<<<<< HEAD
-            background-color: #024104ff;
-=======
-            background: rgb(0, 63, 19);
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
-            padding: 10px 20px;
-            color: white;
-            font-weight: bold;
-        }
-        .menu-bar a {
-            color: white;
-            text-decoration: none;
-<<<<<<< HEAD
-            margin-right: 15px;
-=======
-            margin-right: 12px;
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
-        }
-        .menu-bar a:hover {
-            text-decoration: underline;
-        }
-        .menu-left, .menu-right {
-            display: flex;
-            align-items: center;
-        }
-<<<<<<< HEAD
-      
-        .menu-right button {
-            padding: 5px 10px;
-            border-radius: 5px;
-            border: none;
-            background-color: #fefefe;
-            color: green;
-            font-weight: bold;
-            cursor: pointer;
-=======
-        .menu-right {
-            display: flex;
-            align-items: center;
-        }
+    background-color: #e0c3c3ff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
 
-        .menu-right form {
-            display: flex;
-            align-items: center;
-        }
+.menu-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #024104;
+    padding: 15px 25px;
+    color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
 
-        .menu-right input[type="text"] {
-            padding: 8px 15px;
-            border-radius: 25px;
-            border: none;
-            outline: none;
-            width: 220px;
-            font-size: 14px;
-            transition: 0.3s ease;
-        }
+.menu-bar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 18px;
+    font-size: 16px;
+    transition: 0.3s;
+}
 
-        .menu-right input[type="text"]:focus {
-            width: 260px;
-            background: #fff;
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
-        }
+.menu-bar a:hover {
+    color: #e1ffcf;
+}
+
+.menu-right input[type="text"] {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    width: 200px;
+}
+
+.menu-right button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #046f26;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+.menu-right button:hover {
+    background-color: #eaffea;
+}
+
+
+.section-heading {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    color: #05430d;
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    padding: 20px 40px;
+}
+
+
+.product-card {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+}
+
+.product-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.product-card h3 {
+    margin-top: 12px;
+    font-size: 20px;
+    color: #024104;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #009e25;
+}
+
+.rating {
+    margin: 7px 0;
+}
+
+.store, .location {
+    font-size: 14px;
+    color: #4d4d4d;
+}
+
+.btn-add-cart {
+    margin-top: 12px;
+    padding: 10px 12px;
+    width: 100%;
+    border: none;
+    background-color: #024104;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-add-cart:hover {
+    background-color: #036c1e;
+}
     </style>
 </head>
 <body>
+
 
 <div class="menu-bar">
     <div class="menu-left">
@@ -104,31 +164,16 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
            <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
-<<<<<<< HEAD
-    <button type="submit"><i class="fa fa-search"></i> Search</button>
-=======
-    <button type="submit"></i> Search</button>
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
-
-    <?php if ($search !== ""): ?>
-      
-        <button type="button" onclick="window.location.href='<?= $_SERVER['PHP_SELF'] ?>'">
-            <i class="fa fa-refresh"></i> Refresh
-        </button>
-    <?php endif; ?>
         </form>
-<<<<<<< HEAD
-        <a href="logout.php"><i class="fa fa-sign-out-alt"></i> Logout</a>
-=======
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
     </div>
 </div>
+
 
 <!-- ========================= FRUITS SECTION ========================= -->
 <section class="product-section">
     <h2 class="section-heading">Fruit Products</h2>
     <div class="products-grid">
-        <?php 
+        <?php
         $fruits = [
             ["https://www.shutterstock.com/image-photo/red-apple-cut-half-water-600nw-2532255795.jpg", "Fresh Apples", 100, "★★★★★", "FreshMart Store", "Dhaka, Bangladesh"],
             ["https://media.istockphoto.com/id/478157668/photo/apple-background.jpg?s=612x612&w=0&k=20&c=_tkw1vIA9YzzpOFaUE7Al_gxAOj3AkhXsZ5VnGTY94U=", "Green Apples", 200, "★★★★★", "Green Store", "Dhaka, Bangladesh"],
@@ -140,6 +185,7 @@ if (isset($_GET['search'])) {
             ["https://static.vecteezy.com/system/resources/previews/047/130/081/large_2x/pineapples-are-tropical-fruit-that-is-popular-fruit-in-hawaii-photo.jpg", "Pineapple", 50, "★★★★☆", "Daily Harvest", "Barishal"]
         ];
 
+
         foreach ($fruits as $item):
         ?>
             <div class="product-card">
@@ -149,6 +195,7 @@ if (isset($_GET['search'])) {
                 <div class="rating"><?= $item[3] ?></div>
                 <p class="store"><strong>Store:</strong> <?= $item[4] ?></p>
                 <p class="location"><strong>Location:</strong> <?= $item[5] ?></p>
+
 
                 <form action="cart.php" method="POST">
                     <input type="hidden" name="product_name" value="<?= $item[1] ?>">
@@ -162,6 +209,7 @@ if (isset($_GET['search'])) {
         <?php endforeach; ?>
     </div>
 </section>
+
 
 </body>
 </html>

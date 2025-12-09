@@ -2,24 +2,26 @@
 session_start();
 include 'db.php';
 
+
 if (!isset($_SESSION['admin'])) {
     header("Location: admin.php");
     exit;
 }
 
-/* ---------------------------
-   APPROVE SELLER
-----------------------------*/
+
 if (isset($_GET['approve_seller'])) {
     $id = intval($_GET['approve_seller']);
 
+
     $query = mysqli_query($conn, "SELECT * FROM users WHERE id=$id AND role='seller'");
     $seller = mysqli_fetch_assoc($query);
+
 
     if ($seller) {
         $name    = mysqli_real_escape_string($conn, $seller['name']);
         $email   = mysqli_real_escape_string($conn, $seller['email']);
         $contact = mysqli_real_escape_string($conn, $seller['contact']);
+
 
         $check = mysqli_query($conn, "SELECT * FROM sellers WHERE user_id=$id");
         if (mysqli_num_rows($check) == 0) {
@@ -31,39 +33,38 @@ if (isset($_GET['approve_seller'])) {
         }
     }
 
+
     header("Location: admin_dashboard.php");
     exit;
 }
 
-/* ---------------------------
-   DELETE SELLER 
-----------------------------*/
+
 if (isset($_GET['delete_seller'])) {
     $id = intval($_GET['delete_seller']);
+
 
     $check = mysqli_query($conn, "SELECT * FROM sellers WHERE user_id=$id");
     if (mysqli_num_rows($check) == 0) {
         mysqli_query($conn, "DELETE FROM users WHERE id=$id AND role='seller'");
     }
 
+
     header("Location: admin_dashboard.php");
     exit;
 }
 
 
-<<<<<<< HEAD
-/* ---------------------------
-   FETCH DATA
-----------------------------*/
-=======
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
+
+
 $pending_sellers = mysqli_query($conn, "
-    SELECT * FROM users 
-    WHERE role='seller' 
+    SELECT * FROM users
+    WHERE role='seller'
     AND id NOT IN (SELECT user_id FROM sellers)
 ");
 
+
 $approved_sellers = mysqli_query($conn, "SELECT * FROM sellers");
+
 
 if (isset($_GET['logout'])) {
     session_destroy();
@@ -71,7 +72,10 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
+
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -80,19 +84,22 @@ if (isset($_GET['logout'])) {
 <meta charset="UTF-8">
 <title>Admin Dashboard</title>
 
+
 <style>
-body { 
-    font-family: Arial, sans-serif; 
-    background: #040404ff; 
-    padding: 20px; 
+body {
+    font-family: Arial, sans-serif;
+    background: #040404ff;
+    padding: 20px;
     color: white;  
 }
 
-h1 { 
-    text-align: center; 
-    font-size: 22px; 
+
+h1 {
+    text-align: center;
+    font-size: 22px;
     margin-top: 20px;
 }
+
 
 .section-title {
     text-align: center;
@@ -101,19 +108,23 @@ h1 {
     color: #00ffcc;
 }
 
-table { 
-    border-collapse: collapse; 
-    width: 90%; 
+
+table {
+    border-collapse: collapse;
+    width: 90%;
     margin: 20px auto;
     color: white;
 }
 
-th, td { 
-    border: 1px solid #444; 
+
+th, td {
+    border: 1px solid #444;
     padding: 8px;
 }
 
+
 th { background: #1a1a1a; }
+
 
 .action-btn {
     color: #00eaff;
@@ -121,9 +132,11 @@ th { background: #1a1a1a; }
     text-decoration: none;
 }
 
+
 .action-btn:hover {
     color: #5efcff;
 }
+
 
 .logout-container {
     text-align: center;
@@ -137,6 +150,7 @@ th { background: #1a1a1a; }
 }
 .logout:hover { background: #333; }
 
+
 .box-links {
     width: 90%;
     margin: auto;
@@ -144,6 +158,7 @@ th { background: #1a1a1a; }
     grid-template-columns: repeat(3,1fr);
     gap: 12px;
 }
+
 
 .box-links a {
     background: #111;
@@ -161,15 +176,10 @@ th { background: #1a1a1a; }
 </head>
 <body>
 
-<h1>ADMIN DASHBOARD</h1>
-<<<<<<< HEAD
 
-<!-- ============================
-     SELLER APPROVAL SECTION
-============================= -->
-=======
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
+<h1>ADMIN DASHBOARD</h1>
 <h2 class="section-title">Pending Seller Approvals</h2>
+
 
 <table>
 <tr>
@@ -178,6 +188,7 @@ th { background: #1a1a1a; }
     <th>Contact</th>
     <th>Action</th>
 </tr>
+
 
 <?php while ($row = mysqli_fetch_assoc($pending_sellers)) { ?>
 <tr>
@@ -192,7 +203,9 @@ th { background: #1a1a1a; }
 <?php } ?>
 </table>
 
+
 <h2 class="section-title">Approved Sellers</h2>
+
 
 <table>
 <tr>
@@ -200,6 +213,7 @@ th { background: #1a1a1a; }
     <th>Email</th>
     <th>Contact</th>
 </tr>
+
 
 <?php while ($row = mysqli_fetch_assoc($approved_sellers)) { ?>
 <tr>
@@ -211,11 +225,13 @@ th { background: #1a1a1a; }
 </table>
 
 
+
+
 <h2 class="section-title">Manage All Tables</h2>
-<<<<<<< HEAD
-=======
+
 
 <div class="box-links">
+
 
     <a href="manage_users.php">Manage Users</a>
     <a href="manage_add_products.php">Manage Products</a>
@@ -224,28 +240,15 @@ th { background: #1a1a1a; }
     <a href="notifications.php">Manage Notifications</a>
 
 
-</div>
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
-
-<div class="box-links">
-
-    <a href="manage_users.php?table=users">Manage Users</a>
-    <a href="categories.php?table=categories">Manage Categories</a>
-    <a href="add_product.php?table=add_products">Manage Products</a>
-    <a href="view_table.php?table=orders">Manage Orders</a>
-    <a href="view_table.php?table=reviews">Manage Reviews</a>
-    <a href="view_table.php?table=notifications">Manage Notifications</a>
 
 
 </div>
 
 
-<!-- ============================
-     LOGOUT
-============================= -->
 <div class="logout-container">
     <a href="admin_dashboard.php?logout=1" class="logout">Logout</a>
 </div>
+
 
 </body>
 </html>
