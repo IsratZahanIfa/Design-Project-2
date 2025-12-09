@@ -2,16 +2,19 @@
 session_start();
 include 'db.php';
 
+
 if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'customer') {
     header("Location: login.php");
     exit();
 }
+
 
 $search = '';
 if (isset($_GET['search'])) {
     $search = strtolower(trim($_GET['search']));
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -35,7 +38,7 @@ if (isset($_GET['search'])) {
         .menu-bar a {
             color: white;
             text-decoration: none;
-            margin-right: 15px;
+            margin-right: 12px;
         }
         .menu-bar a:hover {
             text-decoration: underline;
@@ -44,25 +47,17 @@ if (isset($_GET['search'])) {
             display: flex;
             align-items: center;
         }
-      
-        .menu-right button {
-            padding: 5px 10px;
-            border-radius: 5px;
-            border: none;
-            background-color: #fefefe;
-            color: green;
-            font-weight: bold;
-            cursor: pointer;
-
         .menu-right {
             display: flex;
             align-items: center;
         }
 
+
         .menu-right form {
             display: flex;
             align-items: center;
         }
+
 
         .menu-right input[type="text"] {
             padding: 8px 15px;
@@ -74,6 +69,7 @@ if (isset($_GET['search'])) {
             transition: 0.3s ease;
         }
 
+
         .menu-right input[type="text"]:focus {
             width: 260px;
             background: #fff;
@@ -81,6 +77,7 @@ if (isset($_GET['search'])) {
     </style>
 </head>
 <body>
+
 
 <div class="menu-bar">
     <div class="menu-left">
@@ -92,8 +89,9 @@ if (isset($_GET['search'])) {
            <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
     <button type="submit"></i> Search</button>
 
+
     <?php if ($search !== ""): ?>
-      
+     
         <button type="button" onclick="window.location.href='<?= $_SERVER['PHP_SELF'] ?>'">
             <i class="fa fa-refresh"></i> Refresh
         </button>
@@ -102,11 +100,12 @@ if (isset($_GET['search'])) {
     </div>
 </div>
 
+
 <!-- ========================= FRUITS SECTION ========================= -->
 <section class="product-section">
     <h2 class="section-heading">Fruit Products</h2>
     <div class="products-grid">
-        <?php 
+        <?php
         $fruits = [
             ["https://www.shutterstock.com/image-photo/red-apple-cut-half-water-600nw-2532255795.jpg", "Fresh Apples", 100, "★★★★★", "FreshMart Store", "Dhaka, Bangladesh"],
             ["https://media.istockphoto.com/id/478157668/photo/apple-background.jpg?s=612x612&w=0&k=20&c=_tkw1vIA9YzzpOFaUE7Al_gxAOj3AkhXsZ5VnGTY94U=", "Green Apples", 200, "★★★★★", "Green Store", "Dhaka, Bangladesh"],
@@ -118,6 +117,7 @@ if (isset($_GET['search'])) {
             ["https://static.vecteezy.com/system/resources/previews/047/130/081/large_2x/pineapples-are-tropical-fruit-that-is-popular-fruit-in-hawaii-photo.jpg", "Pineapple", 50, "★★★★☆", "Daily Harvest", "Barishal"]
         ];
 
+
         foreach ($fruits as $item):
         ?>
             <div class="product-card">
@@ -127,6 +127,7 @@ if (isset($_GET['search'])) {
                 <div class="rating"><?= $item[3] ?></div>
                 <p class="store"><strong>Store:</strong> <?= $item[4] ?></p>
                 <p class="location"><strong>Location:</strong> <?= $item[5] ?></p>
+
 
                 <form action="cart.php" method="POST">
                     <input type="hidden" name="product_name" value="<?= $item[1] ?>">
@@ -140,6 +141,7 @@ if (isset($_GET['search'])) {
         <?php endforeach; ?>
     </div>
 </section>
+
 
 </body>
 </html>
