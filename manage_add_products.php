@@ -2,168 +2,256 @@
 session_start();
 include 'db.php';
 
+
 if (!isset($_SESSION['admin'])) {
     header("Location: admin.php");
     exit;
 }
 
-$search = "";
-if (!empty($_GET['search'])) {
-    $search = mysqli_real_escape_string($conn, $_GET['search']);
-}
 
-$sql = "SELECT * FROM add_products
-        WHERE LOWER(name) LIKE LOWER('%$search%')
-        ORDER BY created_at DESC";
-$result = mysqli_query($conn, $sql);
+if (isset($_GET['approve_seller'])) {
+    $id = intval($_GET['approve_seller']);
 
-$total_products = ($result) ? mysqli_num_rows($result) : 0;
 
-if (isset($_GET['delete'])) {
-    $id = intval($_GET['delete']);
-    mysqli_query($conn, "DELETE FROM add_products WHERE id=$id");
-    header("Location: manage_add_products.php");
+    $query = mysqli_query($conn, "SELECT * FROM users WHERE id=$id AND role='seller'");
+    $seller = mysqli_fetch_assoc($query);
+
+
+    if ($seller) {
+        $name    = mysqli_real_escape_string($conn, $seller['name']);
+        $email   = mysqli_real_escape_string($conn, $seller['email']);
+        $contact = mysqli_real_escape_string($conn, $seller['contact']);
+
+
+        $check = mysqli_query($conn, "SELECT * FROM sellers WHERE user_id=$id");
+        if (mysqli_num_rows($check) == 0) {
+            mysqli_query(
+                $conn,
+                "INSERT INTO sellers (user_id, name, email, contact)
+                 VALUES ($id, '$name', '$email', '$contact')"
+            );
+        }
+    }
+
+
+    header("Location: admin_dashboard.php");
     exit;
 }
+
+
+if (isset($_GET['delete_seller'])) {
+    $id = intval($_GET['delete_seller']);
+
+
+    $check = mysqli_query($conn, "SELECT * FROM sellers WHERE user_id=$id");
+    if (mysqli_num_rows($check) == 0) {
+        mysqli_query($conn, "DELETE FROM users WHERE id=$id AND role='seller'");
+    }
+
+
+    header("Location: admin_dashboard.php");
+    exit;
+}
+
+
+
+
+$pending_sellers = mysqli_query($conn, "
+    SELECT * FROM users
+    WHERE role='seller'
+    AND id NOT IN (SELECT user_id FROM sellers)
+");
+
+
+$approved_sellers = mysqli_query($conn, "SELECT * FROM sellers");
+
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: index.php");
+    exit;
+}
+
+
 ?>
 
 
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin | Manage Products</title>
-    <style>
-        body {
-            background: #121212;
-            color: white;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 950px;
-            margin: auto;
-            background: #1e1e1e;
-            padding: 25px;
-            border-radius: 12px;
-        }
-        h2 {
-            text-align: center;
-        }
-        .total-products {
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            color: cyan;
-        }
-        .search-box {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .search-box input {
-            width: 60%;
-            padding: 8px 12px;
-            border-radius: 5px;
-            border: none;
-        }
-        .search-box button {
-            padding: 8px 15px;
-            margin-left: 5px;
-            border: none;
-            background: orange;
-            color: black;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        table th, table td {
-            border: 1px solid #555;
-            padding: 10px;
-            text-align: center;
-        }
-        table th {
-            background: #000;
-        }
-        .btn-delete {
-            padding: 5px 10px;
-            background: red;
-            color: white;
-            border-radius: 5px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-        .back-btn {
-            display: inline-block;
-            margin-bottom: 15px;
-            padding: 8px 15px;
-            background: cyan;
-            color: black;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Admin Dashboard</title>
+
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #040404ff;
+    padding: 20px;
+    color: white;  
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 20px;
+}
+
+
+.section-title {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 35px;
+    color: #00ffcc;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px auto;
+    color: white;
+}
+
+
+th, td {
+    border: 1px solid #444;
+    padding: 8px;
+}
+
+
+th { background: #1a1a1a; }
+
+
+.action-btn {
+    color: #00eaff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+.action-btn:hover {
+    color: #5efcff;
+}
+
+
+.logout-container {
+    text-align: center;
+    margin: 25px;
+}
+.logout {
+    color: white;
+    background: #111;
+    padding: 10px 18px;
+    border-radius: 5px;
+}
+.logout:hover { background: #333; }
+
+
+.box-links {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+}
+
+
+.box-links a {
+    background: #111;
+    padding: 12px;
+    color: #00ffe1;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+}
+.box-links a:hover {
+    background: #333;
+}
+</style>
 </head>
 <body>
 
 
-<div class="container">
+<h1>ADMIN DASHBOARD</h1>
+<h2 class="section-title">Pending Seller Approvals</h2>
 
 
-    <a href="admin_dashboard.php" class="back-btn">⬅ Back to Dashboard</a>
+<table>
+<tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Contact</th>
+    <th>Action</th>
+</tr>
 
 
-    <h2>Manage All Products</h2>
-    <div class="total-products">Total Products: <?php echo $total_products; ?></div>
+<?php while ($row = mysqli_fetch_assoc($pending_sellers)) { ?>
+<tr>
+    <td><?= $row['name'] ?></td>
+    <td><?= $row['email'] ?></td>
+    <td><?= $row['contact'] ?></td>
+    <td>
+        <a class="action-btn" href="admin_dashboard.php?approve_seller=<?= $row['id'] ?>">✔ Approve</a> |
+        <a class="action-btn" style="color:#ff4d4d" href="admin_dashboard.php?delete_seller=<?= $row['id'] ?>">🗑 Delete</a>
+    </td>
+</tr>
+<?php } ?>
+</table>
 
 
-    <form method="GET" class="search-box">
-        <input type="text" name="search" placeholder="Search product..." value="<?php echo htmlspecialchars($search); ?>">
-        <button type="submit">Search</button>
-    </form>
+<h2 class="section-title">Approved Sellers</h2>
 
 
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Price (৳)</th>
-            <th>Seller ID</th>
-            <th>Store Name</th>
-            <th>Created At</th>
-            <th>Action</th>
-        </tr>
-        <?php if ($result && mysqli_num_rows($result) > 0): ?>
-            <?php while ($row = mysqli_fetch_assoc($result)): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($row['name']); ?></td>
-                    <td><?php echo $row['price']; ?> ৳</td>
-                    <td><?php echo $row['seller_id']; ?></td>
-                    <td><?php echo htmlspecialchars($row['store_name']); ?></td>
-                    <td><?php echo $row['created_at']; ?></td>
-                    <td>
-                        <a href="manage_add_products.php?delete=<?php echo $row['id']; ?>"
-                           class="btn-delete"
-                           onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
-                    </td>
-                </tr>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <tr><td colspan="7">No products found.</td></tr>
-        <?php endif; ?>
-    </table>
+<table>
+<tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Contact</th>
+</tr>
+
+
+<?php while ($row = mysqli_fetch_assoc($approved_sellers)) { ?>
+<tr>
+    <td><?= $row['name'] ?></td>
+    <td><?= $row['email'] ?></td>
+    <td><?= $row['contact'] ?></td>
+</tr>
+<?php } ?>
+</table>
+
+
+
+
+<h2 class="section-title">Manage All Tables</h2>
+
+
+<div class="box-links">
+
+
+    <a href="manage_users.php">Manage Users</a>
+    <a href="manage_products.php">Manage Products</a>
+    <a href="manage_orders.php">Manage Orders</a>
+    <a href="reviews.php">Manage Reviews</a>
+    <a href="notifications.php">Manage Notifications</a>
+
+
 
 
 </div>
 
 
+<div class="logout-container">
+    <a href="admin_dashboard.php?logout=1" class="logout">Logout</a>
+</div>
+
+
 </body>
 </html>
+
 
 
