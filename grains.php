@@ -19,7 +19,7 @@ if (isset($_GET['search'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fruits | AgroTradeHub</title>
+    <title>Grains | AgroTradeHub</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -174,7 +174,7 @@ if (isset($_GET['search'])) {
     <h2 class="section-heading">Grains Products</h2>
     <div class="products-grid">
         <?php
-        $fruits = [
+        $grains = [
             ["https://t4.ftcdn.net/jpg/05/16/35/47/360_F_516354718_dPoyJgoRz2CQPNUuzzBbc6JCCfMRwrD9.jpg", "Bashmoti Chal", 300, "★★★★★", "FreshMart Store", "Dhaka, Bangladesh"],
             ["https://media.istockphoto.com/id/1322613316/photo/rice-in-wooden-bowl-on-rice-and-rice-ears-background-natural-food-high-in-protein.jpg?s=612x612&w=0&k=20&c=jYWVKwTwptgrFojDno7GW8x9iF2LakyoMTzzrZfY1tE=", "Jasmine Rice", 200, "★★★★★", "Green Store", "Dhaka, Bangladesh"],
             ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSajDR2L0UIg3zPoE1cTr8KzCEsmLgVdH7qXw&s", "Mimicat Chal", 55 , "★★★★☆", "GrainHouse", "Chattogram"],
@@ -190,7 +190,7 @@ if (isset($_GET['search'])) {
         ];
 
 
-        foreach ($fruits as $item):
+        foreach ($grains as $item):
         ?>
             <div class="product-card">
                 <img src="<?= $item[0] ?>" class="product-img">

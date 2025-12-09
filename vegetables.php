@@ -16,58 +16,138 @@ if (isset($_GET['search'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fruits | AgroTradeHub</title>
+    <title>Vegetables | AgroTradeHub</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
-        background-color: rgba(184, 167, 167, 1);
-    }
-        .menu-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgb(0, 63, 19);
-            padding: 10px 20px;
-            color: white;
-            font-weight: bold;
-        }
-        .menu-bar a {
-            color: white;
-            text-decoration: none;
-            margin-right: 12px;
-        }
-        .menu-bar a:hover {
-            text-decoration: underline;
-        }
-        .menu-left, .menu-right {
-            display: flex;
-            align-items: center;
-        }
-        .menu-right {
-            display: flex;
-            align-items: center;
-        }
+    background-color: #e0c3c3ff;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+}
 
-        .menu-right form {
-            display: flex;
-            align-items: center;
-        }
+.menu-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #024104;
+    padding: 15px 25px;
+    color: white;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+}
 
-        .menu-right input[type="text"] {
-            padding: 8px 15px;
-            border-radius: 25px;
-            border: none;
-            outline: none;
-            width: 220px;
-            font-size: 14px;
-            transition: 0.3s ease;
-        }
+.menu-bar a {
+    color: white;
+    text-decoration: none;
+    margin-right: 18px;
+    font-size: 16px;
+    transition: 0.3s;
+}
 
-        .menu-right input[type="text"]:focus {
-            width: 260px;
-            background: #fff;
-        }
+.menu-bar a:hover {
+    color: #e1ffcf;
+}
+
+.menu-right input[type="text"] {
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    width: 200px;
+}
+
+.menu-right button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #046f26;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: 0.3s;
+}
+
+.menu-right button:hover {
+    background-color: #eaffea;
+}
+
+
+.section-heading {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 800;
+    color: #05430d;
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    padding: 20px 40px;
+}
+
+
+.product-card {
+    background: white;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.22);
+}
+
+.product-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.product-card h3 {
+    margin-top: 12px;
+    font-size: 20px;
+    color: #024104;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #009e25;
+}
+
+.rating {
+    margin: 7px 0;
+}
+
+.store, .location {
+    font-size: 14px;
+    color: #4d4d4d;
+}
+
+.btn-add-cart {
+    margin-top: 12px;
+    padding: 10px 12px;
+    width: 100%;
+    border: none;
+    background-color: #024104;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-add-cart:hover {
+    background-color: #036c1e;
+}
             </style>
 </head>
 <body>

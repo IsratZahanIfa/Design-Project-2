@@ -16,11 +16,11 @@ if (isset($_GET['search'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fruits | AgroTradeHub</title>
+    <title>Trees | AgroTradeHub</title>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-       body {
+        body {
     background-color: #e0c3c3ff;
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -148,7 +148,7 @@ if (isset($_GET['search'])) {
 .btn-add-cart:hover {
     background-color: #036c1e;
 }
-    </style>
+            </style>
 </head>
 <body>
 
@@ -160,7 +160,7 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
-            <button type="submit"> Search</button>
+            <button type="submit"></button>
         </form>
     </div>
 </div>
@@ -171,7 +171,7 @@ if (isset($_GET['search'])) {
     <div class="products-grid">
         <?php 
         $trees = [
-             ["https://whiteonricecouple.com/recipe/images/lemon-tree-container-11-550x830-1.jpg", "Lemon Tree", 1200, "★★★★★", "Healthy Harvest", "Dhaka, Bangladesh"],
+            ["https://whiteonricecouple.com/recipe/images/lemon-tree-container-11-550x830-1.jpg", "Lemon Tree", 1200, "★★★★★", "Healthy Harvest", "Dhaka, Bangladesh"],
             ["https://ecdn.dhakatribune.net/contents/cache/images/640x359x1/uploads/media/2024/06/26/Mango-tree-b85b4094a33503041edc6446af1fcb24.JPG?jadewits_media_id=23165", "Dwarf Mango Tree", 2500, "★★★★☆", "GrainHouse", "Chattogram"],
             ["https://cdn.pixabay.com/photo/2016/07/26/15/01/guava-1543533_1280.jpg", "Guava Tree", 800, "★★★★★", "Daily Grain Mart", "Khulna"],
             ["https://everglades.farm/cdn/shop/articles/xebkllue-5-steps-to-grow-a-hawaiian-papaya-tree-successfully_bca5e9e1-fd8e-4ace-9b04-330814b3b4af.png?v=1751975682", "Papaya Tree", 500, "★★★★☆", "EcoGrain", "Rajshahi"],
@@ -186,6 +186,35 @@ if (isset($_GET['search'])) {
             ["https://whiteonricecouple.com/recipe/images/lemon-tree-container-11-550x830-1.jpg", "Lemon Tree", 1200, "★★★★★", "Healthy Harvest", "Dhaka, Bangladesh"],
             ["https://i.ytimg.com/vi/VV1fcLycA14/oardefault.jpg?sqp=-oaymwEYCJUDENAFSFqQAgHyq4qpAwcIARUAAIhC&rs=AOn4CLAKn-wvTfc6KztTGshH2XXPjCAzfg", "Dwarf Mango Tree", 3000, "★★★★☆", "Healthy Harvest", "Rajshahi"],
             ["https://m.media-amazon.com/images/I/714q8hi9FwL.jpg", "Guava Tree", 800, "★★★★★", "Daily Grain Mart", "Khulna"]
+        ];
+
+        foreach ($trees as $item):
+        ?>
+            <div class="product-card">
+                <img src="<?= $item[0] ?>" class="product-img">
+                <h3><?= $item[1] ?></h3>
+                <p class="price">৳ <?= number_format($item[2], 2) ?></p>
+                <div class="rating"><?= $item[3] ?></div>
+                <p class="store"><strong>Store:</strong> <?= $item[4] ?></p>
+                <p class="location"><strong>Location:</strong> <?= $item[5] ?></p>
+
+                <form action="cart.php" method="POST">
+                    <input type="hidden" name="product_name" value="<?= $item[1] ?>">
+                    <input type="hidden" name="price" value="<?= $item[2] ?>">
+                    <input type="hidden" name="store_name" value="<?= $item[4] ?>">
+                    <button type="submit" name="add_to_cart" class="btn-add-cart">
+                        Add to Cart 🛒
+                    </button>
+                </form>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</section>
+
+</body>
+</html>
+
+            
         ];
 
         foreach ($fruits as $item):
