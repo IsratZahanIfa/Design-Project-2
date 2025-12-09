@@ -226,7 +226,6 @@ th { background: #1a1a1a; }
 
 <h2 class="section-title">Manage All Tables</h2>
 
-
 <div class="box-links">
 
 
