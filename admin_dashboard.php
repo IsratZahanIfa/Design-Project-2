@@ -7,9 +7,6 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-/* ---------------------------
-   APPROVE SELLER
-----------------------------*/
 if (isset($_GET['approve_seller'])) {
     $id = intval($_GET['approve_seller']);
 
@@ -35,9 +32,6 @@ if (isset($_GET['approve_seller'])) {
     exit;
 }
 
-/* ---------------------------
-   DELETE SELLER 
-----------------------------*/
 if (isset($_GET['delete_seller'])) {
     $id = intval($_GET['delete_seller']);
 
@@ -50,13 +44,6 @@ if (isset($_GET['delete_seller'])) {
     exit;
 }
 
-
-<<<<<<< HEAD
-/* ---------------------------
-   FETCH DATA
-----------------------------*/
-=======
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 $pending_sellers = mysqli_query($conn, "
     SELECT * FROM users 
     WHERE role='seller' 
@@ -162,13 +149,6 @@ th { background: #1a1a1a; }
 <body>
 
 <h1>ADMIN DASHBOARD</h1>
-<<<<<<< HEAD
-
-<!-- ============================
-     SELLER APPROVAL SECTION
-============================= -->
-=======
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 <h2 class="section-title">Pending Seller Approvals</h2>
 
 <table>
@@ -212,9 +192,6 @@ th { background: #1a1a1a; }
 
 
 <h2 class="section-title">Manage All Tables</h2>
-<<<<<<< HEAD
-=======
-
 <div class="box-links">
 
     <a href="manage_users.php">Manage Users</a>
@@ -225,24 +202,6 @@ th { background: #1a1a1a; }
 
 
 </div>
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
-
-<div class="box-links">
-
-    <a href="manage_users.php?table=users">Manage Users</a>
-    <a href="categories.php?table=categories">Manage Categories</a>
-    <a href="add_product.php?table=add_products">Manage Products</a>
-    <a href="view_table.php?table=orders">Manage Orders</a>
-    <a href="view_table.php?table=reviews">Manage Reviews</a>
-    <a href="view_table.php?table=notifications">Manage Notifications</a>
-
-
-</div>
-
-
-<!-- ============================
-     LOGOUT
-============================= -->
 <div class="logout-container">
     <a href="admin_dashboard.php?logout=1" class="logout">Logout</a>
 </div>
