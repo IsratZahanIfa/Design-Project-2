@@ -1,39 +1,12 @@
 <?php
 session_start();
-<<<<<<< HEAD
-include 'db.php'; 
-
-if (!isset($_SESSION['user_id']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'customer')
-     {
-=======
 include 'db.php';
 
 if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'customer') {
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
     header("Location: login.php");
     exit();
 }
 
-<<<<<<< HEAD
-$user_name = null;
-if (!empty($_SESSION['user_name'])) {
-    $user_name = $_SESSION['user_name'];
-} else {
-
-    $user_id = intval($_SESSION['user_id']);
-    $res = mysqli_query($conn, "SELECT name FROM users WHERE id = $user_id LIMIT 1");
-    if ($res && mysqli_num_rows($res) === 1) {
-        $row = mysqli_fetch_assoc($res);
-        $user_name = $row['name'];
-  
-        $_SESSION['user_name'] = $user_name;
-    } else {
-        $user_name = "Customer";
-    }
-}
-
-function h($s) { return htmlspecialchars($s, ENT_QUOTES, 'UTF-8'); }
-=======
 $uid = intval($_SESSION['user_id']);
 
 $sql = "SELECT name, email, contact, created_at FROM users WHERE id = ? LIMIT 1";
@@ -44,7 +17,6 @@ if (!$stmt) {
 }
 
 mysqli_stmt_bind_param($stmt, "i", $uid);
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 
 if (!mysqli_stmt_execute($stmt)) {
     die("Database error (execute failed): " . mysqli_stmt_error($stmt));
@@ -72,14 +44,7 @@ $customer_joined  = !empty($customer['created_at'])
 <head>
     <meta charset="UTF-8">
     <title>Customer Dashboard | AgroTradeHub</title>
-<<<<<<< HEAD
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
-<body>
-=======
     <meta name="viewport" content="width=device-width, initial-scale=1">
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -256,39 +221,26 @@ $customer_joined  = !empty($customer['created_at'])
             <h3>My Order</h3>
             <p>আপনার অর্ডার চেক করুন</p>
         </a>
-
-<<<<<<< HEAD
-        <a href="reviews.php" class="dash-box">
-=======
+         
         <a href="my_reviews.php" class="dash-box">
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
             <i class="fa fa-star"></i>
             <h3>My Reviews</h3>
             <p>কেনা পণ্য সম্পর্কে আপনার মতামত শেয়ার করুন</p>
         </a>
 
-<<<<<<< HEAD
-        <a href="profile.php" class="dash-box">
-=======
         <a href="customer_profile.php" class="dash-box">
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
             <i class="fa fa-user-cog"></i>
             <h3>Profile Settings</h3>
             <p>ব্যক্তিগত তথ্য এবং পাসওয়ার্ড আপডেট করুন</p>
         </a>
 
     </div>
-<<<<<<< HEAD
 
     <div>
          <button class="logout-btn" onclick="window.location.href='logout.php'"> Logout </button>
 </dive>
 
 </div>
-=======
->>>>>>> 62c5a44f9e8bd300171a95509207e39cf8e5796e
-
-    <button class="logout-btn" onclick="window.location.href='logout.php'">Logout</button>
 
 </div>
 </body>
