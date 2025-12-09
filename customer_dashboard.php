@@ -8,7 +8,10 @@ if (!isset($_SESSION['user_id']) || ($_SESSION['role'] ?? '') !== 'customer') {
     exit();
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 $uid = intval($_SESSION['user_id']);
 
 
@@ -22,7 +25,10 @@ if (!$stmt) {
 
 
 mysqli_stmt_bind_param($stmt, "i", $uid);
+<<<<<<< HEAD
 
+=======
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 
 if (!mysqli_stmt_execute($stmt)) {
     die("Database error (execute failed): " . mysqli_stmt_error($stmt));
@@ -53,6 +59,10 @@ $customer_joined  = !empty($customer['created_at'])
     <meta charset="UTF-8">
     <title>Customer Dashboard | AgroTradeHub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+<<<<<<< HEAD
+=======
+
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -241,7 +251,7 @@ $customer_joined  = !empty($customer['created_at'])
         <a href="cart.php" class="dash-box">
             <i class="fa fa-shopping-cart"></i>
             <h3>My Cart</h3>
-            <p>চেকআউটের আগে আইটেমগুলি দেখুন এবং পরিচালনা করুন</p>
+            <p>আইটেমগুলি দেখুন এবং পরিচালনা করুন</p>
         </a>
 
 
@@ -250,15 +260,22 @@ $customer_joined  = !empty($customer['created_at'])
             <h3>My Order</h3>
             <p>আপনার অর্ডার চেক করুন</p>
         </a>
+<<<<<<< HEAD
 
 
+=======
+         
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
         <a href="my_reviews.php" class="dash-box">
             <i class="fa fa-star"></i>
             <h3>My Reviews</h3>
             <p>কেনা পণ্য সম্পর্কে আপনার মতামত শেয়ার করুন</p>
         </a>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
         <a href="customer_profile.php" class="dash-box">
             <i class="fa fa-user-cog"></i>
             <h3>Profile Settings</h3>
@@ -268,10 +285,17 @@ $customer_joined  = !empty($customer['created_at'])
 
     </div>
 
+<<<<<<< HEAD
 
     <button class="logout-btn" onclick="window.location.href='logout.php'">Logout</button>
 
 
 </div>
+=======
+    <div>
+         <button class="logout-btn" onclick="window.location.href='logout.php'"> Logout </button>
+</dive>
+
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 </body>
 </html>

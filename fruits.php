@@ -24,6 +24,7 @@ if (isset($_GET['search'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         body {
+<<<<<<< HEAD
     background-color: #e0c3c3ff;
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -151,6 +152,58 @@ if (isset($_GET['search'])) {
 .btn-add-cart:hover {
     background-color: #036c1e;
 }
+=======
+        background-color: rgba(184, 167, 167, 1);
+    }
+        .menu-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgb(0, 63, 19);
+            padding: 10px 20px;
+            color: white;
+            font-weight: bold;
+        }
+        .menu-bar a {
+            color: white;
+            text-decoration: none;
+            margin-right: 12px;
+        }
+        .menu-bar a:hover {
+            text-decoration: underline;
+        }
+        .menu-left, .menu-right {
+            display: flex;
+            align-items: center;
+        }
+        .menu-right {
+            display: flex;
+            align-items: center;
+        }
+
+
+        .menu-right form {
+            display: flex;
+            align-items: center;
+        }
+
+
+        .menu-right input[type="text"] {
+            padding: 8px 15px;
+            border-radius: 25px;
+            border: none;
+            outline: none;
+            width: 220px;
+            font-size: 14px;
+            transition: 0.3s ease;
+        }
+
+
+        .menu-right input[type="text"]:focus {
+            width: 260px;
+            background: #fff;
+        }
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
     </style>
 </head>
 <body>
@@ -164,6 +217,18 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
            <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
+<<<<<<< HEAD
+=======
+    <button type="submit"></i> Search</button>
+
+
+    <?php if ($search !== ""): ?>
+     
+        <button type="button" onclick="window.location.href='<?= $_SERVER['PHP_SELF'] ?>'">
+            <i class="fa fa-refresh"></i> Refresh
+        </button>
+    <?php endif; ?>
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
         </form>
     </div>
 </div>

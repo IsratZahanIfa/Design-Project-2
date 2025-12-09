@@ -8,7 +8,10 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 if (isset($_GET['approve_seller'])) {
     $id = intval($_GET['approve_seller']);
 
@@ -38,7 +41,10 @@ if (isset($_GET['approve_seller'])) {
     exit;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 if (isset($_GET['delete_seller'])) {
     $id = intval($_GET['delete_seller']);
 
@@ -53,9 +59,12 @@ if (isset($_GET['delete_seller'])) {
     exit;
 }
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 $pending_sellers = mysqli_query($conn, "
     SELECT * FROM users
     WHERE role='seller'
@@ -176,7 +185,10 @@ th { background: #1a1a1a; }
 </head>
 <body>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 <h1>ADMIN DASHBOARD</h1>
 <h2 class="section-title">Pending Seller Approvals</h2>
 
@@ -228,8 +240,11 @@ th { background: #1a1a1a; }
 
 
 <h2 class="section-title">Manage All Tables</h2>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 <div class="box-links">
 
 
@@ -240,11 +255,15 @@ th { background: #1a1a1a; }
     <a href="notifications.php">Manage Notifications</a>
 
 
+<<<<<<< HEAD
 
 
 </div>
 
 
+=======
+</div>
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 <div class="logout-container">
     <a href="admin_dashboard.php?logout=1" class="logout">Logout</a>
 </div>

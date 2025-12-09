@@ -170,6 +170,13 @@ $categories = [
 }
 
 
+<<<<<<< HEAD
+=======
+.product-section {
+    width: 85%;
+    margin: 18px auto;
+}
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -366,6 +373,7 @@ $categories = [
     <?php endforeach; ?>
 </div>
 
+<<<<<<< HEAD
 
 
 
@@ -373,5 +381,10 @@ $categories = [
 
 
    
+=======
+    <a href="customer_dashboard.php" class="back-btn">Back to Dashboard</a>
+  
+>>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 </body>
 </html>
+
