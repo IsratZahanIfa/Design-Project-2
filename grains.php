@@ -164,17 +164,10 @@ if (isset($_GET['search'])) {
     <div class="menu-right">
         <form method="GET" action="">
             <input type="text" name="search" placeholder="Search products" value="<?= htmlspecialchars($search) ?>">
-<<<<<<< HEAD
-        </form>
-    </div>
-</div>
-
-=======
             <button type="submit">Search</button>
         </form>
     </div>
 </div>
->>>>>>> fc9d11989ef614d83355f711386ff22d50940c6c
 
 <!-- ========================= Grains SECTION ========================= -->
 <section class="product-section">
