@@ -2,37 +2,26 @@
 session_start();
 include 'db.php';
 
-
-// Check seller login
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'seller') {
     header("Location: login.php");
     exit();
 }
 
-
 $seller_id = $_SESSION['user_id'];
 
-
-// Search functionality
 $search = "";
 if (!empty($_GET['search'])) {
     $search = mysqli_real_escape_string($conn, $_GET['search']);
 }
 
-
-// Fetch products for this seller
 $sql = "SELECT * FROM add_products
         WHERE seller_id = $seller_id
         AND LOWER(name) LIKE LOWER('%$search%')
         ORDER BY created_at DESC";
 $result = mysqli_query($conn, $sql);
 
-
-// Count total products
 $total_products = ($result) ? mysqli_num_rows($result) : 0;
 
-
-// Delete product
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
     mysqli_query($conn, "DELETE FROM add_products WHERE id=$id AND seller_id=$seller_id");
@@ -41,7 +30,6 @@ if (isset($_GET['delete'])) {
 }
 
 
-// Update product price
 if (isset($_POST['update'])) {
     $pid = intval($_POST['product_select']);
     $new_price = floatval($_POST['price']);
